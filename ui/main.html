@@ -1,0 +1,91 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid" ng-app="myApp">
+    <div class="row">
+
+        <div class="col-md-12 text-center">
+            <span class="btn btn-default btn-file btn-primary">
+                <input type="file" nv-file-select uploader="uploader"/>
+            </span>
+            <button type="button" class="btn btn-primary" ng-click="myFunction()">Confirmar</button>
+            <p>{{ uploader }}</p>
+            <div id="myImg"></div>
+        </div>
+    </div>
+
+    <div class="panel-heading row">
+        <div class="col-md-3 text-center"><h3>Decrições</h3></div>
+        <div class="col-md-6 text-center"><h3>Principal</h3></h3></div>
+        <div class="col-md-3 text-center"><h3>Thumbnails</h3></div>
+    </div>
+    <div class="panel-body row">
+        <div class="col-md-3 text-center" ng-controller="ListAttrCtrl">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Atributo</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="attribute in attributes">
+                <tr>
+                    <td>{{attribute.color}}</td>
+                    <td>{{attribute.value}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Atributo</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="attribute in attributes2">
+                <tr>
+                    <td>{{attribute.color}}</td>
+                    <td>{{attribute.value}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="testando.jpg" alt="..." class="img-rounded" style="width: 90%">
+            <h6> Decricao da imagem </h6>
+            <label>Name:</label>
+            <input type="text" ng-model="yourName" placeholder="Enter a name here">
+            <hr>
+            <h1>Hello {{yourName}}!</h1>
+
+        </div>
+        <div class="col-md-3 text-center">
+            <nav>
+                <ul class="nav nav-pills nav-stacked span2">
+                    <li class="thumbnail">
+                        <a href="#" class="thumb">
+                            <img src="testando.jpg" alt="..." style="width: 20%">
+                        </a>
+                    <li><a href="#" class="thumbnail">
+                        <img src="testando.jpg" alt="..." style="width: 20%">
+                    </a></li>
+                    <li><a href="#" class="thumbnail">
+                        <img src="testando.jpg" alt="..." style="width: 20%"">
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
