@@ -1,14 +1,22 @@
 package br.edu.ufal.controller;
 
 import br.edu.ufal.BaseTest;
+import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.util.JsonMapperObject;
+import junit.framework.Assert;
+import org.jooby.mvc.GET;
+import org.jooby.mvc.Path;
 import org.jooby.test.Client;
 import org.junit.Test;
+
+import static junit.framework.Assert.*;
 
 /**
  * Created by andersonjso on 2/8/16.
  */
 public class SimilarNoduleControllerTest extends BaseTest{
 
+    JsonMapperObject mapper = new JsonMapperObject();
     //"/LIDC-IDRI/LIDC-IDRI-0001";
     /*
     final String token = userRepository.doAuth("admin@gmail.com", "123456").tokenize();
@@ -31,6 +39,20 @@ public class SimilarNoduleControllerTest extends BaseTest{
 
         jsonResponse.expect(s -> {
             System.out.println(s);
+        });
+    }
+
+    @Test //@Path("/exams/:page")
+    public void shouldListExams() throws Exception {
+        Client.Response jsonResponse = server.get("/exams/1")
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+            assertTrue(mapper.toJson(s).get("exams").size() == 10);
+            assertTrue(mapper.toJson(s).get("totalPages").asInt() == 100);
+
         });
     }
 }

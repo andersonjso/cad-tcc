@@ -1,6 +1,6 @@
 package br.edu.ufal;
 
-import br.edu.ufal.controller.SimilarNoduleController;
+import br.edu.ufal.controller.CADController;
 import org.jooby.Jooby;
 
 /**
@@ -11,7 +11,7 @@ public class App extends Jooby {
   {
     get("/", () -> "Hello World!");
 
-    use(SimilarNoduleController.class);
+    use(CADController.class);
   }
 
 
