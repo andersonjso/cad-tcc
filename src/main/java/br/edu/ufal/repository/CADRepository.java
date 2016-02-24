@@ -5,6 +5,7 @@ package br.edu.ufal.repository;
 import br.edu.ufal.ExamQueryResult;
 import br.edu.ufal.cad.cbir.isa.NoduleRetrievalPrecisionEvaluation;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
+import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.util.MongoUtils;
 import com.mongodb.Mongo;
@@ -46,16 +47,9 @@ public class CADRepository {
         return new ExamQueryResult(exams, totalPages);
     }
 
-    /*
-    List<Device> devices = StreamSupport.stream(MeyerCollections.devices().find()
-                .skip(QUANTITY * (page - 1))
-                .limit(QUANTITY)
-                .sort("{lastModification: -1}").as(Device.class).spliterator(), false)
-                .collect(toList());
+    public List<BigNodule> retrieveBigNodulesFromExam(String examPath) {
+        Exam exam = MongoUtils.exams().findOne("{path: {$regex: #}}", examPath + ".*").as(Exam.class);
 
-        long totalDevices = MeyerCollections.devices().count();
-        long totalPages = (long) (Math.ceil(totalDevices / (double) QUANTITY));
-
-        return new DeviceQueryResult(devices, totalPages);
-     */
+        return exam.getReadingSession().getBigNodules();
+    }
 }

@@ -1,6 +1,7 @@
 package br.edu.ufal.repository;
 
 import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.services.CADService;
 import com.mongodb.*;
@@ -11,6 +12,8 @@ import org.bson.types.ObjectId;
 import org.junit.Test;
 
 import java.util.List;
+
+import static junit.framework.Assert.*;
 
 /**
  * Created by andersonjso on 2/18/16.
@@ -23,8 +26,17 @@ public class CADRepositoryTest {
     public void shouldListExams(){
         ExamQueryResult examQueryResult = cadService.listExams(1);
 
-        Assert.assertTrue(examQueryResult.totalPages == 100);
-        Assert.assertTrue(examQueryResult.exams.size() == 10);
+        assertTrue(examQueryResult.totalPages == 100);
+        assertTrue(examQueryResult.exams.size() == 10);
+    }
+
+    @Test
+    public void shouldRetrieveBigNodulesFromExam(){
+        String path = "/LIDC-IDRI/LIDC-IDRI-0329/";
+
+        List<BigNodule> bigNodules = cadService.retrieveBigNodulesFromExam(path);
+
+        assertTrue(bigNodules.size() == 3);
     }
 
     @Test

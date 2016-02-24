@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Test set: br.edu.ufal.controller.SimilarNoduleControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.125 sec <<< FAILURE! - in br.edu.ufal.controller.SimilarNoduleControllerTest
+br.edu.ufal.controller.SimilarNoduleControllerTest  Time elapsed: 0.125 sec  <<< ERROR!
+com.google.inject.ConfigurationException: Guice configuration errors:
+
+1) No implementation for org.jooby.spi.Server was bound.
+  while locating org.jooby.spi.Server
+
+1 error
+	at com.google.inject.internal.InjectorImpl.getProvider(InjectorImpl.java:1042)
+	at com.google.inject.internal.InjectorImpl.getProvider(InjectorImpl.java:1001)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1051)
+	at org.jooby.Jooby.start(Jooby.java:3043)
+	at org.jooby.Jooby.start(Jooby.java:3004)
+	at org.jooby.test.AppRule.before(AppRule.java:39)
+	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:46)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+

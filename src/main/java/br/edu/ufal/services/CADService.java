@@ -2,6 +2,7 @@ package br.edu.ufal.services;
 
 import br.edu.ufal.ExamQueryResult;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
+import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.repository.CADRepository;
 
@@ -25,6 +26,10 @@ public class CADService {
 
     public ExamQueryResult listExams(int page) {
         return cadRepository.listExams(page);
+    }
+
+    public List<BigNodule> retrieveBigNodulesFromExam(String examPath) {
+        return cadRepository.retrieveBigNodulesFromExam(examPath);
     }
 
 //    public List<SimilarNodule> retrieveSimilarNodulesByPath(String dbPath) {

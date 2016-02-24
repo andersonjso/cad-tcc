@@ -2,6 +2,7 @@ package br.edu.ufal.controller;
 
 import br.edu.ufal.ExamQueryResult;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
+import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.services.CADService;
 import br.edu.ufal.util.JsonMapperObject;
@@ -62,5 +63,13 @@ public class CADController {
         ExamQueryResult examQueryResult = cadService.listExams(Integer.parseInt(page));
 
         return Results.ok(mapper.toJson(examQueryResult));
+    }
+
+    @GET
+    @Path("/exam/:examPath/bignodules")
+    public Result retrieveBigNodulesFromExam (String examPath){
+        List<BigNodule> bigNodules = cadService.retrieveBigNodulesFromExam(examPath);
+
+        return Results.ok(mapper.toJson(bigNodules));
     }
 }
