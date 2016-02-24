@@ -1,6 +1,7 @@
 package br.edu.ufal.repository;
 
 import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.services.CADService;
@@ -11,6 +12,7 @@ import junit.framework.Assert;
 import org.bson.types.ObjectId;
 import org.junit.Test;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 import static junit.framework.Assert.*;
@@ -37,6 +39,15 @@ public class CADRepositoryTest {
         List<BigNodule> bigNodules = cadService.retrieveBigNodulesFromExam(path);
 
         assertTrue(bigNodules.size() == 3);
+    }
+
+    @Test
+    public void shouldRetrieveSimilarNodues() throws UnknownHostException {
+        String examPath = "LIDC-IDRI-0323";
+        String noduleId = "Nodule 003";
+        List<SimilarNodule> similarNodules = cadService.retrieveSimilarNodules(examPath, noduleId);
+
+        assertTrue(similarNodules.size() == 10);
     }
 
     @Test

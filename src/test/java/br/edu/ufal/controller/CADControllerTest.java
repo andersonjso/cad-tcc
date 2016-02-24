@@ -30,17 +30,6 @@ public class CADControllerTest extends BaseTest{
             assertThat(new JsonMapperObject().toJson(s).get("email").asText()).isEqualToIgnoringCase("teste@gmail.com");
         });
      */
-    @Test
-    public void shouldRetrieveSimilarNodules() throws Exception {
-        //    @Path("/nodule/similar/:path")
-        Client.Response jsonResponse = server.get("/nodule/similar/134")
-                .header("Content-Tyoe", "application/json")
-                .expect(200);
-
-        jsonResponse.expect(s -> {
-            System.out.println(s);
-        });
-    }
 
     @Test //@Path("/exams/:page")
     public void shouldListExams() throws Exception {
@@ -69,4 +58,19 @@ public class CADControllerTest extends BaseTest{
             assertTrue(mapper.toJson(s).size() == 3);
         });
     }
+
+    @Test //@Path("exam/:examPath/nodule/:noduleId/similar")
+    public void shouldRetrieveSimilarNodules() throws Exception {
+        String examPath = "LIDC-IDRI-0323";
+        String noduleId = "Nodule%20003";
+
+        Client.Response jsonResponse = server.get("/exam/" + examPath + "/nodule/" + noduleId + "/similar")
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            assertTrue(mapper.toJson(s).size() == 10);
+        });
+    }
+
 }

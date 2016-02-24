@@ -13,6 +13,7 @@ import org.jooby.Results;
 import org.jooby.mvc.GET;
 import org.jooby.mvc.Path;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -71,5 +72,19 @@ public class CADController {
         List<BigNodule> bigNodules = cadService.retrieveBigNodulesFromExam(examPath);
 
         return Results.ok(mapper.toJson(bigNodules));
+    }
+
+    @GET
+    @Path("exam/:examPath/nodule/:noduleId/similar")
+    public Result retrieveSimilarNodules(String examPath, String noduleId){
+        try {
+            List<SimilarNodule> similarNodules = cadService.retrieveSimilarNodules(examPath, noduleId);
+
+            return Results.ok(mapper.toJson(similarNodules));
+        } catch (UnknownHostException e) {
+            //TODO: put a mapped exception here
+            e.printStackTrace();
+            return null;
+        }
     }
 }

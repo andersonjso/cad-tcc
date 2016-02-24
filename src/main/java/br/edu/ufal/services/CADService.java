@@ -16,8 +16,8 @@ public class CADService {
 
     CADRepository cadRepository = new CADRepository();
 
-    public List<SimilarNodule> retrieveSimilarNodules(String path) throws UnknownHostException {
-        return cadRepository.retrieveSimilarNodules(path);
+    public List<SimilarNodule> retrieveSimilarNodules(String examPath, String idNodule) throws UnknownHostException {
+        return cadRepository.retrieveSimilarNodules(examPath, idNodule);
     }
 
     public List<SimilarNodule> retrieveSimilarNodulesByPath(String s) {

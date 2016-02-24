@@ -21,6 +21,7 @@ package br.edu.ufal.cad.cbir.isa;
 
 
 import br.edu.ufal.cad.mongodb.tags.Points;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class SimilarNodule {
 
 	public SimilarNodule() {}
 
+	@JsonCreator
 	public SimilarNodule(String idExam,
 						 String path,
 						 String idNodule,

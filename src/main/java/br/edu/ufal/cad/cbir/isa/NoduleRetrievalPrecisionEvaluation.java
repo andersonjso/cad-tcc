@@ -68,21 +68,21 @@ public class NoduleRetrievalPrecisionEvaluation {
 			+ "	 }"
 			+ "}";
 
-	public List<SimilarNodule> retrieveSimilarNodules(BufferedImage[] image) throws UnknownHostException {
-		MongoClient mongoClient = new MongoClient();
-		DB db = mongoClient.getDB("test");
-		DBCollection col = db.getCollection("exams");
-		BasicDBObject exam;
-		BasicDBObject reading;
-		BasicDBList big;
-		BasicDBObject nodule;
-		String malRef;
-//		BasicDBList att = (BasicDBList) nodule.get("marginAttributes3D");
-		BasicDBList att;
+	private MongoClient mongoClient = new MongoClient();
+	private DB db = mongoClient.getDB("test");
+	private DBCollection col = db.getCollection("exams");
+	private BasicDBObject exam;
+	private BasicDBObject reading;
+	private BasicDBList big;
+	private BasicDBObject nodule;
+	private String malRef;
+	//		BasicDBList att = (BasicDBList) nodule.get("marginAttributes3D");
+	BasicDBList att;
 
+	public List<SimilarNodule> retrieveSimilarNodules(double[] arrayReference) throws UnknownHostException {
 		//VETOR DE REFERENCIA
-		AttributesNodule attributesNodule = new AttributesNodule();
-		double[] arrayReference = attributesNodule.getImageTextureAttributes(image);
+//		AttributesNodule attributesNodule = new AttributesNodule();
+//		double[] arrayReference = attributesNodule.getImageTextureAttributes(image);
 
 		int sizeArray = arrayReference.length;
 //		System.out.println("malRef "+malRef);

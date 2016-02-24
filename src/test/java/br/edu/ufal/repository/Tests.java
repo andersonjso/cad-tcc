@@ -40,7 +40,7 @@ public class Tests {
 
         NoduleRetrievalPrecisionEvaluation noduleRetrievalPerformanceEvaluation =
                 new NoduleRetrievalPrecisionEvaluation ();
-        List<SimilarNodule> nodules = noduleRetrievalPerformanceEvaluation.retrieveSimilarNodules(images);
+//        List<SimilarNodule> nodules = noduleRetrievalPerformanceEvaluation.retrieveSimilarNodules(images);
 
         System.out.println();
     }

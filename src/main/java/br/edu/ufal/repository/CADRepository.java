@@ -7,6 +7,7 @@ import br.edu.ufal.cad.cbir.isa.NoduleRetrievalPrecisionEvaluation;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
+import br.edu.ufal.cad.mongodb.tags.Roi;
 import br.edu.ufal.util.MongoUtils;
 import com.mongodb.Mongo;
 import org.jongo.MongoCursor;
@@ -14,6 +15,7 @@ import org.jongo.MongoCursor;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -25,12 +27,18 @@ public class CADRepository {
 
     private final int QUANTITY = 10;
 
-    public List<SimilarNodule> retrieveSimilarNodules(String path) throws UnknownHostException {
-        NoduleRetrievalPrecisionEvaluation noduleRetrievalPrecisionEvaluation =
+    public List<SimilarNodule> retrieveSimilarNodules(String examPath, String noduleId) throws UnknownHostException {
+        Exam exam = MongoUtils.exams().findOne("{path: {$regex: #}}", examPath + ".*").as(Exam.class);
+
+        Optional<BigNodule> nodule = exam.getReadingSession().getBigNodules().stream()
+                .filter(bigNodule -> bigNodule.getNoduleID().equals(noduleId)).findFirst();
+
+        double[] textureAttributes = nodule.get().getTextureAttributes();
+
+        NoduleRetrievalPrecisionEvaluation NRPEval =
                 new NoduleRetrievalPrecisionEvaluation();
 
-        return null;
-//        return noduleRetrievalPrecisionEvaluation.retrieveSimilarNodules(path);
+        return NRPEval.retrieveSimilarNodules(textureAttributes);
     }
 
     public ExamQueryResult listExams(int page) {

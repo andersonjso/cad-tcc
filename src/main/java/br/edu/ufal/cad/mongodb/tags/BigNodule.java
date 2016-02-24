@@ -125,6 +125,10 @@ public class BigNodule implements Nodule{
 		this.malignancy = malignancy;
 	}
 
+	public double[] getTextureAttributes() {
+		return textureAttributes;
+	}
+
 	@Override
 	public String getNoduleID() {
 		return noduleId;
