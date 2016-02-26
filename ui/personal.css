@@ -1,0 +1,17 @@
+.navbar-brand{
+    line-height: 70px;
+    height: 70px;
+    width: 140px;
+    padding-top: 0;
+}
+
+.input-group{
+    margin: 20px;
+}
+
+.form-control{
+    border-radius: 0;
+}
+
+
+
