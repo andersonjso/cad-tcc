@@ -9,7 +9,15 @@ import org.jooby.Jooby;
 public class App extends Jooby {
 
   {
-    get("/", () -> "Hello World!");
+    assets("/bower_components/**");
+    assets("/js/**");
+    assets("/css/**");
+    assets("/pages/**");
+
+
+    assets("/", "testpage.html");
+
+
 
     use(CADController.class);
   }

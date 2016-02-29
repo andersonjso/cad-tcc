@@ -26,10 +26,9 @@ public class CADRepositoryTest {
 
     @Test
     public void shouldListExams(){
-        ExamQueryResult examQueryResult = cadService.listExams(1);
+        List<Exam> exams = cadService.listExams();
 
-        assertTrue(examQueryResult.totalPages == 100);
-        assertTrue(examQueryResult.exams.size() == 10);
+        assertTrue(exams.size() == 864);
     }
 
     @Test
@@ -39,6 +38,16 @@ public class CADRepositoryTest {
         List<BigNodule> bigNodules = cadService.retrieveBigNodulesFromExam(path);
 
         assertTrue(bigNodules.size() == 3);
+    }
+
+    @Test
+    public void shouldRetrieveExamByPath(){
+        String path = "/LIDC-IDRI/LIDC-IDRI-0329/";
+
+        Exam exam = cadService.retrieveExamByPath(path);
+
+        System.out.println();
+
     }
 
     @Test

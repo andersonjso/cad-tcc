@@ -15,14 +15,13 @@ public class Exam {
 	private String uid; //tag LidcReadMessage uid do xml
 	private ResponseHeader responseHeader;
 	private ReadingSession readingSession;
-	@MongoId
 	private String _id;
 
 	@JsonCreator
 	public Exam(@JsonProperty("_id") String _id,
 				@JsonProperty("path") String path,
 				@JsonProperty("uid") String uid,
-				@JsonProperty("responseHeader") ResponseHeader responseHeader,
+				@JsonProperty("ResponseHeader") ResponseHeader responseHeader,
 				@JsonProperty("readingSession") ReadingSession readingSession) {
 		this._id = _id;
 		this.path = path;

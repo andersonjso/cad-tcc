@@ -13,6 +13,7 @@ import org.jooby.Results;
 import org.jooby.mvc.GET;
 import org.jooby.mvc.Path;
 
+import java.awt.image.BufferedImage;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,12 +59,17 @@ public class CADController {
 //        }
     }
 
+    /**
+     * list only the exams that have big nodules
+     * @param
+     * @return
+     */
     @GET
-    @Path("/exams/:page")
-    public Result listExams(String page){
-        ExamQueryResult examQueryResult = cadService.listExams(Integer.parseInt(page));
+    @Path("/exams")
+    public Result listExams(){
+        List<Exam> exams = cadService.listExams();
 
-        return Results.ok(mapper.toJson(examQueryResult));
+        return Results.ok(mapper.toJson(exams));
     }
 
     @GET
@@ -87,4 +93,23 @@ public class CADController {
             return null;
         }
     }
+
+    //TODO create test for this
+    @GET
+    @Path("exam/:examPath")
+    public Result retrieveExamByPath(String examPath, @Named("image") Optional<Boolean> image){
+        if (image.isPresent()){
+            BufferedImage[] imageExam = cadService.retrieveExamImageByPath(examPath);
+
+            return Results.ok(imageExam);
+        }
+        else{
+            Exam exam = cadService.retrieveExamByPath(examPath);
+
+            return Results.ok(mapper.toJson(exam));
+        }
+
+
+    }
+
 }

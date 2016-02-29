@@ -6,6 +6,7 @@ import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.repository.CADRepository;
 
+import java.awt.image.BufferedImage;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -24,12 +25,20 @@ public class CADService {
         return null;
     }
 
-    public ExamQueryResult listExams(int page) {
-        return cadRepository.listExams(page);
+    public List<Exam> listExams() {
+        return cadRepository.listExams();
     }
 
     public List<BigNodule> retrieveBigNodulesFromExam(String examPath) {
         return cadRepository.retrieveBigNodulesFromExam(examPath);
+    }
+
+    public Exam retrieveExamByPath(String examPath) {
+        return cadRepository.retrieveExamByPath(examPath);
+    }
+
+    public BufferedImage[] retrieveExamImageByPath(String examPath) {
+        return cadRepository.retrieveExamImageByPath(examPath);
     }
 
 //    public List<SimilarNodule> retrieveSimilarNodulesByPath(String dbPath) {

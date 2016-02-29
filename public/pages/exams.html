@@ -1,0 +1,27 @@
+<div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Path</th>
+            <th>Date Request</th>
+            <th>Date Service</th>
+            <th>Big Nodules</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="exam in allExams">
+            <td ng-click="goToExam(exam)" class="col-lg-6">
+                {{exam.path.substring(1, 25)}}
+            </td>
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{exam.responseHeader.dateRequest}}
+            </td>
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{exam.responseHeader.dateService}}
+            </td >
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{exam.readingSession.bignodule.length}}
+            </td>
+        </tr>
+    </table>
+</div>

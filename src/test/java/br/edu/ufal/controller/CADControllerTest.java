@@ -33,15 +33,13 @@ public class CADControllerTest extends BaseTest{
 
     @Test //@Path("/exams/:page")
     public void shouldListExams() throws Exception {
-        Client.Response jsonResponse = server.get("/exams/1")
+        Client.Response jsonResponse = server.get("/exams")
                 .header("Content-Type", "application/json")
                 .expect(200);
 
         jsonResponse.expect(s -> {
             System.out.println(s);
-            assertTrue(mapper.toJson(s).get("exams").size() == 10);
-            assertTrue(mapper.toJson(s).get("totalPages").asInt() == 100);
-
+            assertTrue(mapper.toJson(s).size() == 864);
         });
     }
 

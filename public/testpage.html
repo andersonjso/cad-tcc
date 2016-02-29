@@ -14,7 +14,7 @@
 <nav class="collapse navbar-collapse" style="background: #006494">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand"href="#">
+            <a class="navbar-brand"href="#/">
                 <img style="width: 100%" src="http://www.ebserh.gov.br/documents/221436/221597/logo+HUPAA-UFAL/c558cfdf-c57a-4bd6-90f6-a90181d768ac?t=1424362003572"></a>
         </div>
         <div class="col-md-4">
@@ -32,35 +32,9 @@
 
 
 
+<div ng-view></div>
 
-<div ng-controller="tableController">
 
-    <p>this is the result:</p>
-    <h1>{{theResult}}</h1>
-
-    <table ng-table="usersTable" class="table table-striped">
-        <tr ng-repeat="user in users">
-            <td data-title="'Id'" >
-                {{user.id}}
-            </td>
-            <td data-title="'First Name'" >
-                {{user.first_name}}
-            </td>
-            <td data-title="'Last Name'" >
-                {{user.last_name}}
-            </td>
-            <td data-title="'e-mail'" >
-                {{user.email}}
-            </td>
-            <td data-title="'Country'">
-                {{user.country}}
-            </td>
-            <td data-title="'IP'" >
-                {{user.ip_address}}
-            </td>
-        </tr>
-    </table>
-</div>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -80,7 +54,7 @@
 
 <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.min.css">
 
-<link rel="stylesheet" href="personal.css">
+<link rel="stylesheet" href="css/personal.css">
 
 
 
