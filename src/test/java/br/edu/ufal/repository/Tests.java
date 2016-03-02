@@ -5,6 +5,7 @@ import br.edu.ufal.cad.cbir.isa.ISATexture;
 import br.edu.ufal.cad.cbir.isa.NoduleRetrievalPerformanceEvaluation;
 import br.edu.ufal.cad.cbir.isa.NoduleRetrievalPrecisionEvaluation;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
+import org.dcm4che2.tool.dcm2jpg.Dcm2Jpg;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -43,5 +44,13 @@ public class Tests {
 //        List<SimilarNodule> nodules = noduleRetrievalPerformanceEvaluation.retrieveSimilarNodules(images);
 
         System.out.println();
+    }
+
+    @Test
+    public void coverter() throws IOException {
+        Dcm2Jpg dcm2Jpg = new Dcm2Jpg();
+
+        dcm2Jpg.convert(new File("/Users/andersonjso/Downloads/teste.dcm"),
+                new File("/Users/andersonjso/Downloads/anderson2015.png"));
     }
 }
