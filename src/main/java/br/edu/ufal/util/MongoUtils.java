@@ -15,11 +15,14 @@ public class MongoUtils {
    // MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
 
     private static MongoClient mongoClient = new MongoClient();
-    private static DB database = mongoClient.getDB("test");
-    private static Jongo jongo = new Jongo(database);
+    public static DB databaseTest = mongoClient.getDB("test");
+    private static Jongo jongo = new Jongo(databaseTest);
 
     public static MongoCollection exams (){
         return jongo.getCollection("exams");
+    }
+    public static MongoCollection imagesFiles (){
+        return jongo.getCollection("images.files");
     }
 
 }

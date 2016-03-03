@@ -13,9 +13,13 @@ import org.jooby.Results;
 import org.jooby.mvc.GET;
 import org.jooby.mvc.Path;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,19 +101,42 @@ public class CADController {
     //TODO create test for this
     @GET
     @Path("exam/:examPath")
-    public Result retrieveExamByPath(String examPath, @Named("image") Optional<Boolean> image){
-        if (image.isPresent()){
-            BufferedImage[] imageExam = cadService.retrieveExamImageByPath(examPath);
+    public Result retrieveExamByPath(String examPath, @Named("image") Optional<Boolean> image) throws IOException {
 
-            return Results.ok(imageExam);
-        }
-        else{
             Exam exam = cadService.retrieveExamByPath(examPath);
 
             return Results.ok(mapper.toJson(exam));
-        }
+
 
 
     }
+
+    @GET
+    @Path("exam/image/:examPath")
+    public Result retrieveImageExamByPath(String examPath) throws IOException {
+
+            BufferedImage imageExam = cadService.retrieveExamImageByPath(examPath);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write( imageExam, "png", baos );
+            baos.flush();
+            byte[] imageInByte = baos.toByteArray();
+            baos.close();
+
+             byte[] encoded = Base64.getEncoder().encode(imageInByte);
+
+            return Results.ok(encoded);
+    }
+
+    @GET
+    @Path("exam/:examPath/bignodules")
+    public Result retrieveBigNodulesImagesFromExam(String examPath) throws IOException {
+        BufferedImage[] bigNodules = cadService.retrieveBigNodulesImagesFromExam(examPath);
+
+        return Results.accepted(bigNodules);
+    }
+
+
+
 
 }

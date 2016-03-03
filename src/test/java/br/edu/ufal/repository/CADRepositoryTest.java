@@ -12,6 +12,10 @@ import junit.framework.Assert;
 import org.bson.types.ObjectId;
 import org.junit.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -57,6 +61,23 @@ public class CADRepositoryTest {
         List<SimilarNodule> similarNodules = cadService.retrieveSimilarNodules(examPath, noduleId);
 
         assertTrue(similarNodules.size() == 10);
+    }
+
+    @Test
+    public void shouldRetrieveImagesBigNodule() throws IOException {
+        ///LIDC-IDRI/LIDC-IDRI-0102/1.3.6.1.4.1.14519.5.2.1.6279.6001.144098736774350495825430776051/000000
+        BufferedImage[] bufferedImages = cadService.retrieveBigNodulesImagesFromExam("LIDC-IDRI-0398");
+
+        for (int i=0; i<bufferedImages.length; i++){
+            ImageIO.write(bufferedImages[i], "png", new File("/Users/andersonjso/Downloads/another/jose" + i + ".png"));
+        }
+
+    }
+    @Test
+    public void examImageByPath() throws IOException {
+        BufferedImage bufferedImage = cadService.retrieveExamImageByPath("LIDC-IDRI-0398");
+
+        ImageIO.write(bufferedImage, "png", new File("/Users/andersonjso/Downloads/another/ionapot.png"));
     }
 
     @Test

@@ -2,6 +2,8 @@ package br.edu.ufal.cad.mongodb.tags;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.javafx.beans.IDProperty;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 
@@ -9,18 +11,18 @@ public class Roi {
 	
 	private String imageZposition;	
 	private String imageSOP_UID;
-	private String originalImage;
+	private ObjectId originalImage;
 	private String inclusion;
 	private List<EdgeMap> edgeMaps;
-	private String noduleImage;
+	private ObjectId noduleImage;
 
 	@JsonCreator
 	public Roi(@JsonProperty("imageZposition")String imageZposition,
 			   @JsonProperty("imageSOP_UID")String imageSOP_UID,
-			   @JsonProperty("originalImage")String originalImage,
+			   @JsonProperty("originalImage")ObjectId originalImage,
 			   @JsonProperty("inclusion")String inclusion,
 			   @JsonProperty("edgeMaps")List<EdgeMap> edgeMaps,
-			   @JsonProperty("noduleImage")String noduleImage) {
+			   @JsonProperty("noduleImage")ObjectId noduleImage) {
 		this.imageZposition = imageZposition;
 		this.imageSOP_UID = imageSOP_UID;
 		this.originalImage = originalImage;
@@ -29,17 +31,17 @@ public class Roi {
 		this.noduleImage = noduleImage;
 	}
 
-	public Roi(String imageSOP_UID, String originalImage, List<EdgeMap> edgeMaps){
+	public Roi(String imageSOP_UID, ObjectId originalImage, List<EdgeMap> edgeMaps){
 		this.setImageSOP_UID(imageSOP_UID);
 		this.setOriginalImage(originalImage);
 		this.setEdgeMaps(edgeMaps);
 	}
 	
-	public String getOriginalImage() {
+	public ObjectId getOriginalImage() {
 		return originalImage;
 	}
 
-	public void setOriginalImage(String originalImage) {
+	public void setOriginalImage(ObjectId originalImage) {
 		this.originalImage = originalImage;
 	}
 	
@@ -66,6 +68,9 @@ public class Roi {
 	}
 	public void setEdgeMaps(List<EdgeMap> edgeMaps) {
 		this.edgeMaps = edgeMaps;
-	} 
+	}
 
+	public ObjectId getNoduleImage() {
+		return noduleImage;
+	}
 }

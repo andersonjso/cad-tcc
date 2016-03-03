@@ -31,7 +31,7 @@ public class CADControllerTest extends BaseTest{
         });
      */
 
-    @Test //@Path("/exams/:page")
+    @Test //@Path("/exams")
     public void shouldListExams() throws Exception {
         Client.Response jsonResponse = server.get("/exams")
                 .header("Content-Type", "application/json")
@@ -42,6 +42,7 @@ public class CADControllerTest extends BaseTest{
             assertTrue(mapper.toJson(s).size() == 864);
         });
     }
+
 
     //TODO: check if there is multiple exams wit this kind of prefix
     @Test //@Path("/exam/:examPath/bignodules")
@@ -54,6 +55,19 @@ public class CADControllerTest extends BaseTest{
 
         jsonResponse.expect(s -> {
             assertTrue(mapper.toJson(s).size() == 3);
+        });
+    }
+    @Test //@Path("exam/:examPath")
+    public void shouldRetrieveExamByPath() throws Exception {
+        String path = "LIDC-IDRI-0329";
+
+        Client.Response jsonResponse = server.get("/exam/image/" + path)
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+          //  assertTrue(mapper.toJson(s).size() == 3);
         });
     }
 
@@ -70,5 +84,6 @@ public class CADControllerTest extends BaseTest{
             assertTrue(mapper.toJson(s).size() == 10);
         });
     }
+
 
 }

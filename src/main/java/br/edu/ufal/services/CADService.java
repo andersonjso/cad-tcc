@@ -7,6 +7,7 @@ import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.repository.CADRepository;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -37,8 +38,12 @@ public class CADService {
         return cadRepository.retrieveExamByPath(examPath);
     }
 
-    public BufferedImage[] retrieveExamImageByPath(String examPath) {
+    public BufferedImage retrieveExamImageByPath(String examPath) throws IOException {
         return cadRepository.retrieveExamImageByPath(examPath);
+    }
+
+    public BufferedImage[] retrieveBigNodulesImagesFromExam(String examPath) throws IOException {
+        return cadRepository.retrieveBigNodulesImagesFromExam(examPath);
     }
 
 //    public List<SimilarNodule> retrieveSimilarNodulesByPath(String dbPath) {

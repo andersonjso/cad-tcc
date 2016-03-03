@@ -8,9 +8,20 @@ import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.util.MongoUtils;
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSDBFile;
+import org.bson.types.ObjectId;
+import org.dcm4che2.tool.dcm2jpg.Dcm2Jpg;
 import org.jongo.MongoCursor;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +34,7 @@ import java.util.stream.StreamSupport;
 public class CADRepository {
 
     private final int QUANTITY = 10;
+    private GridFS gfsPhoto = new GridFS(MongoUtils.databaseTest, "images");
 
     public List<SimilarNodule> retrieveSimilarNodules(String examPath, String noduleId) throws UnknownHostException {
         Exam exam = MongoUtils.exams().findOne("{path: {$regex: #}}", examPath + ".*").as(Exam.class);
@@ -61,8 +73,41 @@ public class CADRepository {
         return MongoUtils.exams().findOne("{path: {$regex: #}}", examPath + ".*").as(Exam.class);
     }
 
+    public BufferedImage retrieveExamImageByPath(String examPath) throws IOException {
+//        String filename = MongoUtils.imagesFiles().findOne("{filename: {$regex: #}}", examPath + ".*")
+//                .map(dbObject -> (String) dbObject.get("filename"));
+//
+//
+//        GridFSDBFile imageForOutput = gfsPhoto.findOne(filename);
+//        InputStream imageIS = imageForOutput.getInputStream();
+//
+//        BufferedImage bufferedImage = ImageIO.read(imageIS);
 
-    public BufferedImage[] retrieveExamImageByPath(String examPath) {
-        return new BufferedImage[0];
+        ObjectId originalImageID = retrieveExamByPath(examPath)
+                .getReadingSession()
+                .getBignodule().get(0)
+                .getRois().get(0)
+                .getOriginalImage();
+
+        GridFSDBFile imageForOutput = gfsPhoto.findOne(originalImageID);
+        InputStream imageIS = imageForOutput.getInputStream();
+
+        BufferedImage bufferedImage = ImageIO.read(imageIS);
+
+        return bufferedImage;
+    }
+
+    public BufferedImage[] retrieveBigNodulesImagesFromExam(String examPath) throws IOException {
+        List<BigNodule> bigNodules = retrieveBigNodulesFromExam(examPath);
+        BufferedImage[] bigNodulesImages = new BufferedImage[bigNodules.size()];
+        for(int i=0; i< bigNodules.size(); i++){
+            GridFSDBFile imageForOutput = gfsPhoto.findOne(bigNodules.get(i)
+                    .getRois().get(0).getNoduleImage());
+            InputStream imageIS = imageForOutput.getInputStream();
+
+            bigNodulesImages[i] = ImageIO.read(imageIS);
+        }
+
+        return bigNodulesImages;
     }
 }

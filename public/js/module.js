@@ -42,19 +42,32 @@ app.controller('examsController', ['$scope', '$location', 'dataFactory',
 app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
     function ($scope, $routeParams, dataFactory) {
 
-    var path = $routeParams.path;
+        var path = $routeParams.path;
 
-    retrieveExamByPath();
+        retrieveExamByPath();
+        retrieveImageExamByPath();
 
-    function retrieveExamByPath(){
-        dataFactory.retrieveExamByPath(path)
-            .success(function (response){
-                $scope.exam = response;
-            })
-            .error(function (error){
-                $scope.status = 'Unable to load data: ' + error.message;
-            })
-    }
+        function retrieveExamByPath(){
+            dataFactory.retrieveExamByPath(path)
+                .success(function (response){
+                    $scope.exam = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                })
+        };
+
+        function retrieveImageExamByPath(){
+            dataFactory.retrieveImageExamByPath(path)
+                .success(function (response){
+                    $scope.image = response;
+                })
+                .error(function (error){
+                    $scope.image = "http://bravewords.com/medias-static/images/news/2015/54D989DC-megadeth-how-dave-mustaine-inspired-luke-perry-in-the-beat-beneath-my-feet-image.jpg";
+                })
+        }
+
+
 }]);
 
 app.factory('dataFactory', ['$http', function($http){
@@ -76,5 +89,10 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.get('exam/' + examPath);
     }
 
+    dataFactory.retrieveImageExamByPath = function(examPath){
+        return $http.get('exam/image/' + examPath);
+    }
+
     return dataFactory;
 }])
+
