@@ -7,7 +7,7 @@ import br.edu.ufal.cad.mongodb.tags.Roi;
 import br.edu.ufal.util.MongoUtils;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
-import org.dcm4che2.tool.dcm2jpg.Dcm2Jpg;
+
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -49,13 +49,6 @@ public class Tests {
         System.out.println();
     }
 
-    @Test
-    public void coverter() throws IOException {
-        Dcm2Jpg dcm2Jpg = new Dcm2Jpg();
-
-        dcm2Jpg.convert(new File("/Users/andersonjso/Downloads/teste.dcm"),
-                new File("/Users/andersonjso/Downloads/anderson2015.png"));
-    }
 
 //    @Test
 //    public void ae() throws IOException {
@@ -114,14 +107,13 @@ public class Tests {
         }
 
 
-
     }
 
     @Test
     public void cone() throws IOException {
         InputStream inputStream = new FileInputStream("/Users/andersonjso/Downloads/another/examed1.dcm");
         BufferedImage imBuff = ImageIO.read(inputStream);
-        File file = new File("/Users/andersonjso/Downloads/another/vidaloka.png");
+        File file = new File("/Users/andersonjso/Downloads/another/forallthekings.png");
         ImageIO.write(imBuff, "png", file);
     }
 

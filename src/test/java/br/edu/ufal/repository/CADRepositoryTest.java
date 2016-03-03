@@ -81,6 +81,13 @@ public class CADRepositoryTest {
     }
 
     @Test
+    public void retrieveetcetc() throws IOException {
+        BufferedImage bufferedImage = cadService.retrieveBigNoduleImage("LIDC-IDRI-0398", "0");
+
+        ImageIO.write(bufferedImage, "png", new File("/Users/andersonjso/Downloads/another/meninodaporteira.png"));
+    }
+
+    @Test
     public void shouldRetrieveSimilarNodules() throws Exception {
 //        List<SimilarNodule> similarNodules = cadService.retrieveSimilarNodules("/LIDC-IDRI/LIDC-IDRI-0001");
 //

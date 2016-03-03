@@ -13,7 +13,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.bson.types.ObjectId;
-import org.dcm4che2.tool.dcm2jpg.Dcm2Jpg;
 import org.jongo.MongoCursor;
 
 import javax.imageio.ImageIO;
@@ -109,5 +108,22 @@ public class CADRepository {
         }
 
         return bigNodulesImages;
+    }
+
+    public BufferedImage retrieveBigNoduleImage(String examPath, String noduleId) throws IOException {
+        List<BigNodule> bigNodules = retrieveExamByPath(examPath).getReadingSession().getBignodule();
+        ObjectId noduleImageId = null;
+        for(BigNodule bigNodule : bigNodules){
+            if(bigNodule.getNoduleID().equals(noduleId)){
+                noduleImageId = bigNodule.getRois().get(0).getNoduleImage();
+                break;
+            }
+        }
+
+        GridFSDBFile imageForOutput = gfsPhoto.findOne(noduleImageId);
+        InputStream imageIS = imageForOutput.getInputStream();
+        BufferedImage noduleBI = ImageIO.read(imageIS);
+
+        return noduleBI;
     }
 }

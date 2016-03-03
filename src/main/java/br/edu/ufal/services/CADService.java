@@ -46,6 +46,10 @@ public class CADService {
         return cadRepository.retrieveBigNodulesImagesFromExam(examPath);
     }
 
+    public BufferedImage retrieveBigNoduleImage(String examPath, String noduleId) throws IOException {
+        return cadRepository.retrieveBigNoduleImage(examPath, noduleId);
+    }
+
 //    public List<SimilarNodule> retrieveSimilarNodulesByPath(String dbPath) {
 //        return cadRepository.retrieveSimilarNodulesByPath(dbPath);
 //    }

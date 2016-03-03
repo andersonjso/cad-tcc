@@ -29,20 +29,20 @@
         </div>
 
         <div class="col-md-3 text-center">
+
             <nav>
-                <ul class="nav nav-pills nav-stacked span2">
+                <ul ng-repeat="bigNodule in bigNodules" class="nav nav-pills nav-stacked span2">
+                    <h6>Nódulo ID: {{bigNodule.noduleId}}</h6>
                     <li class="thumbnail">
                         <a href="#" class="thumb">
-                            <img src="" alt="..." style="width: 20%">
+                            <img ng-src="data:image/PNG;base64,{{retrieveNoduleImage(bigNodule)}}" alt="..." style="width: 20%">
                         </a>
-                    <li><a href="#" class="thumbnail">
-                        <img src="" alt="..." style="width: 20%">
-                    </a></li>
-                    <li><a href="#" class="thumbnail">
-                        <img src="" alt="..." style="width: 20%"">
-                    </a></li>
+                    </li>
+                    <hr>
                 </ul>
             </nav>
+
         </div>
+
     </div>
 </div>

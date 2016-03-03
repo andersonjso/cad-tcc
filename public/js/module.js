@@ -46,11 +46,13 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
 
         retrieveExamByPath();
         retrieveImageExamByPath();
+        //retrieveBigNoduleImage(noduleId);
 
         function retrieveExamByPath(){
             dataFactory.retrieveExamByPath(path)
                 .success(function (response){
                     $scope.exam = response;
+                    $scope.bigNodules = $scope.exam.readingSession.bignodule;
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -63,9 +65,20 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
                     $scope.image = response;
                 })
                 .error(function (error){
-                    $scope.image = "http://bravewords.com/medias-static/images/news/2015/54D989DC-megadeth-how-dave-mustaine-inspired-luke-perry-in-the-beat-beneath-my-feet-image.jpg";
+                    $scope.status = 'Unable to load data: ' + error.message;
                 })
         }
+
+        $scope.retrieveNoduleImage = function(bigNodule) {
+           dataFactory.retrieveBigNoduleImage(path, bigNodule.noduleId)
+               .success(function(response){
+                   return response;
+               })
+               .error(function (error){
+                   $scope.status = 'Unable to load data: ' + error.message;
+               })
+        };
+
 
 
 }]);
@@ -93,6 +106,9 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.get('exam/image/' + examPath);
     }
 
+    dataFactory.retrieveBigNoduleImage = function(examPath, noduleId){
+        return $http.get('exam/' + examPath + '/bignodules/' + noduleId);
+    }
+
     return dataFactory;
 }])
-

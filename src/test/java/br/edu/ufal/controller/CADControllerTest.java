@@ -59,9 +59,9 @@ public class CADControllerTest extends BaseTest{
     }
     @Test //@Path("exam/:examPath")
     public void shouldRetrieveExamByPath() throws Exception {
-        String path = "LIDC-IDRI-0329";
-
-        Client.Response jsonResponse = server.get("/exam/image/" + path)
+        String path = "LIDC-IDRI-0398";
+//@Path("exam/:examPath/bignodules/:noduleId")
+        Client.Response jsonResponse = server.get("/exam/image/" + path + "0")
                 .header("Content-Type", "application/json")
                 .expect(200);
 
@@ -70,6 +70,21 @@ public class CADControllerTest extends BaseTest{
           //  assertTrue(mapper.toJson(s).size() == 3);
         });
     }
+
+    @Test //@Path("exam/:examPath")
+    public void shouldRetfsafasrieveExamByPath() throws Exception {
+        String path = "LIDC-IDRI-0398";
+//@Path("exam/:examPath/bignodules/:noduleId")
+        Client.Response jsonResponse = server.get("/exam/" + path + "/bignodules/0")
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+            //  assertTrue(mapper.toJson(s).size() == 3);
+        });
+    }
+
 
     @Test //@Path("exam/:examPath/nodule/:noduleId/similar")
     public void shouldRetrieveSimilarNodules() throws Exception {

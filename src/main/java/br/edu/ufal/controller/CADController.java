@@ -136,6 +136,23 @@ public class CADController {
         return Results.accepted(bigNodules);
     }
 
+    @GET
+    @Path("exam/:examPath/bignodules/:noduleId")
+    public Result retrieveBigNoduleImage(String examPath, String noduleId) throws IOException {
+        BufferedImage bigNodule = cadService.retrieveBigNoduleImage(examPath, noduleId);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bigNodule, "png", baos );
+        baos.flush();
+        byte[] imageInByte = baos.toByteArray();
+        baos.close();
+
+        byte[] encoded = Base64.getEncoder().encode(imageInByte);
+
+        return Results.ok(encoded);
+    }
+
+
 
 
 
