@@ -115,17 +115,17 @@ public class CADController {
     @Path("exam/image/:examPath")
     public Result retrieveImageExamByPath(String examPath) throws IOException {
 
-            BufferedImage imageExam = cadService.retrieveExamImageByPath(examPath);
+        BufferedImage imageExam = cadService.retrieveExamImageByPath(examPath);
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write( imageExam, "png", baos );
-            baos.flush();
-            byte[] imageInByte = baos.toByteArray();
-            baos.close();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write( imageExam, "png", baos );
+        baos.flush();
+        byte[] imageInByte = baos.toByteArray();
+        baos.close();
 
-             byte[] encoded = Base64.getEncoder().encode(imageInByte);
+        byte[] encoded = Base64.getEncoder().encode(imageInByte);
 
-            return Results.ok(encoded);
+        return Results.ok(encoded);
     }
 
     @GET

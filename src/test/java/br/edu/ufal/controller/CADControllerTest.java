@@ -74,8 +74,10 @@ public class CADControllerTest extends BaseTest{
     @Test //@Path("exam/:examPath")
     public void shouldRetfsafasrieveExamByPath() throws Exception {
         String path = "LIDC-IDRI-0398";
+
+        //http://localhost:8080/exam/LIDC-IDRI-0357/bignodules/Nodule%20004
 //@Path("exam/:examPath/bignodules/:noduleId")
-        Client.Response jsonResponse = server.get("/exam/" + path + "/bignodules/0")
+        Client.Response jsonResponse = server.get("/exam/LIDC-IDRI-0357/bignodules/Nodule%20004")
                 .header("Content-Type", "application/json")
                 .expect(200);
 

@@ -48,11 +48,30 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
         retrieveImageExamByPath();
         //retrieveBigNoduleImage(noduleId);
 
+        var getImagesNodules = function(id) {
+            $scope.noduleImg = {};
+
+            dataFactory.retrieveBigNoduleImage(path, id)
+                .success(function(response){
+                    $scope.noduleImg[id] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+
+
         function retrieveExamByPath(){
             dataFactory.retrieveExamByPath(path)
                 .success(function (response){
                     $scope.exam = response;
                     $scope.bigNodules = $scope.exam.readingSession.bignodule;
+
+                    for (var i = 0; i < $scope.bigNodules.length; i++){
+                        var id = $scope.bigNodules[i].noduleId;
+                        getImagesNodules(id);
+                    }
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -69,15 +88,8 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
                 })
         }
 
-        $scope.retrieveNoduleImage = function(bigNodule) {
-           dataFactory.retrieveBigNoduleImage(path, bigNodule.noduleId)
-               .success(function(response){
-                   return response;
-               })
-               .error(function (error){
-                   $scope.status = 'Unable to load data: ' + error.message;
-               })
-        };
+
+
 
 
 

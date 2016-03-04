@@ -30,14 +30,10 @@
 
         <div class="col-md-3 text-center">
 
-            <nav>
-                <ul ng-repeat="bigNodule in bigNodules" class="nav nav-pills nav-stacked span2">
+            <nav style="overflow: scroll; height: 400px">
+                <ul ng-repeat="bigNodule in bigNodules" class="nav nav-pills nav-stacked span2" >
                     <h6>Nódulo ID: {{bigNodule.noduleId}}</h6>
-                    <li class="thumbnail">
-                        <a href="#" class="thumb">
-                            <img ng-src="data:image/PNG;base64,{{retrieveNoduleImage(bigNodule)}}" alt="..." style="width: 20%">
-                        </a>
-                    </li>
+                         <img ng-src="data:image/PNG;base64,{{noduleImg[bigNodule.noduleId]}}" alt="" class="img-rounded"  style="width: 50%"  />
                     <hr>
                 </ul>
             </nav>
