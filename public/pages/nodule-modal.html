@@ -1,0 +1,68 @@
+<div class="nodule-modal">
+    <div class="modal-header">
+        <h3>{{actualNodule.noduleId}}</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-5 text-center">
+                <img ng-src="data:image/PNG;base64,{{noduleImg[actualNodule.noduleId]}}"
+                     alt=""
+                     class="img-rounded"
+                     style="width: 50%; margin-bottom: 20px"  />
+
+                <br>
+
+                <table class= "table text-left">
+                    <tbody>
+                    <tr>
+                        <td>Sutileza</td>
+                        <td>{{actualNodule.subtlety}}</td>
+                    </tr>
+                    <tr>
+                        <td>Estrutura Interna</td>
+                        <td>{{actualNodule.internalStructure}}</td>
+                    </tr>
+                    <tr>
+                        <td>Calcificação</td>
+                        <td>{{actualNodule.calcification}}</td>
+                    </tr>
+                    <tr>
+                        <td>Esfericidade</td>
+                        <td>{{actualNodule.sphericity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Calcificação</td>
+                        <td>{{actualNodule.calcification}}</td>
+                    </tr>
+                    <tr>
+                        <td>Margem</td>
+                        <td>{{actualNodule.margin}}</td>
+                    </tr>
+                    <tr>
+                        <td>Lobulação</td>
+                        <td>{{actualNodule.lobulation}}</td>
+                    </tr>
+                    <tr>
+                        <td>Spiculation</td>
+                        <td>{{actualNodule.spiculation}}</td>
+                    </tr>
+                    <tr>
+                        <td>Textura</td>
+                        <td>{{actualNodule.texture}}</td>
+                    </tr>
+                    <tr>
+                        <td>Malignidade</td>
+                        <td>{{actualNodule.malignancy}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-7 text-center">
+
+            </div>
+        </div>
+    </div>
+</div>

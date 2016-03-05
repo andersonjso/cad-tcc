@@ -2,7 +2,7 @@
  * Created by andersonjso on 2/24/16.
  */
 
-var app = angular.module('mainApp', ['ngTable', 'ngResource', 'ngRoute']);
+var app = angular.module('mainApp', ['ngTable', 'ngResource', 'ngRoute', 'ui.bootstrap']);
 
 /** CONFIG **/
 app.config(function($routeProvider){
@@ -39,14 +39,13 @@ app.controller('examsController', ['$scope', '$location', 'dataFactory',
         };
 }]);
 
-app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
-    function ($scope, $routeParams, dataFactory) {
+app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uibModal',
+    function ($scope, $routeParams, dataFactory, $uibModal) {
 
         var path = $routeParams.path;
 
         retrieveExamByPath();
         retrieveImageExamByPath();
-        //retrieveBigNoduleImage(noduleId);
 
         var getImagesNodules = function(id) {
             $scope.noduleImg = {};
@@ -59,8 +58,6 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
                     $scope.status = 'Unable to load data: ' + error.message;
                 });
         }
-
-
 
         function retrieveExamByPath(){
             dataFactory.retrieveExamByPath(path)
@@ -88,9 +85,45 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory',
                 })
         }
 
+        $scope.openNoduleDetails = function(actualNodule){
+            $scope.actualNodule = actualNodule;
+
+            var modal = $uibModal.open({
+                templateUrl: 'pages/nodule-modal.html',
+                controller: 'noduleModalController',
+                size: 'lg',
+                scope: $scope
+            });
+
+            modal.result.then(function (actualNodule){
+               // $scope.actualNodule.noduleId = actualNodule.noduleId;
+                $scope.actualNodule.subtlety = actualNodule.subtlety;
+                $scope.actualNodule.internalStructure = actualNodule.internalStructure;
+                $scope.actualNodule.calcification = actualNodule.calcification;
+                $scope.actualNodule.sphericity = actualNodule.sphericity;
+                $scope.actualNodule.margin = actualNodule.margin;
+                $scope.actualNodule.lobulation = actualNodule.lobulation;
+                $scope.actualNodule.spiculation = actualNodule.spiculation;
+                $scope.actualNodule.texture = actualNodule.texture;
+                $scope.actualNodule.malignancy = actualNodule.malignancy;
+            });
+        }
 
 
+}]);
 
+//
+//			if(nodules.get(i).getMalignancy() == 5){
+//				System.out.println(nodules.get(i).getPath()
+//						+ " and " +
+//						nodules.get(i).getIdNodule());
+//				System.out.println("M");
+//			}
+//			else
+//				System.out.println("B");
+
+app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
+    function ($scope, $uibModal, dataFactory) {
 
 
 }]);
