@@ -46,11 +46,16 @@ public class CADRepositoryTest {
 
     @Test
     public void shouldRetrieveExamByPath(){
-        String path = "/LIDC-IDRI/LIDC-IDRI-0329/";
+        String path = "0329";
 
-        Exam exam = cadService.retrieveExamByPath(path);
+        ExamQueryResult exam = cadService.retrieveExamsByPath(path, 1);
 
         System.out.println();
+
+    }
+
+    @Test
+    public void shouldRetrieveExamsByPath(){
 
     }
 

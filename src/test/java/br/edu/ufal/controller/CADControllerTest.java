@@ -103,4 +103,18 @@ public class CADControllerTest extends BaseTest{
         });
     }
 
+    @Test //@Path("exams/:examPath/:page")
+    public void shoudlRetrieveExamsByPath() throws Exception {
+        String examPath = "0323";
+
+        Client.Response jsonResponse = server.get("/exams/" + examPath + "/1")
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+          //  assertTrue(mapper.toJson(s).get("exams").size() == 1);
+        });
+    }
+
 }

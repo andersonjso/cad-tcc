@@ -9,7 +9,7 @@ app.config(function($routeProvider){
     $routeProvider
         .when('/', {
             templateUrl: 'pages/exams.html',
-            controller: 'examsController'
+            controller: 'examsController',
         })
         .when('/exam/:path', {
             templateUrl: 'pages/exam.html',
@@ -18,12 +18,13 @@ app.config(function($routeProvider){
         .otherwise({redirectTo: '/'})
 })
 
-app.controller('examsController', ['$scope', '$location', 'dataFactory',
-    function($scope, $location, dataFactory){
+app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory',
+    function($scope, $location, $route, dataFactory){
 
         $scope.allExams;
         getExams();
         $scope.maxSize = 5;
+        $scope.queryIsOn = false;
 
         function getExams(){
             dataFactory.listExams(1)
@@ -41,16 +42,44 @@ app.controller('examsController', ['$scope', '$location', 'dataFactory',
         };
 
         $scope.pageChanged= function() {
-            dataFactory.listExams($scope.currentPage)
+            if ($scope.queryIsOn){
+                dataFactory.retrieveExamsByPath($scope.searchExam, $scope.currentPage)
+                    .success(function (response){
+                        $scope.allExams = response;
+                        $scope.totalItems = response.totalPages * 10;
+                    })
+                    .error(function (error){
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    });
+            }else {
+                dataFactory.listExams($scope.currentPage)
+                    .success(function (response) {
+                        $scope.allExams = response;
+                        $scope.totalItems = response.totalPages * 10;
+                    })
+                    .error(function (error) {
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    })
+            }
+        };
+
+        $scope.search = function(){
+            event.preventDefault();
+            $scope.queryIsOn = true;
+            dataFactory.retrieveExamsByPath($scope.searchExam, 1)
                 .success(function (response){
                     $scope.allExams = response;
+                    $scope.totalItems = response.totalPages * 10;
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
-                })
-        };
+                });
+        }
 
-    }]);
+        $scope.reload = function(){
+            $route.reload();
+        }
+}]);
 
 app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uibModal',
     function ($scope, $routeParams, dataFactory, $uibModal) {
@@ -195,6 +224,10 @@ app.factory('dataFactory', ['$http', function($http){
 
     dataFactory.retrieveSimilarNodules = function(examPath, noduleId){
         return $http.get('exam/' + examPath + "/nodule/" + noduleId + '/similar')
+    }
+
+    dataFactory.retrieveExamsByPath = function(examPath, page){
+        return $http.get('exams/' + examPath + "/" + page)
     }
 
     return dataFactory;

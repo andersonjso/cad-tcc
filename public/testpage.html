@@ -7,22 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<nav class="collapse navbar-collapse" style="background: #006494">
+<nav ng-controller="examsController" class="collapse navbar-collapse" style="background: #006494">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand"href="#/">
-                <img style="width: 100%" src="http://www.ebserh.gov.br/documents/221436/221597/logo+HUPAA-UFAL/c558cfdf-c57a-4bd6-90f6-a90181d768ac?t=1424362003572"></a>
+                <img ng-click="reload()" style="width: 100%" src="http://www.ebserh.gov.br/documents/221436/221597/logo+HUPAA-UFAL/c558cfdf-c57a-4bd6-90f6-a90181d768ac?t=1424362003572"></a>
         </div>
-        <div class="col-md-4">
-            <div class="input-group custom-search-form">
-                <input type="text" class="form-control">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-                  <span class="glyphicon glyphicon-search"></span>
-              </button>
-             </span>
-            </div><!-- /input-group -->
-        </div>
+
     </div>
 </nav>
 

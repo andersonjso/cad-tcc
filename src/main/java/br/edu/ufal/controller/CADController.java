@@ -136,4 +136,12 @@ public class CADController {
 
         return Results.ok(encoded);
     }
+
+    @GET
+    @Path("exams/:examPath/:page")
+    public Result retrieveExamsByPath(String examPath, int page){
+        ExamQueryResult examQueryResult = cadService.retrieveExamsByPath(examPath, page);
+
+        return Results.ok(mapper.toJson(examQueryResult));
+    }
 }

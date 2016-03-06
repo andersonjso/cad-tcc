@@ -127,4 +127,18 @@ public class CADRepository {
 
         return noduleBI;
     }
+
+    public ExamQueryResult retrieveExamsByPath(String examPath, int page) {
+        List<Exam> exams = StreamSupport.stream(MongoUtils.exams()
+                .find("{readingSession.bignodule.0: {$exists: true}, path: {$regex: #}}", examPath+".*")
+                .skip(QUANTITY * (page -1))
+                .limit(QUANTITY).as(Exam.class).spliterator(), false).collect(Collectors.toList());
+
+        long totalExams = MongoUtils.exams()
+                .count("{readingSession.bignodule.0: {$exists: true}, path: {$regex: #}}", examPath+".*");
+
+        long totalPages = (long) (Math.ceil(totalExams / (double) QUANTITY));
+
+        return new ExamQueryResult(exams, totalPages);
+    }
 }

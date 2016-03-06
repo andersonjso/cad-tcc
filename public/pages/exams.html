@@ -1,22 +1,36 @@
 <div>
 
-    <table class="table table-responsive table-striped" align="center" style="width: 100%;">
-        <thead>
+    <div class="row" id="search-box">
+        <div class="col-md-4">
+            <div class="input-group custom-search-form">
+                <input id="search-exam" type="text" class="form-control search-input"
+                       placeholder="Pesquisa rápida..." ng-model="$parent.searchExam">
+              <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="search()">
+                  <span class="glyphicon glyphicon-search"></span>
+              </button>
+             </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+
+    <table class="table table-responsive" align="center" style="width: 80%; margin-top: 10px" >
+        <thead class="text-center">
         <tr>
-            <th>Path</th>
-            <th>Date Request</th>
-            <th>Date Service</th>
-            <th>Big Nodules</th>
+            <th class="text-center">Path</th>
+            <th class="text-center">Date Request</th>
+            <th class="text-center">Date Service</th>
+            <th class="text-center" >Big Nodules</th>
         </tr>
         </thead>
-        <tr  ng-repeat="exam in allExams.exams" style="cursor: pointer;">
-            <td ng-click="goToExam(exam)" class="col-lg-6" >
+        <tr  ng-repeat="exam in allExams.exams" style="cursor: pointer;" class="text-center">
+            <td ng-click="goToExam(exam)" class="col-lg-4" >
                 {{exam.path.substring(1, 25)}}
             </td>
-            <td ng-click="goToExam(exam)" class="col-lg-2">
+            <td ng-click="goToExam(exam)" class="col-lg-3">
                 {{exam.responseHeader.dateRequest}}
             </td>
-            <td ng-click="goToExam(exam)" class="col-lg-2">
+            <td ng-click="goToExam(exam)" class="col-lg-3">
                 {{exam.responseHeader.dateService}}
             </td >
             <td ng-click="goToExam(exam)" class="col-lg-2">
