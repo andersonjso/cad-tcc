@@ -101,16 +101,6 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
 
 }]);
 
-//
-//			if(nodules.get(i).getMalignancy() == 5){
-//				System.out.println(nodules.get(i).getPath()
-//						+ " and " +
-//						nodules.get(i).getIdNodule());
-//				System.out.println("M");
-//			}
-//			else
-//				System.out.println("B");
-
 app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
     function ($scope, $uibModal, dataFactory) {
 
@@ -118,6 +108,17 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
         var benign = 0;
         retrieveSimilarNodules();
 
+        var getImagesNodules = function(path, id) {
+            $scope.similarNoduleImg = {};
+
+            dataFactory.retrieveBigNoduleImage(path, id)
+                .success(function(response){
+                    $scope.similarNoduleImg[id] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
 
         function retrieveSimilarNodules(){
             dataFactory.retrieveSimilarNodules($scope.pathExam, $scope.actualNodule.noduleId)
@@ -125,6 +126,10 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
                     $scope.similarNodules = response;
 
                     for (var i = 0; i < $scope.similarNodules.length; i++){
+                        var id = $scope.similarNodules[i].idNodule;
+                        var path = $scope.similarNodules[i].path.substring(11, 25);
+                        getImagesNodules(path, id);
+
                         if ($scope.similarNodules[i].malignancy == 5){
                             malign++;
                         }

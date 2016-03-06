@@ -62,13 +62,14 @@
 
             <div class="col-md-7 text-center" style="margin-top: -30px;">
                 <h3>Nódulos Semelhantes</h3>
+                <h5> Malignos: {{numberMalign}} | Benignos: {{numberBenign}}</h5>
                 <hr>
                     <div class="row" style="overflow: scroll; height: 500px">
                         <div ng-repeat="similarNodule in similarNodules"
                              class="col-md-6 text-center">
                             <h6>ID Nódulo: {{similarNodule.idNodule}}</h6>
                             <h6>Exame: {{similarNodule.path.substring(11, 25)}}</h6>
-                            <img ng-src="data:image/PNG;base64,{{noduleImg[actualNodule.noduleId]}}"
+                            <img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNodule.idNodule]}}"
                                  alt=""
                                  class="img-rounded"
                                  style="width: 50%"
