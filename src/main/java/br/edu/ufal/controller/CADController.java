@@ -29,20 +29,7 @@ import java.util.Optional;
 public class CADController {
 
     CADService cadService = new CADService();
-    /*
-    @POST
-    @Path("/user/:userId/client")
-    public Result createClient(@Body String bodyResponseNewClient, String userId) {
-        try {
-            Client newClient = mapper.parse(bodyResponseNewClient, Client.class);
 
-            clientService.createClient(userId, newClient);
-            return Results.ok(mapper.toJson(newClient));
-        } catch (ExistingClientException | UserPermissionException | UserNotFoundException e) {
-            return Results.with(mapper.toJson(e.mapToJsonResponse()), 500);
-        }
-    }
-     */
     JsonMapperObject mapper = new JsonMapperObject();
 
     @GET
@@ -149,9 +136,4 @@ public class CADController {
 
         return Results.ok(encoded);
     }
-
-
-
-
-
 }

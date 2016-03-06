@@ -49,19 +49,4 @@ public class CADService {
     public BufferedImage retrieveBigNoduleImage(String examPath, String noduleId) throws IOException {
         return cadRepository.retrieveBigNoduleImage(examPath, noduleId);
     }
-
-//    public List<SimilarNodule> retrieveSimilarNodulesByPath(String dbPath) {
-//        return cadRepository.retrieveSimilarNodulesByPath(dbPath);
-//    }
-
-
-    /*
-        public Client createClient(String userId, Client newClient) throws UserNotFoundException, UserPermissionException, ExistingClientException {
-        userS
-        ervice.verifyPermission(userId, Permission.MANAGE_CLIENT);
-
-        return clientRepository.createClient(newClient);
-    }
-     */
-
 }

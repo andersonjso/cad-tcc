@@ -114,18 +114,37 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
 app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
     function ($scope, $uibModal, dataFactory) {
 
+        var malign = 0;
+        var benign = 0;
         retrieveSimilarNodules();
+
 
         function retrieveSimilarNodules(){
             dataFactory.retrieveSimilarNodules($scope.pathExam, $scope.actualNodule.noduleId)
                 .success(function (response){
                     $scope.similarNodules = response;
+
+                    for (var i = 0; i < $scope.similarNodules.length; i++){
+                        if ($scope.similarNodules[i].malignancy == 5){
+                            malign++;
+                        }
+                        else{
+                            benign++;
+                        }
+                    }
+
+                    $scope.numberMalign = malign;
+                    $scope.numberBenign = benign;
+
                 })
                 .error(function (error){
 
                     $scope.status = 'Unable to load data: ' + error.message;
                 })
         }
+
+
+
 }]);
 
 app.factory('dataFactory', ['$http', function($http){
