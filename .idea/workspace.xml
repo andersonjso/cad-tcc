@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b1b4960-12c8-44c1-a2b5-cd0f7489deea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/pages/nodule-modal.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/services.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bower.json" afterPath="$PROJECT_DIR$/public/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/personal.css" afterPath="$PROJECT_DIR$/public/css/personal.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/module.js" afterPath="$PROJECT_DIR$/public/js/module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/pages/exam.html" afterPath="$PROJECT_DIR$/public/pages/exam.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/testpage.html" afterPath="$PROJECT_DIR$/public/testpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/pages/nodule-modal.html" afterPath="$PROJECT_DIR$/public/pages/nodule-modal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/cbir/isa/SimilarNodule.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/cbir/isa/SimilarNodule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
     </list>
     <ignored path="cad-tcc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,22 +39,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="testpage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/testpage.html">
+      <file leaf-file-name="module.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.5416665">
-              <caret line="46" column="76" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CADService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
-              <folding />
+            <state vertical-scroll-proportion="-10.925926">
+              <caret line="164" column="13" selection-start-line="164" selection-start-column="12" selection-end-line="164" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#45#0" expanded="false" />
+                <element signature="e#533#1115#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,8 +55,8 @@
       <file leaf-file-name="exam.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/pages/exam.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8846154">
-              <caret line="36" column="24" selection-start-line="35" selection-start-column="25" selection-end-line="36" selection-end-column="24" />
+            <state vertical-scroll-proportion="-3.5490196">
+              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="56" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#nav#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -74,28 +66,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="module.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/module.js">
+      <file leaf-file-name="nodule-modal.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/pages/nodule-modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.259259">
-              <caret line="107" column="72" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.7912844">
+              <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
               <folding>
-                <element signature="e#0#45#0" expanded="false" />
-                <element signature="e#533#1115#0" expanded="false" />
-                <element signature="e#4354#5165#0" expanded="false" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nodule-modal.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/pages/nodule-modal.html">
+      <file leaf-file-name="personal.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/personal.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.712743">
-              <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-16.25">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,6 +99,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CADControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="60" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -156,7 +157,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/mongodb/tags/EdgeMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/ExamQueryResult.java" />
         <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/SimilarNoduleControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/cbir/isa/SimilarNodule.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/mongodb/tags/BigNodule.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/cbir/isa/NoduleRetrievalPrecisionEvaluation.java" />
         <option value="$PROJECT_DIR$/ui/json/tests.html" />
@@ -184,12 +184,13 @@
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" />
         <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" />
-        <option value="$PROJECT_DIR$/public/css/personal.css" />
         <option value="$PROJECT_DIR$/public/pages/exam.html" />
         <option value="$PROJECT_DIR$/public/bower.json" />
         <option value="$PROJECT_DIR$/public/testpage.html" />
+        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/cbir/isa/SimilarNodule.java" />
+        <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
+        <option value="$PROJECT_DIR$/public/css/personal.css" />
         <option value="$PROJECT_DIR$/public/js/module.js" />
         <option value="$PROJECT_DIR$/public/pages/nodule-modal.html" />
       </list>
@@ -644,33 +645,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/br/edu/ufal" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
-    <configuration default="false" name="CADControllerTest.shouldRetrieveExamByPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="br.edu.ufal.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cad-tcc" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="br.edu.ufal.controller" />
-      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.controller.CADControllerTest" />
-      <option name="METHOD_NAME" value="shouldRetrieveExamByPath" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.CADControllerTest.shouldRetrieveSimilarNodules">
     <configuration default="false" name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -689,32 +664,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="cad-tcc" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="CADRepositoryTest.retrieveetcetc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="br.edu.ufal.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cad-tcc" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="br.edu.ufal.repository" />
-      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.repository.CADRepositoryTest" />
-      <option name="METHOD_NAME" value="retrieveetcetc" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="false" name="CADControllerTest.shouldRetfsafasrieveExamByPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -757,6 +706,58 @@
       <option name="MAIN_CLASS_NAME" value="br.edu.ufal.AppTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CADRepositoryTest.shouldRetrieveSimilarNodues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ufal.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cad-tcc" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="br.edu.ufal.repository" />
+      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.repository.CADRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldRetrieveSimilarNodues" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CADControllerTest.shouldRetrieveSimilarNodules" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ufal.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cad-tcc" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="br.edu.ufal.controller" />
+      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.controller.CADControllerTest" />
+      <option name="METHOD_NAME" value="shouldRetrieveSimilarNodules" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -1180,19 +1181,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetrieveExamByPath" />
-      <item index="1" class="java.lang.String" itemvalue="Application.App" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.retrieveetcetc" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetfsafasrieveExamByPath" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.AppTest" />
+      <item index="0" class="java.lang.String" itemvalue="Application.App" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetfsafasrieveExamByPath" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.AppTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldRetrieveSimilarNodues" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetrieveSimilarNodules" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.App" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetfsafasrieveExamByPath" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.AppTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.retrieveetcetc" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetrieveExamByPath" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetrieveSimilarNodules" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldRetrieveSimilarNodues" />
+        <item index="2" class="java.lang.String" itemvalue="Application.App" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetfsafasrieveExamByPath" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.AppTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1212,7 +1213,7 @@
       <workItem from="1456285842815" duration="25658000" />
       <workItem from="1456530391447" duration="4163000" />
       <workItem from="1456596530797" duration="34898000" />
-      <workItem from="1456806300916" duration="42656000" />
+      <workItem from="1456806300916" duration="54356000" />
     </task>
     <task id="LOCAL-00001" summary="[improv] Create service and tests to list all devices">
       <created>1456281720434</created>
@@ -1262,7 +1263,13 @@
       <option name="project" value="LOCAL" />
       <updated>1457060167805</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="[improv] Create modal to show nodule details">
+      <created>1457197945355</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1457197945355</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1284,21 +1291,21 @@
     <history-entry file="CADControllerTest_shouldRetfsafasrieveExamByPath - 2016.03.03 at 22h 48m 12s.xml">
       <configuration name="CADControllerTest.shouldRetfsafasrieveExamByPath" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CADControllerTest_shouldRetrieveExamByPath - 2016.03.03 at 12h 22m 29s.xml">
-      <configuration name="CADControllerTest.shouldRetrieveExamByPath" configurationId="JUnit" />
+    <history-entry file="CADControllerTest_shouldRetrieveSimilarNodules - 2016.03.05 at 18h 37m 46s.xml">
+      <configuration name="CADControllerTest.shouldRetrieveSimilarNodules" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CADControllerTest_shouldRetrieveExamByPath - 2016.03.03 at 12h 22m 41s.xml">
-      <configuration name="CADControllerTest.shouldRetrieveExamByPath" configurationId="JUnit" />
+    <history-entry file="CADControllerTest_shouldRetrieveSimilarNodules - 2016.03.05 at 18h 38m 05s.xml">
+      <configuration name="CADControllerTest.shouldRetrieveSimilarNodules" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CADRepositoryTest_retrieveetcetc - 2016.03.03 at 11h 35m 31s.xml">
-      <configuration name="CADRepositoryTest.retrieveetcetc" configurationId="JUnit" />
+    <history-entry file="CADControllerTest_shouldRetrieveSimilarNodules - 2016.03.05 at 18h 38m 30s.xml">
+      <configuration name="CADControllerTest.shouldRetrieveSimilarNodules" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CADRepositoryTest_retrieveetcetc - 2016.03.03 at 12h 23m 08s.xml">
       <configuration name="CADRepositoryTest.retrieveetcetc" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149380000" />
+    <option name="totallyTimeSpent" value="161080000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="727" extended-state="0" />
@@ -1311,23 +1318,23 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.296063" sideWeight="0.503231" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7559055" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22519685" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26771653" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18897638" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19370079" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33543307" sideWeight="0.49676898" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26929134" sideWeight="0.49676898" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19370079" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1351,7 +1358,8 @@
     <MESSAGE value="[improv] convert dcm to png and show the exam image at its main screen" />
     <MESSAGE value="[improv] Create function to add nodule images" />
     <MESSAGE value="[improv] Create functions in angular to show nodule images" />
-    <option name="LAST_COMMIT_MESSAGE" value="[improv] Create functions in angular to show nodule images" />
+    <MESSAGE value="[improv] Create modal to show nodule details" />
+    <option name="LAST_COMMIT_MESSAGE" value="[improv] Create modal to show nodule details" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1387,13 +1395,13 @@
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java</url>
-          <line>141</line>
+          <url>file://$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java</url>
+          <line>62</line>
           <properties />
-          <option name="timeStamp" value="67" />
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="68" />
+      <option name="time" value="69" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1463,13 +1471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/cbir/isa/SimilarNodule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.264637">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1677,14 +1678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/jooby/jooby/0.14.0/jooby-0.14.0.jar!/org/jooby/internal/mvc/MvcHandler.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.059945505">
@@ -1693,44 +1686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44558522">
-          <caret line="146" column="42" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="11" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/personal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.166667">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.125">
           <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1776,23 +1735,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/pages/exams.html">
+    <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6112311">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.44036698">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/pages/exam.html">
+    <entry file="file://$PROJECT_DIR$/public/pages/exams.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8846154">
-          <caret line="36" column="24" selection-start-line="35" selection-start-column="25" selection-end-line="36" selection-end-column="24" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#nav#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#ul#0;n#nav#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.32038835">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="10" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1806,24 +1769,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.104347825">
+          <caret line="89" column="13" selection-start-line="86" selection-start-column="3" selection-end-line="89" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33264887">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/cbir/isa/SimilarNodule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33880904">
+          <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/personal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.25">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.259259">
-          <caret line="107" column="72" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="72" />
+        <state vertical-scroll-proportion="-10.925926">
+          <caret line="164" column="13" selection-start-line="164" selection-start-column="12" selection-end-line="164" selection-end-column="13" />
           <folding>
             <element signature="e#0#45#0" expanded="false" />
             <element signature="e#533#1115#0" expanded="false" />
-            <element signature="e#4354#5165#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/pages/exam.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5490196">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#nav#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#ul#0;n#nav#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/pages/nodule-modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.712743">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.7912844">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

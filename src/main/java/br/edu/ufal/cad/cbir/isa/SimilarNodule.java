@@ -22,6 +22,7 @@ package br.edu.ufal.cad.cbir.isa;
 
 import br.edu.ufal.cad.mongodb.tags.Points;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -52,13 +53,13 @@ public class SimilarNodule {
 	public SimilarNodule() {}
 
 	@JsonCreator
-	public SimilarNodule(String idExam,
-						 String path,
-						 String idNodule,
+	public SimilarNodule(@JsonProperty("idExam") String idExam,
+						 @JsonProperty("path")String path,
+						 @JsonProperty("idNodule")String idNodule,
 						 double[] attributes,
 						 double distance,
 						 int texture,
-						 int malignancy,
+						 @JsonProperty("malignancy")int malignancy,
 						 int subtlety,
 						 int calcification,
 						 int internalStructure,

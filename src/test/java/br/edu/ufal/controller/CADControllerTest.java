@@ -98,9 +98,9 @@ public class CADControllerTest extends BaseTest{
                 .expect(200);
 
         jsonResponse.expect(s -> {
+            System.out.println(s);
             assertTrue(mapper.toJson(s).size() == 10);
         });
     }
-
 
 }

@@ -1,6 +1,6 @@
 <div class="nodule-modal">
-    <div class="modal-header">
-        <h3>{{actualNodule.noduleId}}</h3>
+    <div class="modal-header text-center">
+        <h3>Nódulo ID: {{actualNodule.noduleId}}</h3>
     </div>
 
     <div class="modal-body">
@@ -60,8 +60,25 @@
                 </table>
             </div>
 
-            <div class="col-md-7 text-center">
+            <div class="col-md-7 text-center" style="margin-top: -30px;">
+                <h3>Nódulos Semelhantes</h3>
+                <hr>
+                    <div class="row" style="overflow: scroll; height: 500px">
+                        <div ng-repeat="similarNodule in similarNodules"
+                             class="col-md-6 text-center">
+                            <h6>ID Nódulo: {{similarNodule.idNodule}}</h6>
+                            <h6>Exame: {{similarNodule.path.substring(11, 25)}}</h6>
+                            <img ng-src="data:image/PNG;base64,{{noduleImg[actualNodule.noduleId]}}"
+                                 alt=""
+                                 class="img-rounded"
+                                 style="width: 50%"
+                            />
+                            <h5>Malignidade: {{similarNodule.malignancy}}</h5>
+                            <hr>
+                        </div>
 
+                    </div>
+                </div>
             </div>
         </div>
     </div>

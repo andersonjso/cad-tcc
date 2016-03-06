@@ -107,8 +107,6 @@ public class CADController {
 
             return Results.ok(mapper.toJson(exam));
 
-
-
     }
 
     @GET

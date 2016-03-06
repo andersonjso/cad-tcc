@@ -47,6 +47,7 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
         retrieveExamByPath();
         retrieveImageExamByPath();
 
+
         var getImagesNodules = function(id) {
             $scope.noduleImg = {};
 
@@ -87,25 +88,13 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
 
         $scope.openNoduleDetails = function(actualNodule){
             $scope.actualNodule = actualNodule;
+            $scope.pathExam = path;
 
             var modal = $uibModal.open({
                 templateUrl: 'pages/nodule-modal.html',
                 controller: 'noduleModalController',
                 size: 'lg',
                 scope: $scope
-            });
-
-            modal.result.then(function (actualNodule){
-               // $scope.actualNodule.noduleId = actualNodule.noduleId;
-                $scope.actualNodule.subtlety = actualNodule.subtlety;
-                $scope.actualNodule.internalStructure = actualNodule.internalStructure;
-                $scope.actualNodule.calcification = actualNodule.calcification;
-                $scope.actualNodule.sphericity = actualNodule.sphericity;
-                $scope.actualNodule.margin = actualNodule.margin;
-                $scope.actualNodule.lobulation = actualNodule.lobulation;
-                $scope.actualNodule.spiculation = actualNodule.spiculation;
-                $scope.actualNodule.texture = actualNodule.texture;
-                $scope.actualNodule.malignancy = actualNodule.malignancy;
             });
         }
 
@@ -125,7 +114,18 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
 app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
     function ($scope, $uibModal, dataFactory) {
 
+        retrieveSimilarNodules();
 
+        function retrieveSimilarNodules(){
+            dataFactory.retrieveSimilarNodules($scope.pathExam, $scope.actualNodule.noduleId)
+                .success(function (response){
+                    $scope.similarNodules = response;
+                })
+                .error(function (error){
+
+                    $scope.status = 'Unable to load data: ' + error.message;
+                })
+        }
 }]);
 
 app.factory('dataFactory', ['$http', function($http){
@@ -155,5 +155,15 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.get('exam/' + examPath + '/bignodules/' + noduleId);
     }
 
+    dataFactory.retrieveSimilarNodules = function(examPath, noduleId){
+        return $http.get('exam/' + examPath + "/nodule/" + noduleId + '/similar')
+    }
+
     return dataFactory;
 }])
+
+app.filter('slice', function() {
+    return function(arr, start, end) {
+        return (arr || []).slice(start, end);
+    };
+});
