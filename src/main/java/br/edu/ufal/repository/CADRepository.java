@@ -49,17 +49,18 @@ public class CADRepository {
         return NRPEval.retrieveSimilarNodules(textureAttributes);
     }
 
-    public List<Exam> listExams() {
-        MongoCursor<Exam> examsCursor = MongoUtils.exams().find().as(Exam.class);
+    public ExamQueryResult listExams(int page) {
+        List<Exam> exams = StreamSupport.stream(MongoUtils.exams()
+                .find("{readingSession.bignodule.0: {$exists: true}}")
+                .skip(QUANTITY * (page -1))
+                .limit(QUANTITY).as(Exam.class).spliterator(), false).collect(Collectors.toList());
 
-        List<Exam> exams = StreamSupport.stream(examsCursor.spliterator(), false)
-                .filter(exam -> exam.getReadingSession().getBignodule().size() > 0)
-                .collect(Collectors.toList());
+        long totalExams = MongoUtils.exams()
+                .count("{readingSession.bignodule.0: {$exists: true}}");
 
-//        long totalExams = MongoUtils.exams().count();
-//        long totalPages = (long) (Math.ceil(totalExams / (double) QUANTITY));
+        long totalPages = (long) (Math.ceil(totalExams / (double) QUANTITY));
 
-        return exams;
+        return new ExamQueryResult(exams, totalPages);
     }
 
     public List<BigNodule> retrieveBigNodulesFromExam(String examPath) {

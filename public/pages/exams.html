@@ -1,6 +1,6 @@
 <div>
 
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped" align="center" style="width: 100%;">
         <thead>
         <tr>
             <th>Path</th>
@@ -9,8 +9,8 @@
             <th>Big Nodules</th>
         </tr>
         </thead>
-        <tr ng-repeat="exam in allExams">
-            <td ng-click="goToExam(exam)" class="col-lg-6">
+        <tr  ng-repeat="exam in allExams.exams" style="cursor: pointer;">
+            <td ng-click="goToExam(exam)" class="col-lg-6" >
                 {{exam.path.substring(1, 25)}}
             </td>
             <td ng-click="goToExam(exam)" class="col-lg-2">
@@ -24,4 +24,20 @@
             </td>
         </tr>
     </table>
+    <div class="pagination-wrap" ng-show="allExams.totalPages != 0">
+        <uib-pagination first-text="Primeira"
+                        last-text="Última"
+                        previous-text="Anterior"
+                        next-text="Próxima"
+                        total-items="totalItems"
+                        max-size="maxSize"
+                        ng-model="currentPage"
+                        ng-change="pageChanged()"
+                        boundary-links="true"
+                        class="pagination-sm">
+        </uib-pagination>
+    </div>
+
+    <div class="text-center" ng-hide="allExams.totalPages != 0">Nenhum resultado encontrado.</div>
+    <div class="text-center" ng-hide="allExams.totalPages != 0">Nenhum resultado encontrado.</div>
 </div>

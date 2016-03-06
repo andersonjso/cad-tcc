@@ -56,11 +56,11 @@ public class CADController {
      * @return
      */
     @GET
-    @Path("/exams")
-    public Result listExams(){
-        List<Exam> exams = cadService.listExams();
+    @Path("/exams/:page")
+    public Result listExams(int page){
+        ExamQueryResult examQueryResult = cadService.listExams(page);
 
-        return Results.ok(mapper.toJson(exams));
+        return Results.ok(mapper.toJson(examQueryResult));
     }
 
     @GET

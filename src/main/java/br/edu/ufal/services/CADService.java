@@ -26,8 +26,8 @@ public class CADService {
         return null;
     }
 
-    public List<Exam> listExams() {
-        return cadRepository.listExams();
+    public ExamQueryResult listExams(int page) {
+        return cadRepository.listExams(page);
     }
 
     public List<BigNodule> retrieveBigNodulesFromExam(String examPath) {

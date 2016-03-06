@@ -23,11 +23,13 @@ app.controller('examsController', ['$scope', '$location', 'dataFactory',
 
         $scope.allExams;
         getExams();
+        $scope.maxSize = 5;
 
         function getExams(){
-            dataFactory.listExams()
+            dataFactory.listExams(1)
                 .success(function (response){
                     $scope.allExams = response;
+                    $scope.totalItems = response.totalPages * 10;
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -37,7 +39,18 @@ app.controller('examsController', ['$scope', '$location', 'dataFactory',
         $scope.goToExam = function(exam) {
             $location.path('/exam/' + exam.path.substring(11, 25));
         };
-}]);
+
+        $scope.pageChanged= function() {
+            dataFactory.listExams($scope.currentPage)
+                .success(function (response){
+                    $scope.allExams = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                })
+        };
+
+    }]);
 
 app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uibModal',
     function ($scope, $routeParams, dataFactory, $uibModal) {
@@ -99,6 +112,7 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
         }
 
 
+
 }]);
 
 app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
@@ -155,8 +169,8 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
 app.factory('dataFactory', ['$http', function($http){
     var dataFactory = {};
 
-    dataFactory.listExams = function(){
-        return $http.get('exams')
+    dataFactory.listExams = function(page){
+        return $http.get('exams/' + page)
     }
 
     dataFactory.retrieveBigNodulesFromExam = function(examPath){

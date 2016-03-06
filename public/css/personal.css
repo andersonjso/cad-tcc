@@ -25,6 +25,16 @@
     margin: -75px 0 0 -100px;
 }
 
+.imageSimilarNodule{
+    cursor: pointer;
+}
+
+.pagination-wrap {
+    width: 100%;
+    text-align: center;
+}
+
+
 
 
 

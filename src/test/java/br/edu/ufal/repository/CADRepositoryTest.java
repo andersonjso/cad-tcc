@@ -30,9 +30,9 @@ public class CADRepositoryTest {
 
     @Test
     public void shouldListExams(){
-        List<Exam> exams = cadService.listExams();
+        ExamQueryResult exams = cadService.listExams(1);
 
-        assertTrue(exams.size() == 864);
+        assertTrue(exams.exams.size() == 10);
     }
 
     @Test
