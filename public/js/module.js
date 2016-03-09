@@ -141,7 +141,6 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
         }
 
 
-
 }]);
 
 app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
@@ -190,6 +189,17 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
                     $scope.status = 'Unable to load data: ' + error.message;
                 })
         }
+
+        $scope.openDetails = function (similarNodule) {
+            $scope.similarNoduleSelected = similarNodule;
+            $scope.isSimilar = true;
+        }
+
+        $scope.backToSimilar = function(){
+            $scope.isSimilar = false;
+        }
+
+
 
 
 

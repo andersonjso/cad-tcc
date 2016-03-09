@@ -13,9 +13,10 @@ public class App extends Jooby {
     assets("/js/**");
     assets("/css/**");
     assets("/pages/**");
+    assets("/resources/**");
 
 
-    assets("/", "testpage.html");
+    assets("/", "index.html");
 
 
 

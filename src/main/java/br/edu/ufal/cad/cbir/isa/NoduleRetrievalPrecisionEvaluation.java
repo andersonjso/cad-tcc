@@ -113,7 +113,15 @@ public class NoduleRetrievalPrecisionEvaluation {
 							Integer.parseInt(nodule.getString("malignancy")),
 							array,
 							exam.getString("path"),
-							nodule.getString("noduleID")));
+							nodule.getString("noduleID"),
+							Integer.parseInt(nodule.getString("texture")),
+							Integer.parseInt(nodule.getString("subtlety")),
+							Integer.parseInt(nodule.getString("calcification")),
+							Integer.parseInt(nodule.getString("internalStructure")),
+							Integer.parseInt(nodule.getString("lobulation")),
+							Integer.parseInt(nodule.getString("margin")),
+							Integer.parseInt(nodule.getString("sphericity")),
+						    Integer.parseInt(nodule.getString("spiculation"))));
 				}
 			}
 		}

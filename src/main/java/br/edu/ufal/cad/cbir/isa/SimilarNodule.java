@@ -58,15 +58,15 @@ public class SimilarNodule {
 						 @JsonProperty("idNodule")String idNodule,
 						 double[] attributes,
 						 double distance,
-						 int texture,
+						 @JsonProperty("texture") int texture,
 						 @JsonProperty("malignancy")int malignancy,
-						 int subtlety,
-						 int calcification,
-						 int internalStructure,
-						 int lobulation,
-						 int margin,
-						 int sphericity,
-						 int spiculation,
+						 @JsonProperty("subtlety") int subtlety,
+						 @JsonProperty("calcification")int calcification,
+						 @JsonProperty("internalStructure")int internalStructure,
+						 @JsonProperty("lobulation")int lobulation,
+						 @JsonProperty("margin")int margin,
+						 @JsonProperty("sphericity")int sphericity,
+						 @JsonProperty("spiculation")int spiculation,
 						 String[] originalId,
 						 String[] segmentedId,
 						 BufferedImage[] originalImage,
@@ -95,12 +95,33 @@ public class SimilarNodule {
 		this.points = points;
 	}
 
-	public SimilarNodule(String idExam, int mal, double[] att, String path, String noduleId){
+	public SimilarNodule(String idExam,
+						 int mal,
+						 double[] att,
+						 String path,
+						 String noduleId,
+						 int texture,
+						 int subtlety,
+						 int calcification,
+						 int internalStructure,
+						 int lobulation,
+						 int margin,
+						 int sphericity,
+						 int spiculation){
 		this.idExam = idExam;
-		malignancy = mal;
-		attributes = att;
+		this.malignancy = mal;
+		this.attributes = att;
 		this.path = path;
 		this.idNodule = noduleId;
+		this.texture = texture;
+		this.subtlety = subtlety;
+		this.calcification = calcification;
+		this.internalStructure = internalStructure;
+		this.lobulation = lobulation;
+		this.margin = margin;
+		this.sphericity = sphericity;
+		this.spiculation = spiculation;
+		this.spiculation = spiculation;
 	}
 
 	public SimilarNodule(int mal, double[] att){
