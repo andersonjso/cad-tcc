@@ -41,6 +41,7 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
             $location.path('/exam/' + exam.path.substring(11, 25));
         };
 
+
         $scope.pageChanged= function() {
             if ($scope.queryIsOn){
                 dataFactory.retrieveExamsByPath($scope.searchExam, $scope.currentPage)
@@ -81,14 +82,16 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
         }
 }]);
 
-app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uibModal',
-    function ($scope, $routeParams, dataFactory, $uibModal) {
+app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uibModal', '$compile',
+    function ($scope, $routeParams, dataFactory, $uibModal, $compile) {
 
         var path = $routeParams.path;
+        $scope.small_image = 'http://s27.postimg.org/xyoknslhf/blue_bird_wallpaper_small.jpg'
+        $scope.large_image = 'http://s27.postimg.org/v5h4f601v/blue_bird_wallpaper.jpg';
+        $scope.imageCharged = false;
 
         retrieveExamByPath();
         retrieveImageExamByPath();
-
 
         var getImagesNodules = function(id) {
             $scope.noduleImg = {};
@@ -96,6 +99,7 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
             dataFactory.retrieveBigNoduleImage(path, id)
                 .success(function(response){
                     $scope.noduleImg[id] = response;
+                   // var compiled = $compile($scope.noduleImg[id]);
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -126,22 +130,28 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 })
-        }
+        };
 
         $scope.openNoduleDetails = function(actualNodule){
             $scope.actualNodule = actualNodule;
             $scope.pathExam = path;
-
             var modal = $uibModal.open({
                 templateUrl: 'pages/nodule-modal.html',
                 controller: 'noduleModalController',
                 size: 'lg',
                 scope: $scope
             });
+        };
+
+        $scope.allowZoom = function(){
+            $scope.imageCharged ? $scope.imageCharged = false : $scope.imageCharged = true;
         }
 
 
-}]);
+
+
+
+    }]);
 
 app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
     function ($scope, $uibModal, dataFactory) {
@@ -198,11 +208,6 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
         $scope.backToSimilar = function(){
             $scope.isSimilar = false;
         }
-
-
-
-
-
 }]);
 
 app.factory('dataFactory', ['$http', function($http){
@@ -246,5 +251,30 @@ app.factory('dataFactory', ['$http', function($http){
 app.filter('slice', function() {
     return function(arr, start, end) {
         return (arr || []).slice(start, end);
+    };
+});
+
+app.directive('ngElevateZoom', function(){
+    return{
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            scope.$watch('imageCharged', function(newVal, oldVal){
+                if (newVal != oldVal){
+                    element.attr('data-zoom-image',attrs.zoomImage);
+                    $(element).elevateZoom({
+                        zoomWindowFadeIn: 300,
+                        zoomWindowFadeOut: 300,
+                        lensFadeIn: 300,
+                        lensFadeOut: 300,
+                        scrollZoom : true,
+                        zoomWindowWidth:200,
+                        zoomWindowHeight:200
+                    });
+                }
+            });
+            console.log(attrs);
+        }
+
+
     };
 });
