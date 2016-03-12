@@ -97,10 +97,10 @@ public class CADController {
     }
 
     @GET
-    @Path("exam/image/:examPath")
-    public Result retrieveImageExamByPath(String examPath) throws IOException {
+    @Path("exam/image/:examPath/nodule/:noduleReference")
+    public Result retrieveImageExamByPath(String examPath, String noduleReference) throws IOException {
 
-        BufferedImage imageExam = cadService.retrieveExamImageByPath(examPath);
+        BufferedImage imageExam = cadService.retrieveExamImageByPath(examPath, noduleReference);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write( imageExam, "png", baos );

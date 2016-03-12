@@ -24,17 +24,37 @@
             <h5>Hora: {{exam.responseHeader.timeService}}</h5>
         </div>
 
-        <div class="col-md-6 text-center">
-            <img ng-elevate-zoom
+        <div class="col-md-9 text-center">
+           <!-- <img ng-elevate-zoom
                  ng-src="data:image/PNG;base64,{{image}}"
                  zoom-image="data:image/PNG;base64,{{image}}"
                  alt=""
                  style="width: 75%"
                  class="img-rounded"
-                 ng-click="allowZoom()"/>
+                 ng-click="allowZoom()"
+
+                 put htis after      />
+                 -->
+            <div class="row" style="overflow: scroll; height: 400px">
+                <div ng-repeat="bigNodule in bigNodules" class="col-md-6 text-center">
+                    <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
+                    <h6>Malignidade: {{bigNodule.malignancy}}</h6>
+                        <img ng-elevate-zoom
+                             ng-src="data:image/PNG;base64,{{examImg[bigNodule.noduleId]}}"
+                             zoom-image="data:image/PNG;base64,{{examImg[bigNodule.noduleId]}}"
+                             class="img-rounded"
+                             style="cursor: pointer; width: 60%; margin-bottom: 10px"
+                             ng-click="allowZoom()"/>
+                    </br>
+                    <button ng-click="openNoduleDetails(bigNodule)"
+                            class="btn btn-primary"
+                            style="border-radius: 0 !important;"> Mostrar Detalhes </button>
+                    <hr>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-3 text-center">
+<!--        <div class="col-md-3 text-center">
             <h4>Big Nodules</h4>
             <hr>
             <nav style="overflow: scroll; height: 400px">
@@ -49,6 +69,7 @@
             </nav>
 
         </div>
+-->
 
     </div>
 </div>

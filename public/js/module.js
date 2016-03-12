@@ -91,7 +91,7 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
         $scope.imageCharged = false;
 
         retrieveExamByPath();
-        retrieveImageExamByPath();
+        //retrieveImageExamByPath();
 
         var getImagesNodules = function(id) {
             $scope.noduleImg = {};
@@ -104,7 +104,19 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 });
-        }
+        };
+
+        var getImagesExams = function(id){
+            $scope.examImg = {};
+
+            dataFactory.retrieveImageExamByPath(path, id)
+                .success(function(response){
+                    $scope.examImg[id] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        };
 
         function retrieveExamByPath(){
             dataFactory.retrieveExamByPath(path)
@@ -116,21 +128,26 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                         var id = $scope.bigNodules[i].noduleId;
                         getImagesNodules(id);
                     }
+
+                    for (var i = 0; i < $scope.bigNodules.length; i++){
+                        var id = $scope.bigNodules[i].noduleId;
+                        getImagesExams(id);
+                    }
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 })
         };
 
-        function retrieveImageExamByPath(){
-            dataFactory.retrieveImageExamByPath(path)
-                .success(function (response){
-                    $scope.image = response;
-                })
-                .error(function (error){
-                    $scope.status = 'Unable to load data: ' + error.message;
-                })
-        };
+        //function retrieveImageExamByPath(){
+        //    dataFactory.retrieveImageExamByPath(path)
+        //        .success(function (response){
+        //            $scope.image = response;
+        //        })
+        //        .error(function (error){
+        //            $scope.status = 'Unable to load data: ' + error.message;
+        //        })
+        //};
 
         $scope.openNoduleDetails = function(actualNodule){
             $scope.actualNodule = actualNodule;
@@ -229,8 +246,8 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.get('exam/' + examPath);
     }
 
-    dataFactory.retrieveImageExamByPath = function(examPath){
-        return $http.get('exam/image/' + examPath);
+    dataFactory.retrieveImageExamByPath = function(examPath, noduleReference){
+        return $http.get('exam/image/' + examPath + "/nodule/" + noduleReference);
     }
 
     dataFactory.retrieveBigNoduleImage = function(examPath, noduleId){
@@ -274,7 +291,5 @@ app.directive('ngElevateZoom', function(){
             });
             console.log(attrs);
         }
-
-
     };
 });

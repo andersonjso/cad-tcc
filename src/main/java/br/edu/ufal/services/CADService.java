@@ -38,8 +38,8 @@ public class CADService {
         return cadRepository.retrieveExamByPath(examPath);
     }
 
-    public BufferedImage retrieveExamImageByPath(String examPath) throws IOException {
-        return cadRepository.retrieveExamImageByPath(examPath);
+    public BufferedImage retrieveExamImageByPath(String examPath, String noduleReference) throws IOException {
+        return cadRepository.retrieveExamImageByPath(examPath, noduleReference);
     }
 
     public BufferedImage[] retrieveBigNodulesImagesFromExam(String examPath) throws IOException {

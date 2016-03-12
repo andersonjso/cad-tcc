@@ -7,6 +7,7 @@ import br.edu.ufal.cad.cbir.isa.NoduleRetrievalPrecisionEvaluation;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
+import br.edu.ufal.cad.mongodb.tags.Roi;
 import br.edu.ufal.util.MongoUtils;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
@@ -73,21 +74,19 @@ public class CADRepository {
         return MongoUtils.exams().findOne("{path: {$regex: #}}", examPath + ".*").as(Exam.class);
     }
 
-    public BufferedImage retrieveExamImageByPath(String examPath) throws IOException {
-//        String filename = MongoUtils.imagesFiles().findOne("{filename: {$regex: #}}", examPath + ".*")
-//                .map(dbObject -> (String) dbObject.get("filename"));
-//
-//
-//        GridFSDBFile imageForOutput = gfsPhoto.findOne(filename);
-//        InputStream imageIS = imageForOutput.getInputStream();
-//
-//        BufferedImage bufferedImage = ImageIO.read(imageIS);
-
-        ObjectId originalImageID = retrieveExamByPath(examPath)
+    public BufferedImage retrieveExamImageByPath(String examPath, String noduleReference) throws IOException {
+        List<BigNodule> bigNodules = retrieveExamByPath(examPath)
                 .getReadingSession()
-                .getBignodule().get(0)
-                .getRois().get(0)
-                .getOriginalImage();
+                .getBignodule();
+
+        ObjectId originalImageID = null;
+
+        for(BigNodule bigNodule : bigNodules){
+            if(bigNodule.getNoduleID().equals(noduleReference)){
+                originalImageID = bigNodule.getRois().get(0).getOriginalImage();
+                break;
+            }
+        }
 
         GridFSDBFile imageForOutput = gfsPhoto.findOne(originalImageID);
         InputStream imageIS = imageForOutput.getInputStream();
@@ -96,6 +95,35 @@ public class CADRepository {
 
         return bufferedImage;
     }
+
+    public void retrieveExamImageSlicesByPath(String examPath, String noduleReference) throws IOException {
+        List<BigNodule> bigNodules = retrieveExamByPath(examPath)
+                .getReadingSession()
+                .getBignodule();
+
+        ObjectId originalImageID = null;
+
+        for(BigNodule bigNodule : bigNodules){
+            if(bigNodule.getNoduleID().equals(noduleReference)){
+                int i = 0;
+                for (Roi roi : bigNodule.getRois()){
+                    GridFSDBFile imageForOutput = gfsPhoto.findOne(roi.getOriginalImage());
+                    imageForOutput.writeTo("/Users/andersonjso/Downloads/allimagesExam/exam" +
+                            bigNodule.getNoduleID().toString() + " " + i + ".dcm");
+                    i++;
+                }
+                break;
+            }
+        }
+
+
+
+
+    }
+    /*
+    imageForOutput.writeTo("/Users/andersonjso/Downloads/allimagesExam/exam" +
+                        bigNodule.getNoduleID().toString() + " " + i + ".dcm");
+     */
 
     public BufferedImage[] retrieveBigNodulesImagesFromExam(String examPath) throws IOException {
         List<BigNodule> bigNodules = retrieveBigNodulesFromExam(examPath);

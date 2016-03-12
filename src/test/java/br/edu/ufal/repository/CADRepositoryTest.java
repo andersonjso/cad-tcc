@@ -80,7 +80,7 @@ public class CADRepositoryTest {
     }
     @Test
     public void examImageByPath() throws IOException {
-        BufferedImage bufferedImage = cadService.retrieveExamImageByPath("LIDC-IDRI-0398");
+        BufferedImage bufferedImage = cadService.retrieveExamImageByPath("LIDC-IDRI-0398", "0");
 
         ImageIO.write(bufferedImage, "png", new File("/Users/andersonjso/Downloads/another/ionapot.png"));
     }
@@ -90,6 +90,16 @@ public class CADRepositoryTest {
         BufferedImage bufferedImage = cadService.retrieveBigNoduleImage("LIDC-IDRI-0398", "0");
 
         ImageIO.write(bufferedImage, "png", new File("/Users/andersonjso/Downloads/another/meninodaporteira.png"));
+    }
+
+    @Test
+    public void retrieveExamSlicesByTest() throws IOException {
+        Exam exam = cadService.retrieveExamByPath("LIDC-IDRI-0398");
+
+        for (BigNodule bigNodule : exam.getReadingSession().getBignodule()){
+            new CADRepository().retrieveExamImageSlicesByPath("LIDC-IDRI-0398", bigNodule.getNoduleID());
+        }
+
     }
 
     @Test
