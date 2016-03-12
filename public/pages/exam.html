@@ -40,7 +40,9 @@
             <nav style="overflow: scroll; height: 400px">
                 <ul ng-repeat="bigNodule in bigNodules" class="nav nav-pills nav-stacked span2" >
                     <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
-                         <img ng-src="data:image/PNG;base64,{{noduleImg[bigNodule.noduleId]}}" ng-click="openNoduleDetails(bigNodule)" alt="" class="img-rounded"  style="width: 50%; cursor: pointer;"  />
+                    <div class="container-img text-center">
+                         <img ng-src="data:image/PNG;base64,{{noduleImg[bigNodule.noduleId]}}" ng-click="openNoduleDetails(bigNodule)" alt="" class="img-rounded"  style="cursor: pointer;"  />
+                    </div>
                     <h6>Malignidade: {{bigNodule.malignancy}}</h6>
                     <hr>
                 </ul>

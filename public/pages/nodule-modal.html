@@ -6,12 +6,13 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-md-6 text-center">
-                <img ng-src="data:image/PNG;base64,{{noduleImg[actualNodule.noduleId]}}"
-                     alt=""
-                     class="img-rounded"
-                     style="width: 50%; margin-bottom: 20px"  />
-
-                <br>
+                <div class="container-main-img text-center">
+                    <img ng-src="data:image/PNG;base64,{{noduleImg[actualNodule.noduleId]}}"
+                         alt=""
+                         class="img-rounded"
+                    />
+                    <br>
+                </div>
 
                 <table class= "table text-left">
                     <tbody>
@@ -70,13 +71,14 @@
 
                             <h6>ID Nódulo: {{similarNodule.idNodule}}</h6>
                             <h6>Exame: {{similarNodule.path.substring(11, 25)}}</h6>
-                            <img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNodule.idNodule]}}"
-                                 alt=""
-                                 ng-click="openDetails(similarNodule)"
-                                 class="img-rounded imageSimilarNodule"
-                                 style="width: 50%"
-
-                            />
+                            <div class="container-img text-center">
+                                <img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNodule.idNodule]}}"
+                                     alt=""
+                                     ng-click="openDetails(similarNodule)"
+                                     class="img-rounded imageSimilarNodule"
+                                     style="pointer: cursor;"
+                                />
+                            </div>
                             <h5>Malignidade: {{similarNodule.malignancy}}</h5>
                             <hr>
                         </div>
@@ -84,20 +86,18 @@
                     </div>
             </div>
 
-            <div class="col-md-6 text-center" ng-show="isSimilar" style="margin-bottom: 0px; margin-top: -20px" >
+            <div class="col-md-6 text-center" ng-show="isSimilar" style="margin-top: -20px" >
                 <h4>Nódulo Semelhante <button class="btn btn-default" type="button" ng-click="backToSimilar()"
                 style="border: none">
                     <span class="glyphicon glyphicon-remove"></span></button></h4>
             </button>
-                <hr>
-                <h6>ID Nódulo: {{similarNoduleSelected.idNodule}} | Exame: {{similarNoduleSelected.path.substring(11, 25)}}</h6>
-                <img ng-src="data:image/PNG;base64,{{noduleImg[actualNodule.noduleId]}}"
-                     alt=""
+                <div class="image-with-text">
+                <img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNoduleSelected.idNodule]}}"
                      class="img-rounded"
-                     style="width: 30%; margin-bottom: 15px"  />
-                <br>
-
-                <table class= "table text-left">
+                     style="width: 30%; margin-bottom: 20px"/>
+                     <h6>ID Nódulo: {{similarNoduleSelected.idNodule}} <br>Exame: {{similarNoduleSelected.path.substring(11, 25)}} </h6>
+                </div>
+                    <table class= "table text-left">
                     <tbody>
                     <tr>
                         <td>Sutileza</td>

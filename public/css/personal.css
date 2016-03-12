@@ -39,6 +39,53 @@
     margin-left: 150px;
 }
 
+.container-img{
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    background-color: blue;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.container-img img{
+    margin-top: -100px;
+    margin-left: -95px;
+}
+
+.container-img img:hover {
+    transform: scale(1.5, 1.5);
+}
+
+.container-main-img{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    background-color: blue;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.container-main-img img{
+    margin-top: -55px;
+    margin-left: -50px;
+}
+
+.container-main-img img:hover {
+    transform: scale(1.5, 1.5);
+}
+
+.image-with-text h6{
+    margin-top: -50px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+
+
 
 
 
