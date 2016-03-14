@@ -53,4 +53,8 @@ public class CADService {
     public ExamQueryResult retrieveExamsByPath(String examPath, int page) {
         return cadRepository.retrieveExamsByPath(examPath, page);
     }
+
+    public BufferedImage retrieveExamSlices(String examPath, String noduleId, String roiNumber) throws IOException {
+        return cadRepository.retrieveExamSlices(examPath, noduleId, roiNumber);
+    }
 }

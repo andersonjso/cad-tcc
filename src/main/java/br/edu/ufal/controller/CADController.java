@@ -144,4 +144,20 @@ public class CADController {
 
         return Results.ok(mapper.toJson(examQueryResult));
     }
+
+    @GET
+    @Path("exam/:examPath/nodule/:noduleId/slices/:roiNumber")
+    public Result retrieveExamSlices (String examPath, String noduleId, String roiNumber) throws IOException {
+        BufferedImage sliceExam = cadService.retrieveExamSlices(examPath, noduleId, roiNumber);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(sliceExam, "png", baos );
+        baos.flush();
+        byte[] imageInByte = baos.toByteArray();
+        baos.close();
+
+        byte[] encoded = Base64.getEncoder().encode(imageInByte);
+
+        return Results.ok(encoded);
+    }
 }

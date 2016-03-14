@@ -169,4 +169,40 @@ public class CADRepository {
 
         return new ExamQueryResult(exams, totalPages);
     }
+
+    public BufferedImage retrieveExamSlices(String examPath, String noduleId, String roiNumber) throws IOException {
+        Exam exam = retrieveExamByPath(examPath);
+        ObjectId originalImageID = null;
+
+        for (BigNodule bigNodule : exam.getReadingSession().getBignodule()){
+            if (bigNodule.getNoduleID().equals(noduleId)){
+                originalImageID = bigNodule.getRois().get(Integer.parseInt(roiNumber)).getOriginalImage();
+                break;
+            }
+        }
+
+        GridFSDBFile imageForOutput = gfsPhoto.findOne(originalImageID);
+        InputStream imageIS = imageForOutput.getInputStream();
+
+        BufferedImage bufferedImage = ImageIO.read(imageIS);
+
+        return bufferedImage;
+    }
+
+    public void retrieveExamSlicesLocal(String examPath, String noduleId, String roiNumber) throws IOException {
+        Exam exam = retrieveExamByPath(examPath);
+        ObjectId originalImageID = null;
+
+        for (BigNodule bigNodule : exam.getReadingSession().getBignodule()){
+            if (bigNodule.getNoduleID().equals(noduleId)){
+                originalImageID = bigNodule.getRois().get(Integer.parseInt(roiNumber)).getOriginalImage();
+                GridFSDBFile imageForOutput = gfsPhoto.findOne(originalImageID);
+                imageForOutput.writeTo("/Users/andersonjso/Downloads/allimagesExam/examSlice" +
+                        bigNodule.getNoduleID().toString() + " " + roiNumber + ".dcm");
+                break;
+            }
+        }
+
+
+    }
 }

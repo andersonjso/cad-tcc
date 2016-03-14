@@ -2,7 +2,7 @@
  * Created by andersonjso on 2/24/16.
  */
 
-var app = angular.module('mainApp', ['ngTable', 'ngResource', 'ngRoute', 'ui.bootstrap']);
+var app = angular.module('mainApp', ['ngTable', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ngTouch']);
 
 /** CONFIG **/
 app.config(function($routeProvider){
@@ -118,6 +118,18 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                 });
         };
 
+        var getRoiImageExams = function (id, roiNumber){
+            $scope.roisImg = {};
+
+            dataFactory.retrieveExamSlices(path, id, roiNumber)
+                .success(function(response){
+                    $scope.roisImg[id+roiNumber] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
         function retrieveExamByPath(){
             dataFactory.retrieveExamByPath(path)
                 .success(function (response){
@@ -126,13 +138,22 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
 
                     for (var i = 0; i < $scope.bigNodules.length; i++){
                         var id = $scope.bigNodules[i].noduleId;
-                        getImagesNodules(id);
-                    }
+                        var rois = $scope.bigNodules[i].rois;
 
-                    for (var i = 0; i < $scope.bigNodules.length; i++){
-                        var id = $scope.bigNodules[i].noduleId;
+                        getImagesNodules(id);
                         getImagesExams(id);
+
+                        for (var j = 0; j < rois.length; j++){
+                            getRoiImageExams(id, j);
+                        }
                     }
+                    //
+                    //for (var i = 0; i < $scope.bigNodules.length; i++){
+                    //    var id = $scope.bigNodules[i].noduleId;
+
+                    //
+
+                    //}
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -260,6 +281,10 @@ app.factory('dataFactory', ['$http', function($http){
 
     dataFactory.retrieveExamsByPath = function(examPath, page){
         return $http.get('exams/' + examPath + "/" + page)
+    }
+
+    dataFactory.retrieveExamSlices = function(examPath, noduleId, roiNumber){
+        return $http.get('exam/' + examPath + "/nodule/" + noduleId + "/slices/" + roiNumber);
     }
 
     return dataFactory;

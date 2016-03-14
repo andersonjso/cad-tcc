@@ -103,6 +103,18 @@ public class CADRepositoryTest {
     }
 
     @Test
+    public void shouldRetrieveExamSlice () throws IOException {
+        Exam exam = cadService.retrieveExamByPath("LIDC-IDRI-0398");
+        for (BigNodule bigNodule : exam.getReadingSession().getBignodule()){
+            for (int i=0; i<bigNodule.getRois().size();  i++){
+                new CADRepository().retrieveExamSlicesLocal("LIDC-IDRI-0398", bigNodule.getNoduleID(), Integer.toString(i));
+            }
+        }
+
+
+    }
+
+    @Test
     public void shouldRetrieveSimilarNodules() throws Exception {
 //        List<SimilarNodule> similarNodules = cadService.retrieveSimilarNodules("/LIDC-IDRI/LIDC-IDRI-0001");
 //

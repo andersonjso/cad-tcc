@@ -36,20 +36,26 @@
                  put htis after      />
                  -->
             <div class="row" style="overflow: scroll; height: 400px">
-                <div ng-repeat="bigNodule in bigNodules" class="col-md-6 text-center">
-                    <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
-                    <h6>Malignidade: {{bigNodule.malignancy}}</h6>
-                        <img ng-elevate-zoom
-                             ng-src="data:image/PNG;base64,{{examImg[bigNodule.noduleId]}}"
-                             zoom-image="data:image/PNG;base64,{{examImg[bigNodule.noduleId]}}"
-                             class="img-rounded"
-                             style="cursor: pointer; width: 60%; margin-bottom: 10px"
-                             ng-click="allowZoom()"/>
-                    </br>
-                    <button ng-click="openNoduleDetails(bigNodule)"
-                            class="btn btn-primary"
-                            style="border-radius: 0 !important;"> Mostrar Detalhes </button>
-                    <hr>
+                <div class="col-md-6 text-center">
+                    <div ng-repeat="bigNodule in bigNodules">
+                        <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
+                        <h6>Malignidade: {{bigNodule.malignancy}}</h6>
+                            <uib-carousel style="cursor: pointer; width: 60%">
+                                <uib-slide ng-repeat="roi in bigNodule.rois" index="$index" active="0">
+                                        <img ng-elevate-zoom
+                                             ng-src="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
+                                             zoom-image="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
+                                             class="img-rounded"
+                                             style="cursor: pointer;"
+                                             ng-click="allowZoom()"/>
+                                    </br>
+                                    <hr>
+                                </uib-slide>
+                            </uib-carousel>
+                        <button ng-click="openNoduleDetails(bigNodule)"
+                                class="btn btn-primary"
+                                style="border-radius: 0 !important;"> Mostrar Detalhes </button>
+                    </div>
                 </div>
             </div>
         </div>
