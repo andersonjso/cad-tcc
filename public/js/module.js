@@ -118,12 +118,12 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                 });
         };
 
-        var getRoiImageExams = function (id, roiNumber){
+        var getRoiImageExams = function (id, roiNumber, imageZposition){
             $scope.roisImg = {};
 
             dataFactory.retrieveExamSlices(path, id, roiNumber)
                 .success(function(response){
-                    $scope.roisImg[id+roiNumber] = response;
+                    $scope.roisImg[imageZposition] = response;
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -135,25 +135,25 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                 .success(function (response){
                     $scope.exam = response;
                     $scope.bigNodules = $scope.exam.readingSession.bignodule;
+                    $scope.roiList = [];
 
                     for (var i = 0; i < $scope.bigNodules.length; i++){
                         var id = $scope.bigNodules[i].noduleId;
                         var rois = $scope.bigNodules[i].rois;
 
+
+
                         getImagesNodules(id);
                         getImagesExams(id);
 
+                        console.log(JSON.stringify(rois[0]));
                         for (var j = 0; j < rois.length; j++){
-                            getRoiImageExams(id, j);
+                            getRoiImageExams(id, j, rois[j].imageZposition);
+                            $scope.roiList.push(rois[j]);
                         }
                     }
-                    //
-                    //for (var i = 0; i < $scope.bigNodules.length; i++){
-                    //    var id = $scope.bigNodules[i].noduleId;
 
-                    //
-
-                    //}
+                    console.log($scope.roiList.length);
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -314,7 +314,7 @@ app.directive('ngElevateZoom', function(){
                     });
                 }
             });
-            console.log(attrs);
+            //console.log(attrs);
         }
     };
 });
