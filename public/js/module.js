@@ -130,6 +130,18 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                 });
         }
 
+        var getRoiSlicesExams = function (id, roiNumber){
+            $scope.nodulesRoisImg = {};
+
+            dataFactory.retrieveNoduleSlices(path, id, roiNumber)
+                .success(function(response){
+                    $scope.nodulesRoisImg[id+roiNumber] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
         function retrieveExamByPath(){
             dataFactory.retrieveExamByPath(path)
                 .success(function (response){
@@ -145,15 +157,9 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
 
                         for (var j = 0; j < rois.length; j++){
                             getRoiImageExams(id, j);
+                            getRoiSlicesExams(id, j);
                         }
                     }
-                    //
-                    //for (var i = 0; i < $scope.bigNodules.length; i++){
-                    //    var id = $scope.bigNodules[i].noduleId;
-
-                    //
-
-                    //}
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -210,6 +216,18 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
                 });
         }
 
+        var getRoiSlicesNodule = function (path, id, roiNumber){
+            $scope.selectedNoduleRoisImg = {};
+
+            dataFactory.retrieveNoduleSlices(path, id, roiNumber)
+                .success(function(response){
+                    $scope.selectedNoduleRoisImg[id+roiNumber] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
         function retrieveSimilarNodules(){
             dataFactory.retrieveSimilarNodules($scope.pathExam, $scope.actualNodule.noduleId)
                 .success(function (response){
@@ -241,6 +259,12 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
         $scope.openDetails = function (similarNodule) {
             $scope.similarNoduleSelected = similarNodule;
             $scope.isSimilar = true;
+
+            for (var i=0; i<$scope.similarNoduleSelected.rois; i++){
+                var id = $scope.similarNoduleSelected[i].idNodule;
+                var path = $scope.similarNodules[i].path.substring(11, 25);
+                getRoiSlicesNodule(path, id, i);
+            }
         }
 
         $scope.backToSimilar = function(){
@@ -287,6 +311,10 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.get('exam/' + examPath + "/nodule/" + noduleId + "/slices/" + roiNumber);
     }
 
+    dataFactory.retrieveNoduleSlices = function(examPath, noduleId, roiNumber){
+        return $http.get('exam/' + examPath + "/nodule-images/" + noduleId + "/slices/" + roiNumber);
+    }
+
     return dataFactory;
 }])
 
@@ -314,7 +342,7 @@ app.directive('ngElevateZoom', function(){
                     });
                 }
             });
-            console.log(attrs);
+            //console.log(attrs);
         }
     };
 });

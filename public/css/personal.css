@@ -84,6 +84,8 @@
     font-size: 10px;
 }
 
+.carousel-indicators li { visibility: hidden; }
+
 
 
 

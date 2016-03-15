@@ -36,27 +36,29 @@
                  put htis after      />
                  -->
             <div class="row" style="overflow: scroll; height: 400px">
-                <div class="col-md-6 text-center">
-                    <div ng-repeat="bigNodule in bigNodules">
+                <div class="col-md-6 text-center text-center" ng-repeat="bigNodule in bigNodules">
                         <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
                         <h6>Malignidade: {{bigNodule.malignancy}}</h6>
-                            <uib-carousel style="cursor: pointer; width: 60%">
-                                <uib-slide ng-repeat="roi in bigNodule.rois" index="$index" active="0">
+                            <uib-carousel style="cursor: pointer; margin: auto; width: 70%">
+                                <uib-slide ng-repeat="roi in bigNodule.rois" index="$index" active="$index">
                                         <img ng-elevate-zoom
                                              ng-src="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
                                              zoom-image="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
                                              class="img-rounded"
                                              style="cursor: pointer;"
                                              ng-click="allowZoom()"/>
-                                    </br>
-                                    <hr>
                                 </uib-slide>
+
+
                             </uib-carousel>
-                        <button ng-click="openNoduleDetails(bigNodule)"
-                                class="btn btn-primary"
-                                style="border-radius: 0 !important;"> Mostrar Detalhes </button>
+
+                    <br>
+                    <button ng-click="openNoduleDetails(bigNodule)"
+                            class="btn btn-primary"
+                            style="border-radius: 0 !important; margin: auto"> Mostrar Detalhes </button>
+                    <hr>
+
                     </div>
-                </div>
             </div>
         </div>
 

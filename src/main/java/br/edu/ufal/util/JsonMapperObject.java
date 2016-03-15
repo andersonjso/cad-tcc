@@ -56,14 +56,14 @@ public class JsonMapperObject {
     }
 
     public <A> List<A> toList(String bodyResponseCounter, Class<A> object) {
-            List<A> listToReturn = new ArrayList<>();
-            JsonNode jsonNode = toJson(bodyResponseCounter);
+        List<A> listToReturn = new ArrayList<>();
+        JsonNode jsonNode = toJson(bodyResponseCounter);
 
-            for (JsonNode jNode : jsonNode){
-                A pojo = mapper.convertValue(jNode, object);
-                listToReturn.add(pojo);
-            }
+        for (JsonNode jNode : jsonNode){
+            A pojo = mapper.convertValue(jNode, object);
+            listToReturn.add(pojo);
+        }
 
-            return listToReturn;
+        return listToReturn;
     }
 }

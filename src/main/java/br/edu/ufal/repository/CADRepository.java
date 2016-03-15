@@ -205,4 +205,23 @@ public class CADRepository {
 
 
     }
+
+    public BufferedImage retrieveNodulesSlices(String examPath, String noduleId, String roiNumber) throws IOException {
+        Exam exam = retrieveExamByPath(examPath);
+        ObjectId originalImageID = null;
+
+        for (BigNodule bigNodule : exam.getReadingSession().getBignodule()){
+            if (bigNodule.getNoduleID().equals(noduleId)){
+                originalImageID = bigNodule.getRois().get(Integer.parseInt(roiNumber)).getNoduleImage();
+                break;
+            }
+        }
+
+        GridFSDBFile imageForOutput = gfsPhoto.findOne(originalImageID);
+        InputStream imageIS = imageForOutput.getInputStream();
+
+        BufferedImage bufferedImage = ImageIO.read(imageIS);
+
+        return bufferedImage;
+    }
 }

@@ -5,8 +5,9 @@ import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.services.CADService;
-import br.edu.ufal.util.JsonMapperObject;
 
+
+import br.edu.ufal.util.JsonMapperObject;
 import com.google.inject.name.Named;
 import org.jooby.Result;
 import org.jooby.Results;
@@ -152,6 +153,22 @@ public class CADController {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(sliceExam, "png", baos );
+        baos.flush();
+        byte[] imageInByte = baos.toByteArray();
+        baos.close();
+
+        byte[] encoded = Base64.getEncoder().encode(imageInByte);
+
+        return Results.ok(encoded);
+    }
+
+    @GET
+    @Path("exam/:examPath/nodule-images/:noduleId/slices/:roiNumber")
+    public Result retrieveNodulesSlices (String examPath, String noduleId, String roiNumber) throws IOException {
+        BufferedImage sliceExam = cadService.retrieveNodulesSlices(examPath, noduleId, roiNumber);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(sliceExam, "png", baos);
         baos.flush();
         byte[] imageInByte = baos.toByteArray();
         baos.close();
