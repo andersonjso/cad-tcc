@@ -117,4 +117,19 @@ public class CADControllerTest extends BaseTest{
         });
     }
 
+    @Test
+    public void shouldRetrieveBigNodule() throws Exception {
+        String examPath = "LIDC-IDRI-0323";
+        String noduleId = "Nodule%20003";
+
+        Client.Response jsonResponse = server.get("/exam/" + examPath + "/big-nodule/" + noduleId)
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+           // assertTrue(mapper.toJson(s).size() == 10);
+        });
+    }
+
 }

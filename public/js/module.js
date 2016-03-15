@@ -226,6 +226,8 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 });
+
+           // alert($scope.selectedNoduleRoisImg.length);
         }
 
         function retrieveSimilarNodules(){
@@ -257,14 +259,28 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
         }
 
         $scope.openDetails = function (similarNodule) {
-            $scope.similarNoduleSelected = similarNodule;
             $scope.isSimilar = true;
+            $scope.pathToShow = similarNodule.path.substring(11, 25);
+            var path = $scope.pathToShow;
+            var id = similarNodule.idNodule;
+            $scope.similarNoduleSelected = {};
 
-            for (var i=0; i<$scope.similarNoduleSelected.rois; i++){
-                var id = $scope.similarNoduleSelected[i].idNodule;
-                var path = $scope.similarNodules[i].path.substring(11, 25);
-                getRoiSlicesNodule(path, id, i);
-            }
+            console.log(path + " and " + id);
+            dataFactory.retrieveBigNodule(path, id)
+                .success(function(response){
+                    $scope.similarNoduleSelected = response;
+
+                    for (var i=0; i<$scope.similarNoduleSelected.rois.length; i++){
+                        getRoiSlicesNodule(path, id, i);
+                    }
+
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+
+
+
         }
 
         $scope.backToSimilar = function(){
@@ -313,6 +329,10 @@ app.factory('dataFactory', ['$http', function($http){
 
     dataFactory.retrieveNoduleSlices = function(examPath, noduleId, roiNumber){
         return $http.get('exam/' + examPath + "/nodule-images/" + noduleId + "/slices/" + roiNumber);
+    }
+
+    dataFactory.retrieveBigNodule = function(examPath, noduleId){
+        return $http.get('exam/' + examPath + "/big-nodule/" + noduleId);
     }
 
     return dataFactory;

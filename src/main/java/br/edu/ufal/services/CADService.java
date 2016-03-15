@@ -61,4 +61,8 @@ public class CADService {
     public BufferedImage retrieveNodulesSlices(String examPath, String noduleId, String roiNumber) throws IOException {
         return cadRepository.retrieveNodulesSlices(examPath, noduleId, roiNumber);
     }
+
+    public BigNodule retrieveBigNodule(String examPath, String noduleId) {
+        return cadRepository.retrieveBigNodule(examPath, noduleId);
+    }
 }

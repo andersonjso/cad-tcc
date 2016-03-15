@@ -224,4 +224,16 @@ public class CADRepository {
 
         return bufferedImage;
     }
+
+    public BigNodule retrieveBigNodule(String examPath, String noduleId) {
+        Exam exam = retrieveExamByPath(examPath);
+
+        for (BigNodule bigNodule : exam.getReadingSession().getBignodule()) {
+            if (bigNodule.getNoduleID().equals(noduleId)){
+                return bigNodule;
+            }
+        }
+
+        return null;
+    }
 }

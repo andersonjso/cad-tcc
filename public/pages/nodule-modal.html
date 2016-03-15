@@ -5,8 +5,8 @@
 
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-6 text-center">
-                <uib-carousel style="cursor: pointer; margin: auto; width: 50%">
+            <div class="col-md-6 text-center" style="margin-top: 30px">
+                <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
                     <uib-slide ng-repeat="roi in actualNodule.rois" index="$index" active="$index">
                         <img ng-src="data:image/PNG;base64,{{nodulesRoisImg[actualNodule.noduleId + $index]}}"
                              class="img-rounded"
@@ -93,22 +93,25 @@
                 style="border: none">
                     <span class="glyphicon glyphicon-remove"></span></button></h4>
             </button>
-                <!--<uib-carousel style="cursor: pointer; margin: auto; width: 50%">-->
-                    <!--<uib-slide ng-repeat="roi in similarNoduleSelected.rois" index="$index" active="$index">-->
-                        <!--<img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.idNodule + $index]}}"-->
-                             <!--class="img-rounded"-->
-                             <!--style="margin-bottom: -60px;-->
-                             <!--margin-top: -60px;-->
-                             <!--transform:scale(2);"/>-->
-                    <!--</uib-slide>-->
-                <!--</uib-carousel>-->
+                <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
+                    <uib-slide ng-repeat="roi in similarNoduleSelected.rois" index="$index" active="$index">
+                        <img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.noduleId + $index]}}"
+                             class="img-rounded"
+                             style="margin-bottom: -60px;
+                             margin-top: -60px;
+                             transform:scale(2);"/>
+                        <div class="carousel-caption">
+                            <h6>ID Nódulo: {{similarNoduleSelected.noduleId}} <br>Exame: {{pathToShow}} </h6>
+                        </div>
+                    </uib-slide>
+                </uib-carousel>
                 <div class="image-with-text">
-                <img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNoduleSelected.idNodule]}}"
-                     class="img-rounded"
-                     style="width: 30%; margin-bottom: 20px"/>
-                     <h6>ID Nódulo: {{similarNoduleSelected.idNodule}} <br>Exame: {{similarNoduleSelected.path.substring(11, 25)}} </h6>
+                <!--<img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNoduleSelected.idNodule]}}"-->
+                     <!--class="img-rounded"-->
+                     <!--style="width: 30%; margin-bottom: 20px"/>-->
+
                 </div>
-                    <table class= "table text-left">
+                    <table class= "table text-left" style="margin-top: 10px">
                     <tbody>
                     <tr>
                         <td>Sutileza</td>

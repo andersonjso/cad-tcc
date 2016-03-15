@@ -177,4 +177,13 @@ public class CADController {
 
         return Results.ok(encoded);
     }
+
+    @GET
+    @Path("exam/:examPath/big-nodule/:noduleId")
+    public Result retrieveNodulesSlices (String examPath, String noduleId) throws IOException {
+        BigNodule bigNodule = cadService.retrieveBigNodule(examPath, noduleId);
+
+        return Results.ok(mapper.toJson(bigNodule));
+    }
+
 }
