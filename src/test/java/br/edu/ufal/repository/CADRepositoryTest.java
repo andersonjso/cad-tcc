@@ -5,6 +5,7 @@ import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.services.CADService;
+import br.edu.ufal.util.ImageEncoded;
 import com.mongodb.*;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
@@ -14,11 +15,13 @@ import org.junit.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
+import static javax.imageio.ImageIO.read;
 import static junit.framework.Assert.*;
 
 /**
@@ -55,8 +58,61 @@ public class CADRepositoryTest {
     }
 
     @Test
-    public void shouldRetrieveExamsByPath(){
+    public void shouldRetrieveExamsByPath() throws IOException {
+        File img = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule0.png");
+        File img2 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule1.png");
+        File img3 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule2.png");
+        File img4 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule3.png");
+        File img5 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule4.png");
+        File img6 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule5.png");
+        File img7 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule6.png");
+        File img8 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule7.png");
 
+        List<File> files = new ArrayList<>();
+
+        files.add(img); files.add(img2); files.add(img3); files.add(img4); files.add(img5); files.add(img6);
+        files.add(img7); files.add(img8);
+
+        List<ImageEncoded> encodedImages = new ArrayList<>();
+
+        for (File file : files) {
+            byte[] bytes = loadFile(file);
+            byte[] encoded = Base64.getEncoder().encode(bytes);
+
+            String encodedString = new String(encoded);
+
+            ImageEncoded imageEncoded = new ImageEncoded(encodedString);
+
+            encodedImages.add(imageEncoded);
+        }
+
+        List<SimilarNodule> similarNodules = cadService.retrieveSimilarNodulesFrom3DNodule(encodedImages);
+
+        assertTrue(similarNodules.size() == 10);
+    }
+
+    public static byte[] loadFile(File file) throws IOException {
+        InputStream is = new FileInputStream(file);
+
+        long length = file.length();
+        if (length > Integer.MAX_VALUE) {
+            // File is too large
+        }
+        byte[] bytes = new byte[(int)length];
+
+        int offset = 0;
+        int numRead = 0;
+        while (offset < bytes.length
+                && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) {
+            offset += numRead;
+        }
+
+        if (offset < bytes.length) {
+            throw new IOException("Could not completely read file "+file.getName());
+        }
+
+        is.close();
+        return bytes;
     }
 
     @Test
@@ -111,6 +167,11 @@ public class CADRepositoryTest {
             }
         }
 
+
+    }
+
+    @Test
+    public void shouldRetrieveSimilarBy3DNodule(){
 
     }
 

@@ -2,23 +2,28 @@ package br.edu.ufal.repository;
 
 
 
+import br.edu.ufal.AttributesNodule;
 import br.edu.ufal.ExamQueryResult;
 import br.edu.ufal.cad.cbir.isa.NoduleRetrievalPrecisionEvaluation;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
+import br.edu.ufal.cad.cbir.texture.coocurrencematrix.CMTextureAttributes;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.cad.mongodb.tags.Roi;
+import br.edu.ufal.util.ImageEncoded;
 import br.edu.ufal.util.MongoUtils;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.bson.types.ObjectId;
 import org.jongo.MongoCursor;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -235,5 +240,26 @@ public class CADRepository {
         }
 
         return null;
+    }
+
+    public List<SimilarNodule> retrieveSimilarNodulesFrom3DNodule(List<ImageEncoded> encodedImages) throws IOException {
+        BufferedImage[] image3D = new BufferedImage[encodedImages.size()];
+
+        for (int i=0; i<encodedImages.size(); i++) {
+            byte[] decodedByteImage = java.util.Base64.getDecoder().decode(encodedImages.get(i).imageEncoded);
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(decodedByteImage);
+            image3D[i] = ImageIO.read(bais);
+        }
+
+        AttributesNodule attributesNodule = new AttributesNodule();
+        double[] attributes = attributesNodule.getImageTextureAttributes(image3D);
+
+        NoduleRetrievalPrecisionEvaluation noduleRetrievalPerformanceEvaluation =
+                new NoduleRetrievalPrecisionEvaluation ();
+
+        List<SimilarNodule> nodules = noduleRetrievalPerformanceEvaluation.retrieveSimilarNodules(attributes);
+
+        return nodules;
     }
 }

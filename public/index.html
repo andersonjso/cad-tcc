@@ -2,7 +2,7 @@
 <html lang="en" ng-app="mainApp">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CAD Visualização</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -12,9 +12,21 @@
         <div class="navbar-header">
             <a class="navbar-brand"href="#/">
                 <img ng-click="reload()" style="width: 100%" src="resources/logo.png"></a>
+
+            <div style="margin-left: 500px; margin-right: 300px">
+            <input type="file" multiple
+                   class="filestyle"
+                   data-buttonName="btn-primary"
+                   data-buttonBefore="true"
+                   data-placeholder="Escolha a pasta..."
+                   data-size="sm"
+                   data-buttonText="Selecionar pasta">
+                </div>
         </div>
 
     </div>
+
+
 </nav>
 
 
@@ -49,6 +61,11 @@
 <script src="bower_components/angular-carousel/dist/angular-carousel.min.js"></script>
 
 <link href = "bower_components/angular-carousel/dist/angular-carousel.min.css" rel = "stylesheet">
+
+<script src="bower_components/bootstrap-filestyle/src/bootstrap-filestyle.min.js"></script>
+
+
+
 
 <!-- Bootstrap -->
 <link href = "bower_components/bootstrap/dist/css/bootstrap.min.css" rel = "stylesheet">

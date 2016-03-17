@@ -7,11 +7,17 @@ import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.services.CADService;
 
 
+import br.edu.ufal.util.ImageEncoded;
 import br.edu.ufal.util.JsonMapperObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.name.Named;
 import org.jooby.Result;
 import org.jooby.Results;
+import org.jooby.Upload;
+import org.jooby.mvc.Body;
 import org.jooby.mvc.GET;
+import org.jooby.mvc.POST;
 import org.jooby.mvc.Path;
 
 import javax.imageio.ImageIO;
@@ -185,5 +191,17 @@ public class CADController {
 
         return Results.ok(mapper.toJson(bigNodule));
     }
+
+    @POST
+    @Path("nodule/similar")
+    public Result retrieveSimilarNodulesFrom3DNodule (@Body String bodyResponse) throws IOException {
+        List<ImageEncoded> encodedImages = mapper.toList(bodyResponse, ImageEncoded.class);
+
+        List<SimilarNodule> similarNodules = cadService.retrieveSimilarNodulesFrom3DNodule(encodedImages);
+
+        return Results.ok(mapper.toJson(similarNodules));
+    }
+
+
 
 }

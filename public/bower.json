@@ -12,6 +12,7 @@
     "angular-route": "1.4.x",
     "angular-resource": "1.4.x",
     "angular-bootstrap": "*",
-    "angular-carousel": "0.3.13"
+    "angular-carousel": "0.3.13",
+    "bootstrap-filestyle": "1.2.1"
   }
 }

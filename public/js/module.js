@@ -366,3 +366,4 @@ app.directive('ngElevateZoom', function(){
         }
     };
 });
+

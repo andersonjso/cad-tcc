@@ -5,6 +5,7 @@ import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.repository.CADRepository;
+import br.edu.ufal.util.ImageEncoded;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -64,5 +65,9 @@ public class CADService {
 
     public BigNodule retrieveBigNodule(String examPath, String noduleId) {
         return cadRepository.retrieveBigNodule(examPath, noduleId);
+    }
+
+    public List<SimilarNodule> retrieveSimilarNodulesFrom3DNodule(List<ImageEncoded> encodedImages) throws IOException {
+        return cadRepository.retrieveSimilarNodulesFrom3DNodule(encodedImages);
     }
 }
