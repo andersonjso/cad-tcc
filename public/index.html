@@ -12,26 +12,40 @@
         <div class="navbar-header">
             <a class="navbar-brand"href="#/">
                 <img ng-click="reload()" style="width: 100%" src="resources/logo.png"></a>
-
+        </div>
             <div style="margin-left: 500px; margin-right: 300px">
-            <input type="file" multiple
+                <form ng-submit="sendPost()">
+                <input id="inputFileToLoad"
+
+                   type="file" multiple
                    class="filestyle"
                    data-buttonName="btn-primary"
                    data-buttonBefore="true"
                    data-placeholder="Escolha a pasta..."
                    data-size="sm"
                    data-buttonText="Selecionar pasta">
-                </div>
-        </div>
+
+                    <button type="submit">Send</button>
+                    </form>
+
+                <button ng-click="openSimilar()">abre aqui </button>
+            </div>
+
+
 
     </div>
+
+
 
 
 </nav>
 
 
 
+
 <div ng-view></div>
+
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

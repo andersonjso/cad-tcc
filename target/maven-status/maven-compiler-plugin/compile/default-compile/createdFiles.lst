@@ -14,7 +14,6 @@ br/edu/ufal/cad/images/dicom/DicomReadeIOException.class
 br/edu/ufal/cad/cbir/isa/ISAMargin.class
 br/edu/ufal/cad/images/general/InterfaceException.class
 br/edu/ufal/cad/cbir/isa/ISATexture.class
-br/edu/ufal/App.class
 br/edu/ufal/cad/cbir/isa/ISATexture$1.class
 br/edu/ufal/cad/images/dicom/Tools.class
 br/edu/ufal/cad/mongodb/tags/Points.class

@@ -9,7 +9,6 @@ import br.edu.ufal.util.ImageEncoded;
 import com.mongodb.*;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
-import junit.framework.Assert;
 import org.bson.types.ObjectId;
 import org.junit.Test;
 

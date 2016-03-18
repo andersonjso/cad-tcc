@@ -18,13 +18,60 @@ app.config(function($routeProvider){
         .otherwise({redirectTo: '/'})
 })
 
-app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory',
-    function($scope, $location, $route, dataFactory){
+app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory', '$uibModal',
+    function($scope, $location, $route, dataFactory, $uibModal){
 
         $scope.allExams;
         getExams();
         $scope.maxSize = 5;
         $scope.queryIsOn = false;
+
+        $scope.sendPost = function() {
+            var filesSelected = document.getElementById("inputFileToLoad").files;
+            var preview = document.querySelector('#preview');
+            var imagesToSave = [];
+
+            function readFile(file){
+                var reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+                    var jsonObject = {"imageEncoded": this.result.substring(22)};
+
+                    imagesToSave.push(jsonObject);
+                }, false);
+
+                reader.readAsDataURL(file);
+            }
+
+            if (filesSelected){
+                [].forEach.call(filesSelected, readFile);
+            }
+
+            setTimeout(function(){
+                $scope.similarNodulesOf3D = {};
+
+                dataFactory.retrieveSimilarNodulesFrom3D(imagesToSave)
+                    .success (function(response){
+                        $scope.similarNodulesOf3D = response;
+                        $scope.slicesNodule3D = imagesToSave;
+                    })
+                    .error(function (error){
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    })
+
+
+            }, 100);
+        }
+
+        $scope.openSimilar = function(){
+            var modal = $uibModal.open({
+                templateUrl: 'pages/nodule3d-modal.html',
+                controller: 'nodule3DModalController',
+                size: 'lg',
+                scope: $scope
+            });
+        }
+
 
         function getExams(){
             dataFactory.listExams(1)
@@ -80,6 +127,73 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
         $scope.reload = function(){
             $route.reload();
         }
+}]);
+
+app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
+    function ($scope, $uibModal, dataFactory) {
+
+        var getImagesNodules = function(path, id) {
+            $scope.similarNoduleImg = {};
+
+            dataFactory.retrieveBigNoduleImage(path, id)
+                .success(function(response){
+                    $scope.similarNoduleImg[id] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+        retrieveSimilarNodules();
+
+        var getRoiSlicesNodule = function (path, id, roiNumber){
+            $scope.selectedNoduleRoisImg = {};
+
+            dataFactory.retrieveNoduleSlices(path, id, roiNumber)
+                .success(function(response){
+                    $scope.selectedNoduleRoisImg[id+roiNumber] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+        function retrieveSimilarNodules(){
+            $scope.similarNodules = $scope.similarNodulesOf3D;
+
+            for (var i = 0; i < $scope.similarNodules.length; i++) {
+                var id = $scope.similarNodules[i].idNodule;
+                var path = $scope.similarNodules[i].path.substring(11, 25);
+               getImagesNodules(path, id);
+            }
+        }
+
+        $scope.openDetails = function (similarNodule) {
+            $scope.isSimilar = true;
+            $scope.pathToShow = similarNodule.path.substring(11, 25);
+            var path = $scope.pathToShow;
+            var id = similarNodule.idNodule;
+            $scope.similarNoduleSelected = {};
+
+            console.log(path + " and " + id);
+            dataFactory.retrieveBigNodule(path, id)
+                .success(function(response){
+                    $scope.similarNoduleSelected = response;
+
+                    for (var i=0; i<$scope.similarNoduleSelected.rois.length; i++){
+                        getRoiSlicesNodule(path, id, i);
+                    }
+
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+        $scope.backToSimilar = function(){
+            $scope.isSimilar = false;
+        }
+
 }]);
 
 app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uibModal', '$compile',
@@ -226,8 +340,6 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 });
-
-           // alert($scope.selectedNoduleRoisImg.length);
         }
 
         function retrieveSimilarNodules(){
@@ -278,9 +390,6 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 });
-
-
-
         }
 
         $scope.backToSimilar = function(){
@@ -335,6 +444,15 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.get('exam/' + examPath + "/big-nodule/" + noduleId);
     }
 
+    dataFactory.retrieveSimilarNodulesFrom3D = function(data){
+        return $http.post('nodule/similar', data);
+    }
+
+
+    /*
+     @POST
+     @Path("nodule/similar")
+     */
     return dataFactory;
 }])
 
