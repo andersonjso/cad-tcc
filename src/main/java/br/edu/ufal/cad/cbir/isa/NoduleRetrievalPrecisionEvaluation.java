@@ -321,7 +321,7 @@ public class NoduleRetrievalPrecisionEvaluation {
 //		PRECISION(10)
 
 		ArrayList<SimilarNodule> listSimilarNodules = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 1; i < 11; i++) {
 			listSimilarNodules.add(nodules.get(i));
 //
 //			if(nodules.get(i).getMalignancy() == 5){

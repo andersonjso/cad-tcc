@@ -65,9 +65,8 @@
 
             <div class="col-md-6 text-center" ng-show="!isSimilar" style="margin-top: -30px;">
                 <h3>Nódulos Semelhantes</h3>
-                <h5> Malignos: {{numberMalign}} | Benignos: {{numberBenign}}</h5>
                 <hr>
-                    <div class="row" style="overflow: scroll; height: 500px">
+                    <div class="row" style="overflow: auto; height: 500px">
                         <div ng-repeat="similarNodule in similarNodules"
                              class="col-md-6 text-center">
 

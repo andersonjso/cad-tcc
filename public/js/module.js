@@ -200,9 +200,8 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
     function ($scope, $routeParams, dataFactory, $uibModal, $compile) {
 
         var path = $routeParams.path;
-        $scope.small_image = 'http://s27.postimg.org/xyoknslhf/blue_bird_wallpaper_small.jpg'
-        $scope.large_image = 'http://s27.postimg.org/v5h4f601v/blue_bird_wallpaper.jpg';
         $scope.imageCharged = false;
+        $scope.statusButton = 'Zoom desativado';
 
         retrieveExamByPath();
         //retrieveImageExamByPath();
@@ -302,7 +301,18 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
         };
 
         $scope.allowZoom = function(){
+          //  $scope.imageCharged ? $scope.imageCharged = false : $scope.imageCharged = true;
+        }
+
+        $scope.toggleZoom = function(){
             $scope.imageCharged ? $scope.imageCharged = false : $scope.imageCharged = true;
+
+            if ($scope.imageCharged){
+                $scope.statusButton = 'Zoom ativado'
+            }
+            else{
+                $scope.statusButton = 'Zoom desativado'
+            }
         }
 
 
@@ -467,7 +477,7 @@ app.directive('ngElevateZoom', function(){
         restrict: 'A',
         link: function(scope, element, attrs) {
             scope.$watch('imageCharged', function(newVal, oldVal){
-                if (newVal != oldVal){
+                if (newVal){
                     element.attr('data-zoom-image',attrs.zoomImage);
                     $(element).elevateZoom({
                         zoomWindowFadeIn: 300,
@@ -479,9 +489,36 @@ app.directive('ngElevateZoom', function(){
                         zoomWindowHeight:200
                     });
                 }
+                else{
+                    $.removeData($(element), 'elevateZoom');//remove zoom instance from image
+
+                    $('.zoomContainer').remove();// remove zoom container from DOM
+                }
             });
             //console.log(attrs);
         }
     };
 });
+
+/*
+ var image = $('#primaryImage');
+ var zoomConfig = {};
+ var zoomActive = false;
+
+ image.on('click', function(){
+
+ zoomActive = !zoomActive;
+
+ if(zoomActive)
+ {
+ image.elevateZoom(zoomConfig);//initialise zoom
+ }
+ else
+ {
+ $.removeData(image, 'elevateZoom');//remove zoom instance from image
+
+ $('.zoomContainer').remove();// remove zoom container from DOM
+ }
+ });
+ */
 

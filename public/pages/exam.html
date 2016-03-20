@@ -1,7 +1,15 @@
 <div class="container-fluid">
     <div class="panel-heading row">
         <div class="col-md-3 text-center"><h3></h3></div>
-        <div class="col-md-6 text-center"><h2>{{exam.path.substring(11, 25)}}</h2></div>
+        <div class="col-md-6 text-center">
+            <h2>{{exam.path.substring(11, 25)}}</h2>
+            <button ng-click="toggleZoom()"
+                    class="btn glyphicon glyphicon-zoom-in"
+                    ng-class="{'btn-danger': !imageCharged, 'btn-primary': imageCharged}"
+                    style="border-radius: 0 !important;">
+                {{statusButton}}
+            </button>
+        </div>
         <div class="col-md-3 text-center"><h3></h3></div>
     </div>
 
@@ -35,7 +43,7 @@
 
                  put htis after      />
                  -->
-            <div class="row" style="overflow: scroll; height: 400px">
+            <div class="row" style="overflow: auto; height: 400px">
                 <div class="col-md-6 text-center text-center" ng-repeat="bigNodule in bigNodules">
                         <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
                         <h6>Malignidade: {{bigNodule.malignancy}}</h6>
@@ -58,27 +66,9 @@
                             style="border-radius: 0 !important; margin: auto"> Mostrar Detalhes </button>
                     <hr>
 
+
                     </div>
             </div>
         </div>
-
-
-<!--        <div class="col-md-3 text-center">
-            <h4>Big Nodules</h4>
-            <hr>
-            <nav style="overflow: scroll; height: 400px">
-                <ul ng-repeat="bigNodule in bigNodules" class="nav nav-pills nav-stacked span2" >
-                    <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
-                    <div class="container-img text-center">
-                         <img ng-src="data:image/PNG;base64,{{noduleImg[bigNodule.noduleId]}}" ng-click="openNoduleDetails(bigNodule)" alt="" class="img-rounded"  style="cursor: pointer;"  />
-                    </div>
-                    <h6>Malignidade: {{bigNodule.malignancy}}</h6>
-                    <hr>
-                </ul>
-            </nav>
-
-        </div>
--->
-
     </div>
 </div>
