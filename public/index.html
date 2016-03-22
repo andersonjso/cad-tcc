@@ -5,30 +5,63 @@
     <title>CAD Visualização</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="resources/ufalico2.ico" />
+
 </head>
-<body>
-<nav ng-controller="examsController" class="collapse navbar-collapse" style="background: #006494">
+<body >
+<nav ng-controller="examsController" class="collapse navbar-collapse" style="background: #006494; height: 75px !important">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand"href="#/">
                 <img ng-click="reload()" style="width: 100%" src="resources/logo.png"></a>
         </div>
-            <div style="margin-left: 500px; margin-right: 300px">
+            <div style="margin-left: 13%; margin-right: 50%">
                 <form ng-submit="sendPost()">
                 <input id="inputFileToLoad"
+                       type="file" multiple
+                       class="filestyle"
+                       data-buttonName="btn-primary"
+                       data-buttonBefore="true"
+                       data-placeholder="Escolha os nódulos"
+                       data-size="sm"
+                       data-buttonText="Selecionar nódulos">
 
-                   type="file" multiple
-                   class="filestyle"
-                   data-buttonName="btn-primary"
-                   data-buttonBefore="true"
-                   data-placeholder="Escolha a pasta..."
-                   data-size="sm"
-                   data-buttonText="Selecionar pasta">
+                    <button type="submit"
+                            class="btn btn-primary"
+                            style="border-radius: 0;
+                            margin-left: 95%;
+                            margin-top: -92px;
+                            height: 31px">Enviar</button>
+                </form>
 
-                    <button type="submit">Send</button>
-                    </form>
+                <button ng-click="openSimilar()"
+                        ng-show="similarNodulesOf3D.length > 0"
+                        class="btn btn-primary"
+                        style="border-radius: 0;
+                        margin-left: 111%;
+                        margin-top: -131px;
+                        height: 31px">Mostrar Semelhantes</button>
 
-                <button ng-click="openSimilar()">abre aqui </button>
+
+
+
+
+
+                <div ng-hide="numberOfFiles != 0"
+                     class="alert alert-danger alert-dismissible"
+                     role="danger"
+                     style="width: 300px">
+                    <button type="button"
+                            class="close"
+                            data-dismiss="alert"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <strong>Erro!</strong> Por favor, selecione os nódulos
+                </div>
+
             </div>
 
 

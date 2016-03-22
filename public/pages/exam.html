@@ -7,7 +7,6 @@
                     class="btn glyphicon glyphicon-zoom-in"
                     ng-class="{'btn-danger': !imageCharged, 'btn-primary': imageCharged}"
                     style="border-radius: 0 !important;">
-                {{statusButton}}
             </button>
         </div>
         <div class="col-md-3 text-center"><h3></h3></div>
@@ -33,32 +32,63 @@
         </div>
 
         <div class="col-md-9 text-center">
-           <!-- <img ng-elevate-zoom
-                 ng-src="data:image/PNG;base64,{{image}}"
-                 zoom-image="data:image/PNG;base64,{{image}}"
-                 alt=""
-                 style="width: 75%"
-                 class="img-rounded"
-                 ng-click="allowZoom()"
-
-                 put htis after      />
-                 -->
             <div class="row" style="overflow: auto; height: 400px">
                 <div class="col-md-6 text-center text-center" ng-repeat="bigNodule in bigNodules">
                         <h5>Nódulo ID: {{bigNodule.noduleId}}</h5>
                         <h6>Malignidade: {{bigNodule.malignancy}}</h6>
-                            <uib-carousel style="cursor: pointer; margin: auto; width: 70%">
+                            <uib-carousel style="cursor: pointer; margin: auto; width: 85%">
                                 <uib-slide ng-repeat="roi in bigNodule.rois" index="$index" active="$index">
                                         <img ng-elevate-zoom
+                                             ng-style="nodule{{bigNodule.noduleId + $index}}"
                                              ng-src="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
                                              zoom-image="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
+                                             id="{{bigNodule.noduleId + $index}}"
                                              class="img-rounded"
                                              style="cursor: pointer;"
                                              ng-click="allowZoom()"/>
                                 </uib-slide>
 
 
+
                             </uib-carousel>
+
+                    <div class="row text-center">
+                        <div class="col-lg-4 col-lg-offset-2">
+                            <h6 class="text-left">Brilho: <input type="text"
+                                                                 min={{min}}
+                                                                 max={{max}}
+                                                                 ng-model='brigthValue'
+                                                                 ng-change="brigthChange(bigNodule, brigthValue, contValue);"
+                                                                 style="width: 40px; height: 22px"></h6>
+                            <input type="range"
+                                   id="brightness"
+                                   min={{min}}
+                                   max={{max}}
+                                   ng-model='brigthValue'
+                                   ng-change="brigthChange(bigNodule, brigthValue, contValue);">
+                            {{brigthValue}}
+                        </div>
+                        <div class="col-lg-4">
+                            <h6 class="text-left">Contraste: <input type="text"
+                                                                    min={{min}}
+                                                                    max={{max}}
+                                                                    ng-model='contValue'
+                                                                    ng-change="contrastChange(bigNodule, brigthValue, contValue);"
+                                                                    style="width: 40px; height: 22px"> </h6>
+                            <input type="range"
+                                   id="contrast"
+                                   min={{min}}
+                                   max={{max}}
+                                   ng-model='contValue'
+                                   ng-change="contrastChange(bigNodule, brigthValue, contValue);">
+                        </div>
+                    </div>
+
+
+
+
+
+
 
                     <br>
                     <button ng-click="openNoduleDetails(bigNodule)"

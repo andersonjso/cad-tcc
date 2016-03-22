@@ -1,12 +1,12 @@
 <div>
 
     <div class="row" id="search-box">
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-4">
             <div class="input-group custom-search-form">
                 <input id="search-exam" type="text" class="form-control search-input"
                        placeholder="Pesquisa rápida..." ng-model="$parent.searchExam">
               <span class="input-group-btn">
-              <button class="btn btn-default" type="button" ng-click="search()">
+              <button class="btn btn-primary" type="button" ng-click="search()">
                   <span class="glyphicon glyphicon-search"></span>
               </button>
              </span>
@@ -52,6 +52,5 @@
         </uib-pagination>
     </div>
 
-    <div class="text-center" ng-hide="allExams.totalPages != 0">Nenhum resultado encontrado.</div>
     <div class="text-center" ng-hide="allExams.totalPages != 0">Nenhum resultado encontrado.</div>
 </div>

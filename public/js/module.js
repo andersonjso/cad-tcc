@@ -28,6 +28,8 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
 
         $scope.sendPost = function() {
             var filesSelected = document.getElementById("inputFileToLoad").files;
+
+            $scope.numberOfFiles = filesSelected.length;
             var preview = document.querySelector('#preview');
             var imagesToSave = [];
 
@@ -131,6 +133,8 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
 
 app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
     function ($scope, $uibModal, dataFactory) {
+
+        console.log($scope.similarNodulesOf3D.length);
 
         var getImagesNodules = function(path, id) {
             $scope.similarNoduleImg = {};
@@ -279,16 +283,6 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
                 })
         };
 
-        //function retrieveImageExamByPath(){
-        //    dataFactory.retrieveImageExamByPath(path)
-        //        .success(function (response){
-        //            $scope.image = response;
-        //        })
-        //        .error(function (error){
-        //            $scope.status = 'Unable to load data: ' + error.message;
-        //        })
-        //};
-
         $scope.openNoduleDetails = function(actualNodule){
             $scope.actualNodule = actualNodule;
             $scope.pathExam = path;
@@ -315,10 +309,34 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
             }
         }
 
+        $scope.min = 0;
+        $scope.max = 200;
+        $scope.brigthValue = 3000;
+        $scope.contValue = 400;
 
+        $scope.brigthChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
 
+                console.log($scope[scopeName]);
 
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
 
+        $scope.contrastChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
+
+                console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
     }]);
 
 app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
@@ -499,6 +517,27 @@ app.directive('ngElevateZoom', function(){
         }
     };
 });
+
+app.directive('ngChangeFilter', function(){
+    return{
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var showBright = function(value){
+                document.getElementById("minhaImg").style["-webkit-filter"] = "brightness(" + value + "%)";
+            }
+            alert(attrs.id);
+        }
+    };
+});
+
+var showBright = function(value, idImg){
+    console.log(value);
+    document.getElementById(idImg.valueOf()).style["-webkit-filter"] = "brightness(" + value + "%)";
+}
+
+var showCon = function(value){
+    document.getElementById(idImg.valueOf()).style["-webkit-filter"] = "contrast(" + value + "%)";
+}
 
 /*
  var image = $('#primaryImage');
