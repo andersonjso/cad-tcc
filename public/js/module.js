@@ -61,6 +61,14 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
                         $scope.status = 'Unable to load data: ' + error.message;
                     })
 
+                dataFactory.retrieveTexture(imagesToSave)
+                    .success (function(response){
+                        $scope.textureAtt = response;
+                    })
+                    .error(function (error){
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    })
+
 
             }, 100);
         }
@@ -275,8 +283,40 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
             }
         };
 
-        $scope.saveNodule = function(nodule){
-            alert(JSON.stringify($scope.newNodule));
+        $scope.saveNodule = function(){
+            //console.log($scope.slicesNodule3D);
+            //console.log($scope.textureAtt);
+            //console.log($scope.newNodule);
+
+            var noduleToSave = $scope.newNodule;
+
+            noduleToSave.textureAttributes = $scope.textureAtt;
+
+            var noduleDTO = {"bigNodule": noduleToSave, "encodedList": $scope.slicesNodule3D}
+            console.log(JSON.stringify(noduleDTO));
+
+            dataFactory.createNodule(noduleDTO)
+                .success(function(response){
+                    alert("Criouu");
+                    console.log(response);
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+            /*
+             dataFactory.retrieveBigNodule(path, id)
+             .success(function(response){
+             $scope.similarNoduleSelected = response;
+
+             for (var i=0; i<$scope.similarNoduleSelected.rois.length; i++){
+             getRoiSlicesNodule(path, id, i);
+             }
+
+             })
+             .error(function (error){
+             $scope.status = 'Unable to load data: ' + error.message;
+             });
+             */
         }
 
 }]);
@@ -590,6 +630,10 @@ app.factory('dataFactory', ['$http', function($http){
 
     dataFactory.createNodule = function(data){
         return $http.post('nodule', data);
+    }
+
+    dataFactory.retrieveTexture = function(data){
+        return $http.post('nodule/texture', data);
     }
 
     return dataFactory;
