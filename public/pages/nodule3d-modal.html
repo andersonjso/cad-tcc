@@ -5,13 +5,123 @@
 
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-6 text-center" style="margin-top: 30px">
+            <div class="col-md-6 text-center">
                 <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
                     <uib-slide ng-repeat="slice in slicesNodule3D" index="$index" active="$index">
                         <img ng-src="data:image/PNG;base64,{{slice.imageEncoded}}"
+                             ng-style="noduleSlice{{$index}}"
                              class="img-rounded"/>
                     </uib-slide>
                 </uib-carousel>
+
+                <div class="row text-center">
+                    <div class="col-lg-4 col-lg-offset-2">
+                        <h6 class="text-left">Brilho: <input type="text"
+                                                             min={{min}}
+                                                             max={{max}}
+                                                             ng-model='brightValue3D'
+                                                             ng-change="brightChange3D(brightValue3D, contValue3D);"
+                                                             style="width: 40px; height: 22px"></h6>
+                        <input type="range"
+                               id="brightness"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='brightValue3D'
+                               ng-change="brightChange3D(brightValue3D, contValue3D);">
+                        {{brigthValue}}
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-left">Contraste: <input type="text"
+                                                                min={{min}}
+                                                                max={{max}}
+                                                                ng-model='contValue3D'
+                                                                ng-change="contrastChange3D(brightValue3D, contValue3D);"
+                                                                style="width: 40px; height: 22px"> </h6>
+                        <input type="range"
+                               id="contrast"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='contValue3D'
+                               ng-change="contrastChange3D(brightValue3D, contValue3D);">
+                    </div>
+                </div>
+
+                <!--<div class="row" style="margin-top: 20px">-->
+                <!--<div class="col-lg-4 col-lg-offset-4">-->
+                    <!--<label>ID do nódulo</label>-->
+                <!--</div>-->
+                    <!--<div class="col-lg-8">-->
+                        <!--<i class="glyphicon glyphicon-exclamation-sign" uib-tooltip="Preencha o campo"-->
+                           <!--tooltip-placement="left" ng-show="createDeviceForm.address.$error.required &&-->
+                        <!--createDeviceForm.address.$dirty"></i>-->
+                        <!--<input name="address" class="form-control" type="text" ng-model="newDevice.address" required/>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div class="col-lg-8 col-lg-offset-2 form-group" style="margin-top: 20px">
+                    <label>ID do nódulo</label>
+                    <input name="subtlety" class="form-control" type="text" ng-model="newNodule.noduleId" required/>
+                </div>
+
+                <div class="col-lg-4 form-group">
+                    <h6>Malignidade</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.malignancy" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Sutileza</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.subtlety" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Estrutura Interna</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.internalStructure" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Calcificação</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.calcification" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Esfericidade</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.sphericity" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Margem</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.margin" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Lobulação</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.lobulation" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Spiculation</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.spiculation" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Textura</h6>
+                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.texture" required/>
+                </div>
+
+                <div class="col-lg-12 form-group text-right">
+                    <button class="btn btn-primary" ng-click="saveNodule(newNodule)">Salvar</button>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
 
             <div class="col-md-6 text-center" ng-show="!isSimilar" style="margin-top: -30px;">
@@ -47,6 +157,7 @@
                 <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
                     <uib-slide ng-repeat="roi in similarNoduleSelected.rois" index="$index" active="$index">
                         <img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.noduleId + $index]}}"
+                             ng-style="nodule{{similarNoduleSelected.noduleId + $index}}"
                              class="img-rounded"
                              style="margin-bottom: -60px;
                              margin-top: -60px;
@@ -56,6 +167,34 @@
                         </div>
                     </uib-slide>
                 </uib-carousel>
+
+                <div class="row text-center">
+                    <div class="col-lg-4 col-lg-offset-2">
+                        <h6 class="text-left">Brilho: <input type="text"
+                                                             min={{min}}
+                                                             max={{max}}
+                                                             ng-model='brigthValueSimilar'
+                                                             ng-change="brigthChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);"
+                                                             style="width: 40px; height: 22px"></h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='brigthValueSimilar'
+                               ng-change="brigthChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);">
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-left">Contraste: <input type="text"
+                                                                min={{min}}
+                                                                max={{max}}
+                                                                ng-model='contValueSimilar'
+                                                                ng-change="contrastChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);"
+                                                                style="width: 40px; height: 22px"> </h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='contValueSimilar'
+                               ng-change="contrastChange(similarNoduleSelected,brigthValueSimilar, contValueSimilar);">
+                    </div>
                 <div class="image-with-text">
                     <!--<img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNoduleSelected.idNodule]}}"-->
                     <!--class="img-rounded"-->
@@ -64,6 +203,12 @@
                 </div>
                 <table class= "table text-left" style="margin-top: 10px">
                     <tbody>
+                    <tr ng-class="{danger: similarNoduleSelected.malignancy > actualNodule.malignancy,
+                                    info: similarNoduleSelected.malignancy == actualNodule.malignancy,
+                                    success: similarNoduleSelected.malignancy < actualNodule.malignancy}">
+                        <td>Malignidade</td>
+                        <td>{{similarNoduleSelected.malignancy}}</td>
+                    </tr>
                     <tr>
                         <td>Sutileza</td>
                         <td>{{similarNoduleSelected.subtlety}}</td>
@@ -81,10 +226,6 @@
                         <td>{{similarNoduleSelected.sphericity}}</td>
                     </tr>
                     <tr>
-                        <td>Calcificação</td>
-                        <td>{{similarNoduleSelected.calcification}}</td>
-                    </tr>
-                    <tr>
                         <td>Margem</td>
                         <td>{{similarNoduleSelected.margin}}</td>
                     </tr>
@@ -100,13 +241,6 @@
                         <td>Textura</td>
                         <td>{{similarNoduleSelected.texture}}</td>
                     </tr>
-                    <tr ng-class="{danger: similarNoduleSelected.malignancy > actualNodule.malignancy,
-                                    info: similarNoduleSelected.malignancy == actualNodule.malignancy,
-                                    success: similarNoduleSelected.malignancy < actualNodule.malignancy}">
-                        <td>Malignidade</td>
-                        <td>{{similarNoduleSelected.malignancy}}</td>
-                    </tr>
-
                     </tbody>
                 </table>
             </div>

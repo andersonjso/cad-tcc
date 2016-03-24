@@ -1,9 +1,11 @@
 package br.edu.ufal.controller;
 
 import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.cad.NoduleDTO;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
+import br.edu.ufal.cad.mongodb.tags.Nodule;
 import br.edu.ufal.services.CADService;
 
 
@@ -21,6 +23,7 @@ import org.jooby.mvc.POST;
 import org.jooby.mvc.Path;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -65,10 +68,33 @@ public class CADController {
     @GET
     @Path("/exams/:page")
     public Result listExams(int page){
-        ExamQueryResult examQueryResult = cadService.listExams(page);
+        ExamQueryResult examQueryResult;
+            examQueryResult = cadService.listExams(page);
+
+
 
         return Results.ok(mapper.toJson(examQueryResult));
     }
+
+    @GET
+    @Path("/exams/degree/:noduleDegree/:page")
+    public Result listExams(int noduleDegree, int page){
+        ExamQueryResult examQueryResult;
+        examQueryResult = cadService.listExamsByDegree(noduleDegree, page);
+
+        return Results.ok(mapper.toJson(examQueryResult));
+    }
+
+    @POST
+    @Path("/nodule")
+    public Result createNodule (@Body String bodyResponse) throws IOException {
+        NoduleDTO noduleDTO = mapper.parse(bodyResponse, NoduleDTO.class);
+
+        BigNodule nodulesImages = cadService.createBigNodule(noduleDTO.getBigNodule(), noduleDTO.getEncodedList());
+
+        return Results.ok(mapper.toJson(nodulesImages));
+    }
+
 
     @GET
     @Path("/exam/:examPath/bignodules")

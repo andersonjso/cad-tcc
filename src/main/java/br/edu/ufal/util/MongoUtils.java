@@ -16,7 +16,9 @@ public class MongoUtils {
 
     private static MongoClient mongoClient = new MongoClient();
     public static DB databaseTest = mongoClient.getDB("test");
+    public static DB databaseMyNodules = mongoClient.getDB("mynodules");
     private static Jongo jongo = new Jongo(databaseTest);
+    private static Jongo myNodulesJongo = new Jongo(databaseMyNodules);
 
     public static MongoCollection exams (){
         return jongo.getCollection("exams");
@@ -24,5 +26,6 @@ public class MongoUtils {
     public static MongoCollection imagesFiles (){
         return jongo.getCollection("images.files");
     }
+    public static MongoCollection nodules () {return myNodulesJongo.getCollection("nodules"); }
 
 }

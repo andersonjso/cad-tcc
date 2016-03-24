@@ -2,9 +2,16 @@ package br.edu.ufal.controller;
 
 import br.edu.ufal.BaseTest;
 import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.cad.NoduleDTO;
+import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.repository.CADRepositoryTest;
 import br.edu.ufal.util.ImageEncoded;
 import br.edu.ufal.util.JsonMapperObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ValueNode;
 import junit.framework.Assert;
 import org.jooby.mvc.GET;
 import org.jooby.mvc.Path;
@@ -177,6 +184,61 @@ public class CADControllerTest extends BaseTest{
 
         jsonResponse.expect(s -> {
             assertTrue(mapper.toJson(s).size() == 10);
+        });
+    }
+
+    @Test
+    public void shouldCreateNodule() throws Exception {
+        File img = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule0.png");
+        File img2 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule1.png");
+        File img3 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule2.png");
+        File img4 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule3.png");
+        File img5 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule4.png");
+        File img6 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule5.png");
+        File img7 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule6.png");
+        File img8 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule7.png");
+
+        List<File> files = new ArrayList<>();
+
+        files.add(img); files.add(img2); files.add(img3); files.add(img4); files.add(img5); files.add(img6);
+        files.add(img7); files.add(img8);
+
+        List<ImageEncoded> encodedImages = new ArrayList<>();
+
+        for (File file : files) {
+            byte[] bytes = CADRepositoryTest.loadFile(file);
+            byte[] encoded = Base64.getEncoder().encode(bytes);
+
+            String encodedString = new String(encoded);
+
+            ImageEncoded imageEncoded = new ImageEncoded(encodedString);
+
+            encodedImages.add(imageEncoded);
+        }
+        double[] doubles = {};
+        BigNodule bigNodule = new BigNodule("Meu nodulo teste", new ArrayList(), 1,
+                2, 3, 4, 5, 6, 7, 8, 9, doubles);
+
+//        final JsonNodeFactory factory = JsonNodeFactory.instance;
+//
+//        ObjectNode jsonNodes = factory.objectNode();
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        String bigNoduleJson = mapper.writeValueAsString(bigNodule);
+//        String encodedImagesJson = mapper.writeValueAsString(encodedImages);
+//
+//        jsonNodes.put("bigNodule", bigNoduleJson);
+//        jsonNodes.put("encodedImages", encodedImagesJson);
+
+        NoduleDTO noduleDTO = new NoduleDTO(bigNodule, encodedImages);
+
+        Client.Response jsonResponse = server.post("/nodule")
+                .header("Content-Type", "application/json")
+                .body(mapper.toJson(noduleDTO).toString(), "String")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
         });
     }
 

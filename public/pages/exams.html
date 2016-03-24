@@ -11,7 +11,21 @@
               </button>
              </span>
             </div><!-- /input-group -->
+
+            <hr>
+            <h5>Ordenar por nível de malignidade:
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">1</button>
+                <button type="button" class="btn btn-default">2</button>
+                <button type="button" class="btn btn-default">3</button>
+                <button type="button" class="btn btn-default">4</button>
+                <button type="button" class="btn btn-default">5</button>
+            </div>
+            </h5>
         </div>
+
+
+
     </div>
 
     <table class="table table-responsive" align="center" style="width: 80%; margin-top: 10px" >
@@ -35,6 +49,21 @@
             </td >
             <td ng-click="goToExam(exam)" class="col-lg-2">
                 {{exam.readingSession.bignodule.length}}
+            </td>
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{showQuantityNodulesLvl(exam, 1)}}
+            </td>
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{showQuantityNodulesLvl(exam, 2)}}
+            </td>
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{showQuantityNodulesLvl(exam, 3)}}
+            </td>
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{showQuantityNodulesLvl(exam, 4)}}
+            </td>
+            <td ng-click="goToExam(exam)" class="col-lg-2">
+                {{showQuantityNodulesLvl(exam, 5)}}
             </td>
         </tr>
     </table>

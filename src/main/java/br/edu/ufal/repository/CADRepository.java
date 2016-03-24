@@ -11,9 +11,12 @@ import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.cad.mongodb.tags.Roi;
 import br.edu.ufal.util.ImageEncoded;
 import br.edu.ufal.util.MongoUtils;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
+import com.mongodb.gridfs.GridFSInputFile;
 import org.bson.types.ObjectId;
+import org.jongo.MongoCursor;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -21,8 +24,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.UnknownHostException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -255,4 +258,111 @@ public class CADRepository {
 
         return nodules;
     }
+
+
+    public ExamQueryResult listExamsByDegree(int noduleDegree, int page) {
+        MongoCursor<Exam> examCursor = MongoUtils.exams()
+                .find("{readingSession.bignodule.malignancy: #}", Integer.toString(noduleDegree)).as(Exam.class);
+
+        List<Exam> allExams = StreamSupport.stream(examCursor.spliterator(), false).collect(Collectors.toList());
+
+        List<Exam> examsToSave = new ArrayList<>();
+        for (int i=QUANTITY * (page -1); i<QUANTITY; i++){
+
+        }
+        //todo sort exam
+
+        long totalPages = (long) (Math.ceil(allExams.size() / (double) QUANTITY));
+
+//        return new ExamQueryResult(, totalPages);
+
+        return null;
+    }
+
+    public BigNodule createBigNodule(BigNodule bigNodule, List<ImageEncoded> encodedImages) throws IOException {
+
+        GridFS gfsPhoto = new GridFS(MongoUtils.databaseMyNodules, "images");
+        int i = 0;
+        for (ImageEncoded encodedImage : encodedImages) {
+            byte[] decodedByteImage = java.util.Base64.getDecoder().decode(encodedImage.imageEncoded);
+
+            GridFSInputFile gfsFile = gfsPhoto.createFile(decodedByteImage);
+            gfsFile.setFilename(bigNodule.getNoduleID() + i);
+            gfsFile.save();
+            i++;
+        }
+
+        i = 0;
+        List<Roi> rois = new ArrayList<>();
+        for (ImageEncoded encoded : encodedImages){
+            GridFSDBFile imageForOutput = gfsPhoto.findOne(bigNodule.getNoduleID() + i);
+
+            rois.add(new Roi(imageForOutput.getId().toString()));
+            i++;
+        }
+
+        bigNodule.setRois(rois);
+
+        MongoUtils.nodules().save(bigNodule);
+
+        return byId(bigNodule.getNoduleID());
+    }
+
+    public BigNodule byId(String id){
+        BigNodule big = MongoUtils.nodules().findOne("{noduleId: #}", id).as(BigNodule.class);
+
+        return big;
+    }
+
+    /*
+     BufferedImage[] image3D = new BufferedImage[encodedImages.size()];
+
+        for (int i=0; i<encodedImages.size(); i++) {
+            byte[] decodedByteImage = java.util.Base64.getDecoder().decode(encodedImages.get(i).imageEncoded);
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(decodedByteImage);
+            image3D[i] = ImageIO.read(bais);
+        }
+
+        AttributesNodule attributesNodule = new AttributesNodule();
+        double[] attributes = attributesNodule.getImageTextureAttributes(image3D);
+
+        NoduleRetrievalPrecisionEvaluation noduleRetrievalPerformanceEvaluation =
+                new NoduleRetrievalPrecisionEvaluation ();
+
+        List<SimilarNodule> nodules = noduleRetrievalPerformanceEvaluation.retrieveSimilarNodules(attributes);
+
+        return nodules;
+     */
+
+//    private List<Exam> sortByDegree (List<Exam> exams, int degree){
+//        Map<Exam, Integer> mapExams = (Map<Exam, Integer>) new HashSet<>();
+//
+//        for (Exam exam : exams) {
+//            int value = 0;
+//            for (BigNodule bigNodule : exam.getReadingSession().getBignodule()) {
+//                if (bigNodule.getMalignancy() == degree) value ++;
+//            }
+//            mapExams.put(exam, value);
+//        }
+//
+//        List<Integer> sortedExamsValues = new ArrayList<>(mapExams.values());
+//        List<Exam> sortedExams = new ArrayList<>(mapExams.keySet());
+//
+//        Collections.sort()
+//    }
+
+    /*
+    List<Exam> exams = StreamSupport.stream(MongoUtils.exams()
+                .find("{readingSession.bignodule.0: {$exists: true}}")
+                .skip(QUANTITY * (page -1))
+                .limit(QUANTITY).as(Exam.class).spliterator(), false).collect(Collectors.toList());
+
+        long totalExams = MongoUtils.exams()
+                .count("{readingSession.bignodule.0: {$exists: true}}");
+
+        long totalPages = (long) (Math.ceil(totalExams / (double) QUANTITY));
+
+        return new ExamQueryResult(exams, totalPages);
+     */
 }

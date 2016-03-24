@@ -31,6 +31,10 @@ public class Roi {
 		this.noduleImage = noduleImage;
 	}
 
+	public Roi(String noduleImage) {
+		this.noduleImage = new ObjectId(noduleImage);
+	}
+
 	public Roi(String imageSOP_UID, ObjectId originalImage, List<EdgeMap> edgeMaps){
 		this.setImageSOP_UID(imageSOP_UID);
 		this.setOriginalImage(originalImage);
@@ -44,7 +48,11 @@ public class Roi {
 	public void setOriginalImage(ObjectId originalImage) {
 		this.originalImage = originalImage;
 	}
-	
+
+	public void setNoduleImage(ObjectId noduleImage) {
+		this.noduleImage = noduleImage;
+	}
+
 	public String getImageZposition() {
 		return imageZposition;
 	}

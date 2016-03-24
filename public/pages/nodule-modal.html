@@ -9,6 +9,7 @@
                 <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
                     <uib-slide ng-repeat="roi in actualNodule.rois" index="$index" active="$index">
                         <img ng-src="data:image/PNG;base64,{{nodulesRoisImg[actualNodule.noduleId + $index]}}"
+                             ng-style="nodule{{actualNodule.noduleId + $index}}"
                              class="img-rounded"
                              style="margin-bottom: -60px;
                              margin-top: -60px;
@@ -16,8 +17,41 @@
                     </uib-slide>
                 </uib-carousel>
 
+                <div class="row text-center">
+                    <div class="col-lg-4 col-lg-offset-2">
+                        <h6 class="text-left">Brilho: <input type="text"
+                                                             min={{min}}
+                                                             max={{max}}
+                                                             ng-model='brigthValue'
+                                                             ng-change="brigthChange(actualNodule, brigthValue, contValue);"
+                                                             style="width: 40px; height: 22px"></h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='brigthValue'
+                               ng-change="brigthChange(actualNodule, brigthValue, contValue);">
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-left">Contraste: <input type="text"
+                                                                min={{min}}
+                                                                max={{max}}
+                                                                ng-model='contValue'
+                                                                ng-change="contrastChange(actualNodule, brigthValue, contValue);"
+                                                                style="width: 40px; height: 22px"> </h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='contValue'
+                               ng-change="contrastChange(actualNodule, brigthValue, contValue);">
+                    </div>
+                </div>
+
                 <table class= "table text-left" style="margin-top: 10px">
                     <tbody>
+                    <tr>
+                        <td>Malignidade</td>
+                        <td>{{actualNodule.malignancy}}</td>
+                    </tr>
                     <tr>
                         <td>Sutileza</td>
                         <td>{{actualNodule.subtlety}}</td>
@@ -35,10 +69,6 @@
                         <td>{{actualNodule.sphericity}}</td>
                     </tr>
                     <tr>
-                        <td>Calcificação</td>
-                        <td>{{actualNodule.calcification}}</td>
-                    </tr>
-                    <tr>
                         <td>Margem</td>
                         <td>{{actualNodule.margin}}</td>
                     </tr>
@@ -54,11 +84,6 @@
                         <td>Textura</td>
                         <td>{{actualNodule.texture}}</td>
                     </tr>
-                    <tr>
-                        <td>Malignidade</td>
-                        <td>{{actualNodule.malignancy}}</td>
-                    </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -96,6 +121,7 @@
                     <uib-slide ng-repeat="roi in similarNoduleSelected.rois" index="$index" active="$index">
                         <img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.noduleId + $index]}}"
                              class="img-rounded"
+                             ng-style="nodule{{similarNoduleSelected.noduleId + $index}}"
                              style="margin-bottom: -60px;
                              margin-top: -60px;"/>
                         <div class="carousel-caption">
@@ -103,6 +129,36 @@
                         </div>
                     </uib-slide>
                 </uib-carousel>
+
+                <div class="row text-center">
+                    <div class="col-lg-4 col-lg-offset-2">
+                        <h6 class="text-left">Brilho: <input type="text"
+                                                             min={{min}}
+                                                             max={{max}}
+                                                             ng-model='brigthValueSimilar'
+                                                             ng-change="brigthChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);"
+                                                             style="width: 40px; height: 22px"></h6>
+                        <input type="range"
+                               id="brightness"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='brigthValueSimilar'
+                               ng-change="brigthChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);">
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-left">Contraste: <input type="text"
+                                                                min={{min}}
+                                                                max={{max}}
+                                                                ng-model='contValueSimilar'
+                                                                ng-change="contrastChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);"
+                                                                style="width: 40px; height: 22px"> </h6>
+                        <input type="range"
+                               id="contrast"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='contValueSimilar'
+                               ng-change="contrastChange(similarNoduleSelected,brigthValueSimilar, contValueSimilar);">
+                    </div>
                 <div class="image-with-text">
                 <!--<img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNoduleSelected.idNodule]}}"-->
                      <!--class="img-rounded"-->
@@ -111,6 +167,13 @@
                 </div>
                     <table class= "table text-left" style="margin-top: 10px">
                     <tbody>
+                    <tr ng-class="{danger: similarNoduleSelected.malignancy > actualNodule.malignancy,
+                                    info: similarNoduleSelected.malignancy == actualNodule.malignancy,
+                                    success: similarNoduleSelected.malignancy < actualNodule.malignancy}">
+                        <td>Malignidade</td>
+                        <td>{{similarNoduleSelected.malignancy}}</td>
+                    </tr>
+
                     <tr>
                         <td>Sutileza</td>
                         <td>{{similarNoduleSelected.subtlety}}</td>
@@ -128,10 +191,6 @@
                         <td>{{similarNoduleSelected.sphericity}}</td>
                     </tr>
                     <tr>
-                        <td>Calcificação</td>
-                        <td>{{similarNoduleSelected.calcification}}</td>
-                    </tr>
-                    <tr>
                         <td>Margem</td>
                         <td>{{similarNoduleSelected.margin}}</td>
                     </tr>
@@ -147,13 +206,6 @@
                         <td>Textura</td>
                         <td>{{similarNoduleSelected.texture}}</td>
                     </tr>
-                    <tr ng-class="{danger: similarNoduleSelected.malignancy > actualNodule.malignancy,
-                                    info: similarNoduleSelected.malignancy == actualNodule.malignancy,
-                                    success: similarNoduleSelected.malignancy < actualNodule.malignancy}">
-                        <td>Malignidade</td>
-                        <td>{{similarNoduleSelected.malignancy}}</td>
-                    </tr>
-
                     </tbody>
                 </table>
             </div>

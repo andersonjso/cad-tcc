@@ -2,7 +2,7 @@
  * Created by andersonjso on 2/24/16.
  */
 
-var app = angular.module('mainApp', ['ngTable', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ngTouch']);
+var app = angular.module('mainApp', ['ngTable', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ngTouch', 'ngTable']);
 
 /** CONFIG **/
 app.config(function($routeProvider){
@@ -18,8 +18,8 @@ app.config(function($routeProvider){
         .otherwise({redirectTo: '/'})
 })
 
-app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory', '$uibModal',
-    function($scope, $location, $route, dataFactory, $uibModal){
+app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory', '$uibModal', 'NgTableParams',
+    function($scope, $location, $route, dataFactory, $uibModal, NgTableParams){
 
         $scope.allExams;
         getExams();
@@ -86,8 +86,30 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
                 })
         }
 
+        function demoController(NgTableParams, simpleList) {
+            this.tableParams = new NgTableParams({
+                // initial sort order
+                sorting: { name: "asc" }
+            }, {
+                dataset: simpleList
+            });
+        }
+
+
+
         $scope.goToExam = function(exam) {
             $location.path('/exam/' + exam.path.substring(11, 25));
+        };
+
+        $scope.showQuantityNodulesLvl = function (exam, lvl){
+            var bigNodules = exam.readingSession.bignodule;
+            var quantity = 0;
+            for (var i = 0; i<bigNodules.length; i++){
+                if (bigNodules[i].malignancy == lvl){
+                    quantity++;
+                }
+            }
+            return quantity;
         };
 
 
@@ -196,6 +218,65 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
 
         $scope.backToSimilar = function(){
             $scope.isSimilar = false;
+        }
+
+        $scope.min = 0;
+        $scope.max = 200;
+        $scope.brightValue3D = 100;
+        $scope.contValue3D = 100;
+        $scope.brigthValueSimilar = 100;
+        $scope.contValueSimilar = 100;
+
+        $scope.brightChange3D = function(bright, cont){
+            for (var i = 0; i<$scope.similarNodules.length; i++){
+                var scopeName = 'noduleSlice' +i;
+
+                console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
+
+        $scope.contrastChange3D = function(bright, cont){
+            for (var i = 0; i<$scope.similarNodules.length; i++){
+                var scopeName = 'noduleSlice' +i;
+
+                console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
+
+        $scope.brigthChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
+
+                console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
+
+        $scope.contrastChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
+
+                console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
+
+        $scope.saveNodule = function(nodule){
+            alert(JSON.stringify($scope.newNodule));
         }
 
 }]);
@@ -423,6 +504,37 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
         $scope.backToSimilar = function(){
             $scope.isSimilar = false;
         }
+
+        $scope.min = 0;
+        $scope.max = 200;
+        $scope.brigthValue = 100;
+        $scope.contValue = 100;
+        $scope.brigthValueSimilar = 100;
+        $scope.contValueSimilar = 100;
+
+        $scope.brigthChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
+
+                console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
+
+        $scope.contrastChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
+
+                console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
 }]);
 
 app.factory('dataFactory', ['$http', function($http){

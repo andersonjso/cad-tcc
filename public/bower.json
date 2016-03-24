@@ -13,6 +13,7 @@
     "angular-resource": "1.4.x",
     "angular-bootstrap": "*",
     "angular-carousel": "0.3.13",
-    "bootstrap-filestyle": "1.2.1"
+    "bootstrap-filestyle": "1.2.1",
+    "ng-table": "1.0.0-beta.9"
   }
 }
