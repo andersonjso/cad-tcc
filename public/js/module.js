@@ -588,11 +588,10 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.post('nodule/similar', data);
     }
 
+    dataFactory.createNodule = function(data){
+        return $http.post('nodule', data);
+    }
 
-    /*
-     @POST
-     @Path("nodule/similar")
-     */
     return dataFactory;
 }])
 

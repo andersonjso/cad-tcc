@@ -314,8 +314,8 @@ public class CADRepository {
         return big;
     }
 
-    /*
-     BufferedImage[] image3D = new BufferedImage[encodedImages.size()];
+    public double[] retrieveTextureAttributes(List<ImageEncoded> encodedImages) throws IOException {
+        BufferedImage[] image3D = new BufferedImage[encodedImages.size()];
 
         for (int i=0; i<encodedImages.size(); i++) {
             byte[] decodedByteImage = java.util.Base64.getDecoder().decode(encodedImages.get(i).imageEncoded);
@@ -325,7 +325,13 @@ public class CADRepository {
         }
 
         AttributesNodule attributesNodule = new AttributesNodule();
-        double[] attributes = attributesNodule.getImageTextureAttributes(image3D);
+        return attributesNodule.getImageTextureAttributes(image3D);
+    }
+
+    /*
+
+
+
 
         NoduleRetrievalPrecisionEvaluation noduleRetrievalPerformanceEvaluation =
                 new NoduleRetrievalPrecisionEvaluation ();

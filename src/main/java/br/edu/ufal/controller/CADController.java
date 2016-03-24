@@ -95,6 +95,16 @@ public class CADController {
         return Results.ok(mapper.toJson(nodulesImages));
     }
 
+    @POST
+    @Path("/nodule/texture")
+    public Result retrieveTextureAttributes (@Body String bodyResponse) throws IOException {
+        List<ImageEncoded> encodedImages = mapper.toList(bodyResponse, ImageEncoded.class);
+
+        double[] attributes = cadService.retrieveTextureAttributes(encodedImages);
+
+        return Results.ok(mapper.toJson(attributes));
+    }
+
 
     @GET
     @Path("/exam/:examPath/bignodules")

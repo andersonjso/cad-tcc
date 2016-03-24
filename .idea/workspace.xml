@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b1b4960-12c8-44c1-a2b5-cd0f7489deea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/NoduleDTO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bower.json" afterPath="$PROJECT_DIR$/public/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/module.js" afterPath="$PROJECT_DIR$/public/js/module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/pages/exams.html" afterPath="$PROJECT_DIR$/public/pages/exams.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/pages/nodule-modal.html" afterPath="$PROJECT_DIR$/public/pages/nodule-modal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/pages/nodule3d-modal.html" afterPath="$PROJECT_DIR$/public/pages/nodule3d-modal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/mongodb/tags/Roi.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/mongodb/tags/Roi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/util/MongoUtils.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/util/MongoUtils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java" />
     </list>
@@ -55,11 +47,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="module.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/module.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="593" column="0" selection-start-line="593" selection-start-column="0" selection-end-line="593" selection-end-column="0" />
+              <folding>
+                <element signature="e#15010#15412#0" expanded="false" />
+                <element signature="e#20393#20488#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CADController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.3703704">
-              <caret line="92" column="113" selection-start-line="92" selection-start-column="113" selection-end-line="92" selection-end-column="113" />
+            <state vertical-scroll-proportion="-6.2222223">
+              <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -80,11 +85,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CADService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="82" column="27" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CADControllerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1015801">
-              <caret line="240" column="33" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.6952596">
+              <caret line="281" column="5" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -93,9 +108,21 @@
       <file leaf-file-name="CADRepositoryTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.333333">
-              <caret line="175" column="45" selection-start-line="175" selection-start-column="45" selection-end-line="175" selection-end-column="45" />
+            <state vertical-scroll-proportion="-12.074074">
+              <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CADRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.5555556">
+              <caret line="316" column="34" selection-start-line="316" selection-start-column="34" selection-end-line="316" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -171,15 +198,15 @@
         <option value="$PROJECT_DIR$/public/pages/exams.html" />
         <option value="$PROJECT_DIR$/public/pages/nodule-modal.html" />
         <option value="$PROJECT_DIR$/public/pages/nodule3d-modal.html" />
-        <option value="$PROJECT_DIR$/public/js/module.js" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/mongodb/tags/Roi.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/util/MongoUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" />
-        <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" />
-        <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/NoduleDTO.java" />
+        <option value="$PROJECT_DIR$/public/js/module.js" />
+        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
       </list>
     </option>
   </component>
@@ -555,7 +582,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cad-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cad-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cad-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cad-tcc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -595,7 +658,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/br/edu/ufal" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CADControllerTest.shouldCreateNodule">
+  <component name="RunManager" selected="JUnit.CADControllerTest.shouldRetrieveTexture">
     <configuration default="false" name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -614,58 +677,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="cad-tcc" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="CADRepositoryTest.shouldRetrieveExamsByPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="br.edu.ufal.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cad-tcc" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="br.edu.ufal.repository" />
-      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.repository.CADRepositoryTest" />
-      <option name="METHOD_NAME" value="shouldRetrieveExamsByPath" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="Tests.olar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="br.edu.ufal.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cad-tcc" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="br.edu.ufal.repository" />
-      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.repository.Tests" />
-      <option name="METHOD_NAME" value="olar" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="false" name="CADRepositoryTest.shouldCreateBigNodule" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -707,6 +718,58 @@
       <option name="PACKAGE_NAME" value="br.edu.ufal.controller" />
       <option name="MAIN_CLASS_NAME" value="br.edu.ufal.controller.CADControllerTest" />
       <option name="METHOD_NAME" value="shouldCreateNodule" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CADRepositoryTest.shouldRetrieveTexture" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ufal.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cad-tcc" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="br.edu.ufal.repository" />
+      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.repository.CADRepositoryTest" />
+      <option name="METHOD_NAME" value="shouldRetrieveTexture" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CADControllerTest.shouldRetrieveTexture" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="br.edu.ufal.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cad-tcc" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="br.edu.ufal.controller" />
+      <option name="MAIN_CLASS_NAME" value="br.edu.ufal.controller.CADControllerTest" />
+      <option name="METHOD_NAME" value="shouldRetrieveTexture" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1132,18 +1195,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.App" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldRetrieveExamsByPath" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.Tests.olar" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldCreateBigNodule" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldCreateNodule" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldCreateBigNodule" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldCreateNodule" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldRetrieveTexture" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetrieveTexture" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldCreateNodule" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldCreateBigNodule" />
-        <item index="2" class="java.lang.String" itemvalue="Application.App" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.Tests.olar" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldRetrieveExamsByPath" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldRetrieveTexture" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldRetrieveTexture" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CADControllerTest.shouldCreateNodule" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CADRepositoryTest.shouldCreateBigNodule" />
+        <item index="4" class="java.lang.String" itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -1168,7 +1231,7 @@
       <workItem from="1457569924018" duration="53129000" />
       <workItem from="1457966113576" duration="5795000" />
       <workItem from="1458011137709" duration="13067000" />
-      <workItem from="1458187466830" duration="69839000" />
+      <workItem from="1458187466830" duration="70471000" />
     </task>
     <task id="LOCAL-00001" summary="[improv] Create service and tests to list all devices">
       <created>1456281720434</created>
@@ -1320,16 +1383,16 @@
       <option name="project" value="LOCAL" />
       <updated>1458630719011</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="[improv] Create service to create big nodule">
+      <created>1458788976805</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1458788976807</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CADControllerTest_shouldCreateNodule - 2016.03.23 at 23h 55m 55s.xml">
-      <configuration name="CADControllerTest.shouldCreateNodule" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CADControllerTest_shouldCreateNodule - 2016.03.23 at 23h 56m 08s.xml">
-      <configuration name="CADControllerTest.shouldCreateNodule" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CADControllerTest_shouldCreateNodule - 2016.03.23 at 23h 56m 35s.xml">
       <configuration name="CADControllerTest.shouldCreateNodule" configurationId="JUnit" />
     </history-entry>
@@ -1354,9 +1417,15 @@
     <history-entry file="CADControllerTest_shouldCreateNodule - 2016.03.24 at 00h 08m 16s.xml">
       <configuration name="CADControllerTest.shouldCreateNodule" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CADControllerTest_shouldRetrieveTexture - 2016.03.24 at 00h 20m 20s.xml">
+      <configuration name="CADControllerTest.shouldRetrieveTexture" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CADRepositoryTest_shouldRetrieveTexture - 2016.03.24 at 00h 19m 24s.xml">
+      <configuration name="CADRepositoryTest.shouldRetrieveTexture" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="326716000" />
+    <option name="totallyTimeSpent" value="327348000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1410,7 +1479,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[test] add some tests for simiar nodule image retrieval" />
     <MESSAGE value="[improv] Create service and tests to list all devices" />
     <MESSAGE value="[improv] Create service and tests to retrieve similar nodules given an nodule as input" />
     <MESSAGE value="[merge] Merge back and front end" />
@@ -1435,7 +1503,8 @@
     <MESSAGE value="[improv] User choose folder with the nodules slices and the the system returns its similar nodules" />
     <MESSAGE value="[improv] create button to allow zoom or block it" />
     <MESSAGE value="[improv] Add brigthness and contrast leveling to the exams" />
-    <option name="LAST_COMMIT_MESSAGE" value="[improv] Add brigthness and contrast leveling to the exams" />
+    <MESSAGE value="[improv] Create service to create big nodule" />
+    <option name="LAST_COMMIT_MESSAGE" value="[improv] Create service to create big nodule" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1488,8 +1557,14 @@
           <properties />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java</url>
+          <line>239</line>
+          <properties />
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="88" />
+      <option name="time" value="89" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1808,17 +1883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80929095">
-          <caret line="278" column="50" selection-start-line="278" selection-start-column="50" selection-end-line="278" selection-end-column="50" />
-          <folding>
-            <element signature="e#15010#15412#0" expanded="false" />
-            <element signature="e#20352#20447#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/cad/mongodb/tags/BigNodule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13761468">
@@ -1847,32 +1911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.148149">
-          <caret line="307" column="0" selection-start-line="307" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7797927">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.333333">
-          <caret line="175" column="45" selection-start-line="175" selection-start-column="45" selection-end-line="175" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/jooby/jooby/0.14.0/jooby-0.14.0.jar!/org/jooby/internal/mvc/MvcHandler.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.53203344">
@@ -1894,18 +1932,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="593" column="0" selection-start-line="593" selection-start-column="0" selection-end-line="593" selection-end-column="0" />
+          <folding>
+            <element signature="e#15010#15412#0" expanded="false" />
+            <element signature="e#20393#20488#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5555556">
+          <caret line="316" column="34" selection-start-line="316" selection-start-column="34" selection-end-line="316" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="82" column="27" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.3703704">
-          <caret line="92" column="113" selection-start-line="92" selection-start-column="113" selection-end-line="92" selection-end-column="113" />
+        <state vertical-scroll-proportion="-6.2222223">
+          <caret line="104" column="50" selection-start-line="104" selection-start-column="50" selection-end-line="104" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.074074">
+          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1015801">
-          <caret line="240" column="33" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.6952596">
+          <caret line="281" column="5" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
           <folding />
         </state>
       </provider>

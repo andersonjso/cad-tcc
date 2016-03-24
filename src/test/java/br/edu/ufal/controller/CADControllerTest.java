@@ -242,4 +242,43 @@ public class CADControllerTest extends BaseTest{
         });
     }
 
+    @Test
+    public void shouldRetrieveTexture() throws Exception {
+        File img = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule0.png");
+        File img2 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule1.png");
+        File img3 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule2.png");
+        File img4 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule3.png");
+        File img5 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule4.png");
+        File img6 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule5.png");
+        File img7 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule6.png");
+        File img8 = new File("/Users/andersonjso/Downloads/meuteste/nodule/testeNodule7.png");
+
+        List<File> files = new ArrayList<>();
+
+        files.add(img); files.add(img2); files.add(img3); files.add(img4); files.add(img5); files.add(img6);
+        files.add(img7); files.add(img8);
+
+        List<ImageEncoded> encodedImages = new ArrayList<>();
+
+        for (File file : files) {
+            byte[] bytes = CADRepositoryTest.loadFile(file);
+            byte[] encoded = Base64.getEncoder().encode(bytes);
+
+            String encodedString = new String(encoded);
+
+            ImageEncoded imageEncoded = new ImageEncoded(encodedString);
+
+            encodedImages.add(imageEncoded);
+        }
+
+        Client.Response jsonResponse = server.post("/nodule/texture")
+                .header("Content-Type", "application/json")
+                .body(mapper.toJson(encodedImages).toString(), "String")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+        });
+    }
+
 }

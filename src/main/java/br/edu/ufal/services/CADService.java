@@ -79,4 +79,8 @@ public class CADService {
     public BigNodule createBigNodule(BigNodule bigNodule, List<ImageEncoded> encodedImages) throws IOException {
         return cadRepository.createBigNodule(bigNodule, encodedImages);
     }
+
+    public double[] retrieveTextureAttributes(List<ImageEncoded> encodedImages) throws IOException {
+        return cadRepository.retrieveTextureAttributes(encodedImages);
+    }
 }
