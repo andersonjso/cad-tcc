@@ -337,6 +337,57 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
                 });
 
         }
+
+        $scope.editNodule = function(){
+
+            if (!(typeof $scope.newNodule === "undefined")) {
+                if (typeof $scope.newNodule.texture === "undefined") {
+                    $scope.newNodule.texture = $scope.myActualNodule.texture;
+                }
+                if (typeof $scope.newNodule.subtlety === "undefined") {
+                    $scope.newNodule.subtlety = $scope.myActualNodule.subtlety;
+                }
+                if (typeof $scope.newNodule.internalStructure === "undefined") {
+                    $scope.newNodule.internalStructure = $scope.myActualNodule.internalStructure;
+                }
+                if (typeof $scope.newNodule.calcification === "undefined") {
+                    $scope.newNodule.calcification = $scope.myActualNodule.calcification;
+                }
+                if (typeof $scope.newNodule.sphericity === "undefined") {
+                    $scope.newNodule.sphericity = $scope.myActualNodule.sphericity;
+                }
+                if (typeof $scope.newNodule.margin === "undefined") {
+                    $scope.newNodule.margin = $scope.myActualNodule.margin;
+                }
+                if (typeof $scope.newNodule.lobulation === "undefined") {
+                    $scope.newNodule.lobulation = $scope.myActualNodule.lobulation;
+                }
+                if (typeof $scope.newNodule.spiculation === "undefined") {
+                    $scope.newNodule.spiculation = $scope.myActualNodule.spiculation;
+                }
+                if (typeof $scope.newNodule.malignancy === "undefined") {
+                    $scope.newNodule.malignancy = $scope.myActualNodule.malignancy;
+                }
+
+                dataFactory.editNodule($scope.myActualNodule.noduleId, $scope.newNodule)
+                    .success(function(response){
+                        alert('Editado ;)');
+                        console.log(JSON.stringify(response));
+                    })
+                    .error(function (error){
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    });
+            }
+            else{
+                alert("preencha ao menos 1!!!!");
+            }
+
+
+
+//if (typeof something === "undefined") {
+          //  console.log($scope.newNodule.texture);
+
+        }
     }]);
 
 
@@ -828,6 +879,11 @@ app.factory('dataFactory', ['$http', function($http){
     dataFactory.deleteNodule = function(noduleId){
         return $http["delete"]('nodule/' + noduleId);
     }
+
+    dataFactory.editNodule = function(noduleId, data){
+        return $http.put('nodule/' + noduleId, data);
+    }
+    //    @Path("/nodule/:noduleId")
 
     return dataFactory;
 }])

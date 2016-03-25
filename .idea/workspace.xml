@@ -4,6 +4,7 @@
     <list default="true" id="5b1b4960-12c8-44c1-a2b5-cd0f7489deea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/module.js" afterPath="$PROJECT_DIR$/public/js/module.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/pages/my-nodule-modal.html" afterPath="$PROJECT_DIR$/public/pages/my-nodule-modal.html" />
     </list>
     <ignored path="cad-tcc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,22 +46,10 @@
       <file leaf-file-name="module.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7359413">
-              <caret line="332" column="35" selection-start-line="332" selection-start-column="35" selection-end-line="332" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.63325185">
+              <caret line="381" column="49" selection-start-line="381" selection-start-column="49" selection-end-line="381" selection-end-column="49" />
               <folding>
-                <element signature="e#28350#28445#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CADService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#30822#30917#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -69,10 +58,12 @@
       <file leaf-file-name="my-nodule-modal.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/pages/my-nodule-modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5882353">
-              <caret line="2" column="37" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="37" />
+            <state vertical-scroll-proportion="-0.88235295">
+              <caret line="51" column="40" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#uib-carousel#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#h6#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#h6#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -88,36 +79,36 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CADController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.703704">
+              <caret line="108" column="49" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CADService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="96" column="12" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="nodule-modal.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/pages/nodule-modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.235294">
+            <state vertical-scroll-proportion="10.882353">
               <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="46" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CADRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CADControllerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="334" column="0" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -196,10 +187,10 @@
         <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/repository/CADRepositoryTest.java" />
         <option value="$PROJECT_DIR$/public/pages/nodules.html" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" />
         <option value="$PROJECT_DIR$/public/pages/nodule-modal.html" />
         <option value="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" />
         <option value="$PROJECT_DIR$/public/pages/my-nodule-modal.html" />
         <option value="$PROJECT_DIR$/public/js/module.js" />
       </list>
@@ -1250,7 +1241,7 @@
       <workItem from="1457569924018" duration="53129000" />
       <workItem from="1457966113576" duration="5795000" />
       <workItem from="1458011137709" duration="13067000" />
-      <workItem from="1458187466830" duration="92703000" />
+      <workItem from="1458187466830" duration="95187000" />
     </task>
     <task id="LOCAL-00001" summary="[improv] Create service and tests to list all devices">
       <created>1456281720434</created>
@@ -1432,7 +1423,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458926998112</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="[improv] Create front to delete new nodules and details">
+      <created>1458927515894</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1458927515894</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1468,7 +1465,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="349580000" />
+    <option name="totallyTimeSpent" value="352064000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1488,7 +1485,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32753164" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25474682" sideWeight="0.50646204" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7559055" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46677214" sideWeight="0.49353796" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2658228" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1506,7 +1503,7 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19370079" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1522,7 +1519,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[import] Import module to convert .dcm files to .png" />
     <MESSAGE value="[improv] convert dcm to png and show the exam image at its main screen" />
     <MESSAGE value="[improv] Create function to add nodule images" />
     <MESSAGE value="[improv] Create functions in angular to show nodule images" />
@@ -1547,7 +1543,8 @@
     <MESSAGE value="[improv] create on angular the service to create the nodule" />
     <MESSAGE value="[improv] Create back end crud for nodules" />
     <MESSAGE value="[improv] Create front to show new nodules and details" />
-    <option name="LAST_COMMIT_MESSAGE" value="[improv] Create front to show new nodules and details" />
+    <MESSAGE value="[improv] Create front to delete new nodules and details" />
+    <option name="LAST_COMMIT_MESSAGE" value="[improv] Create front to delete new nodules and details" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1997,8 +1994,16 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="334" column="0" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/pages/exam.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41558442">
+          <caret line="93" column="48" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2014,7 +2019,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/pages/nodule-modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.235294">
+        <state vertical-scroll-proportion="10.882353">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="46" selection-end-column="22" />
           <folding />
         </state>
@@ -2022,26 +2027,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.06880734">
-          <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+        <state vertical-scroll-proportion="-6.703704">
+          <caret line="108" column="49" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/pages/exam.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41558442">
-          <caret line="93" column="48" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+          <caret line="96" column="12" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2050,10 +2047,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/pages/my-nodule-modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5882353">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="37" />
+        <state vertical-scroll-proportion="-0.88235295">
+          <caret line="51" column="40" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#uib-carousel#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#h6#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#h6#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -2070,10 +2069,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7359413">
-          <caret line="332" column="35" selection-start-line="332" selection-start-column="35" selection-end-line="332" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.63325185">
+          <caret line="381" column="49" selection-start-line="381" selection-start-column="49" selection-end-line="381" selection-end-column="49" />
           <folding>
-            <element signature="e#28350#28445#0" expanded="false" />
+            <element signature="e#30822#30917#0" expanded="false" />
           </folding>
         </state>
       </provider>
