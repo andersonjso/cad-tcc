@@ -1,6 +1,7 @@
 package br.edu.ufal.controller;
 
 import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.NoduleQueryResult;
 import br.edu.ufal.cad.NoduleDTO;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
@@ -17,10 +18,7 @@ import com.google.inject.name.Named;
 import org.jooby.Result;
 import org.jooby.Results;
 import org.jooby.Upload;
-import org.jooby.mvc.Body;
-import org.jooby.mvc.GET;
-import org.jooby.mvc.POST;
-import org.jooby.mvc.Path;
+import org.jooby.mvc.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -77,6 +75,14 @@ public class CADController {
     }
 
     @GET
+    @Path("/nodules/:page")
+    public Result listNodules(int page){
+        NoduleQueryResult noduleQueryResult = cadService.listNodules(page);
+
+        return Results.ok(mapper.toJson(noduleQueryResult));
+    }
+
+    @GET
     @Path("/exams/degree/:noduleDegree/:page")
     public Result listExams(int noduleDegree, int page){
         ExamQueryResult examQueryResult;
@@ -93,6 +99,22 @@ public class CADController {
         BigNodule nodulesImages = cadService.createBigNodule(noduleDTO.getBigNodule(), noduleDTO.getEncodedList());
 
         return Results.ok(mapper.toJson(nodulesImages));
+    }
+
+    @PUT
+    @Path("/nodule/:noduleId")
+    public Result editNodule(String noduleId, @Body String bodyResponse){
+        BigNodule newNodule = mapper.parse(bodyResponse, BigNodule.class);
+
+        BigNodule noduleUpdated = cadService.editNodule(noduleId, newNodule);
+
+        return Results.ok(mapper.toJson(noduleUpdated));
+    }
+
+    @DELETE
+    @Path("/nodule/:noduleId")
+    public Result removeNodule(String noduleId){
+        cadService.removeNodule(noduleId);
     }
 
     @POST

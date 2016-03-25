@@ -1,8 +1,8 @@
 .navbar-brand{
-    line-height: 70px;
-    height: 70px;
-    width: 140px;
-    padding-top: 0;
+    /*line-height: 40px;*/
+    /*height: 40px;*/
+    width: 120px;
+    padding-top: 3px;
 }
 
 .input-group{
@@ -60,7 +60,6 @@
     width: 150px;
     height: 150px;
     overflow: hidden;
-    background-color: blue;
     margin: 0 auto;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -88,6 +87,15 @@
 .carousel-control.left, .carousel-control.right {
     background-image: none
 }
+
+.myNodules {
+    color: white;
+    background: #0073a3;
+}
+
+
+
+
 
 
 

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
+import com.mongodb.assertions.Assertions;
 import junit.framework.Assert;
 import org.jooby.mvc.GET;
 import org.jooby.mvc.Path;
@@ -278,6 +279,36 @@ public class CADControllerTest extends BaseTest{
 
         jsonResponse.expect(s -> {
             System.out.println(s);
+        });
+    }
+
+    @Test
+    public void shouldListNodules() throws Exception {
+        Client.Response jsonResponse = server.get("/nodules/1")
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+
+        });
+    }
+
+    @Test //    @Path("/nodule/:noduleId")
+    public void shouldEditNodule() throws Exception {
+        BigNodule bigNodule = new BigNodule(null, null, 10, 10, 10, 10, 10, 1, 1, 1, 1, null);
+
+        String noduleId = "Meu%20nodulo%20teste";
+
+        String enviar = mapper.toJson(bigNodule).toString();
+        Client.Response jsonResponse = server.put("/nodule/" + noduleId)
+                .header("Content-Type", "application/json")
+                .body(mapper.toJson(bigNodule).toString(), "String")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+
         });
     }
 

@@ -1,6 +1,7 @@
 package br.edu.ufal.services;
 
 import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.NoduleQueryResult;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
@@ -82,5 +83,48 @@ public class CADService {
 
     public double[] retrieveTextureAttributes(List<ImageEncoded> encodedImages) throws IOException {
         return cadRepository.retrieveTextureAttributes(encodedImages);
+    }
+
+    public NoduleQueryResult listNodules(int page) {
+        return cadRepository.listNodules(page);
+    }
+
+    public BigNodule editNodule(String noduleId, BigNodule newNodule) {
+        BigNodule oldNodule = cadRepository.retrieveNoduleById(noduleId);
+
+        BigNodule mergedNodule = oldNodule;
+
+        if (newNodule.getMalignancy() != oldNodule.getMalignancy())
+            mergedNodule.setMalignancy(newNodule.getMalignancy());
+
+        if (newNodule.getCalcification() != oldNodule.getCalcification())
+            mergedNodule.setCalcification(newNodule.getCalcification());
+
+        if (newNodule.getInternalStructure() != oldNodule.getInternalStructure())
+            mergedNodule.setInternalStructure(newNodule.getInternalStructure());
+
+        if (newNodule.getTexture() != oldNodule.getTexture())
+            mergedNodule.setTexture(newNodule.getTexture());
+
+        if (newNodule.getSpiculation() != oldNodule.getSpiculation())
+            mergedNodule.setSpiculation(newNodule.getSpiculation());
+
+        if (newNodule.getSubtlety() != oldNodule.getSubtlety())
+            mergedNodule.setSubtlety(newNodule.getSubtlety());
+
+        if (newNodule.getSphericity() != oldNodule.getSphericity())
+            mergedNodule.setSphericity(newNodule.getSphericity());
+
+        if (newNodule.getMargin() != oldNodule.getMargin())
+            mergedNodule.setMargin(newNodule.getMargin());
+
+        if (newNodule.getLobulation() != oldNodule.getLobulation())
+            mergedNodule.setLobulation(newNodule.getLobulation());
+
+        return cadRepository.editNodule(noduleId, mergedNodule);
+    }
+
+    public void removeNodule(String noduleId) {
+        cadRepository.removeNodule(noduleId);
     }
 }

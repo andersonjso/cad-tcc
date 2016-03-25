@@ -10,13 +10,21 @@
 
 </head>
 <body >
-<nav ng-controller="examsController" class="collapse navbar-collapse" style="background: #006494; height: 75px !important">
+<nav ng-controller="examsController" class="collapse navbar-collapse" style="background: #006494; height: 50px !important">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand"href="#/">
                 <img ng-click="reload()" style="width: 100%" src="resources/logo.png"></a>
         </div>
-            <div style="margin-left: 13%; margin-right: 50%">
+
+        <ul class="nav navbar-nav navbar-right">
+            <!--ng-class="{active: currentLocation == '/nodules'}"-->
+            <li >
+                <a href="#/nodules" class="myNodules"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    <strong> Nódulos Locais</strong></a>
+            </li>
+        </ul>
+            <div style="margin-left: 13%; margin-right: 50%; margin-top: -10px">
                 <form ng-submit="sendPost()">
                 <input id="inputFileToLoad"
                        type="file" multiple
@@ -31,7 +39,7 @@
                             class="btn btn-primary"
                             style="border-radius: 0;
                             margin-left: 95%;
-                            margin-top: -92px;
+                            margin-top: -93px;
                             height: 31px">Enviar</button>
                 </form>
 
@@ -40,7 +48,7 @@
                         class="btn btn-primary"
                         style="border-radius: 0;
                         margin-left: 111%;
-                        margin-top: -131px;
+                        margin-top: -133px;
                         height: 31px">Mostrar Semelhantes</button>
 
 
@@ -62,7 +70,10 @@
                     <strong>Erro!</strong> Por favor, selecione os nódulos
                 </div>
 
+
             </div>
+
+
 
 
 

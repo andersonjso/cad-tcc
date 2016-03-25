@@ -15,6 +15,10 @@ app.config(function($routeProvider){
             templateUrl: 'pages/exam.html',
             controller: 'examController',
         })
+        .when('/nodules', {
+            templateUrl: 'pages/nodules.html',
+            controller: 'myNodulesController',
+        })
         .otherwise({redirectTo: '/'})
 })
 

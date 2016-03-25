@@ -6,7 +6,9 @@ import br.edu.ufal.cad.mongodb.tags.BigNodule;
 import br.edu.ufal.cad.mongodb.tags.Exam;
 import br.edu.ufal.services.CADService;
 import br.edu.ufal.util.ImageEncoded;
+import br.edu.ufal.util.MongoUtils;
 import com.mongodb.*;
+import com.mongodb.assertions.Assertions;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.bson.types.ObjectId;
@@ -311,5 +313,22 @@ public class CADRepositoryTest {
 
     }
 
+    @Test
+    public void randomTest() throws IOException {
+        GridFS gfsPhoto = new GridFS(MongoUtils.databaseMyNodules, "images");
+
+        GridFSDBFile imageForOutput = gfsPhoto.findOne("nodulo da galera0");
+
+        //noduleImage.writeTo("/Users/andersonjso/Downloads/meuteste/nodule/" + "testeNodule" + i + ".png");
+        imageForOutput.writeTo("/Users/andersonjso/Downloads/meuteste/nodule/vamosver.png");
+    }
+
+    @Test
+    public void shoudlRetrieveNoduleById(){
+        BigNodule bigNodule = new CADRepository().retrieveNoduleById("Meu nodulo teste");
+
+        System.out.println();
+        //Assertions.isTrue(bigNodule.getNoduleID().equals("Meu nodulo teste"));
+    }
 
 }

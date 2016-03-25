@@ -4,6 +4,7 @@ package br.edu.ufal.repository;
 
 import br.edu.ufal.AttributesNodule;
 import br.edu.ufal.ExamQueryResult;
+import br.edu.ufal.NoduleQueryResult;
 import br.edu.ufal.cad.cbir.isa.NoduleRetrievalPrecisionEvaluation;
 import br.edu.ufal.cad.cbir.isa.SimilarNodule;
 import br.edu.ufal.cad.mongodb.tags.BigNodule;
@@ -328,18 +329,52 @@ public class CADRepository {
         return attributesNodule.getImageTextureAttributes(image3D);
     }
 
-    /*
+    public NoduleQueryResult listNodules(int page) {
+        List<BigNodule> bigNodules = StreamSupport.stream(MongoUtils.nodules().find()
+                .skip(QUANTITY * (page -1))
+                .limit(QUANTITY).as(BigNodule.class).spliterator(), false).collect(Collectors.toList());
 
+        long totalNodules = MongoUtils.nodules().count();
 
+        long totalPages = (long) (Math.ceil(totalNodules / (double) QUANTITY));
 
+        return new NoduleQueryResult(bigNodules, totalPages);
+    }
 
-        NoduleRetrievalPrecisionEvaluation noduleRetrievalPerformanceEvaluation =
-                new NoduleRetrievalPrecisionEvaluation ();
+    public BigNodule retrieveNoduleById(String noduleId) {
+        BigNodule bigNodule = MongoUtils.nodules().findOne("{noduleId: #}", noduleId).as(BigNodule.class);
 
-        List<SimilarNodule> nodules = noduleRetrievalPerformanceEvaluation.retrieveSimilarNodules(attributes);
+        return bigNodule;
+    }
 
-        return nodules;
-     */
+    public BigNodule editNodule(String noduleId, BigNodule mergedNodule) {
+        MongoUtils.nodules().update("{noduleId: #}", noduleId)
+                .with("{$set: {subtlety: #, " +
+                        "internalStructure: #," +
+                        "calficication: #," +
+                        "sphericity: #," +
+                        "margin: #," +
+                        "lobulation: #," +
+                        "spiculation: #," +
+                        "texture: #," +
+                        "malignancy: #}}",
+                        mergedNodule.getSubtlety(),
+                        mergedNodule.getInternalStructure(),
+                        mergedNodule.getCalcification(),
+                        mergedNodule.getSphericity(),
+                        mergedNodule.getMargin(),
+                        mergedNodule.getLobulation(),
+                        mergedNodule.getSpiculation(),
+                        mergedNodule.getTexture(),
+                        mergedNodule.getMalignancy());
+
+        return byId(noduleId);
+    }
+
+    public void removeNodule(String noduleId) {
+        MongoUtils.nodules().remove("{noduleId: #}", noduleId);
+    }
+
 
 //    private List<Exam> sortByDegree (List<Exam> exams, int degree){
 //        Map<Exam, Integer> mapExams = (Map<Exam, Integer>) new HashSet<>();

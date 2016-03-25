@@ -10,6 +10,7 @@
 /Users/andersonjso/Documents/dev/cad-tcc/src/main/java/br/edu/ufal/cad/cbir/texture/db/DataBaseManager.java
 /Users/andersonjso/Documents/dev/cad-tcc/src/main/java/br/edu/ufal/cad/images/dicom/AbstractDicomFile.java
 /Users/andersonjso/Documents/dev/cad-tcc/src/main/java/br/edu/ufal/cad/cbir/texture/coocurrencematrix/TextureMetric.java
+/Users/andersonjso/Documents/dev/cad-tcc/src/main/java/br/edu/ufal/cad/NoduleDTO.java
 /Users/andersonjso/Documents/dev/cad-tcc/src/main/java/br/edu/ufal/cad/images/dicom/DicomDictionary.java
 /Users/andersonjso/Documents/dev/cad-tcc/src/main/java/br/edu/ufal/services/CADService.java
 /Users/andersonjso/Documents/dev/cad-tcc/src/main/java/br/edu/ufal/cad/cbir/isa/NoduleRetrievalPrecisionEvaluation.java

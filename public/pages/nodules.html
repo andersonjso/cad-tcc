@@ -1,0 +1,49 @@
+<div>
+
+    <div class="row" id="search-box">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="input-group custom-search-form">
+                <input id="search-nodule" type="text" class="form-control search-input"
+                       placeholder="Pesquisa rápida..." ng-model="$parent.searchNodule">
+              <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" ng-click="searchNodule()">
+                  <span class="glyphicon glyphicon-search"></span>
+              </button>
+             </span>
+            </div><!-- /input-group -->
+        </div>
+
+    </div>
+
+    <table class="table table-responsive" align="center" style="width: 80%; margin-top: 10px" >
+        <thead class="text-center">
+        <tr>
+            <th class="text-center">ID Nódulo</th>
+            <th class="text-center">Malignidade</th>
+        </tr>
+        </thead>
+        <tr  ng-repeat="nodule in myNodules" style="cursor: pointer;" class="text-center">
+            <td ng-click="openDetailsNodule(nodule)" class="col-lg-8" >
+                {{exam.path.substring(1, 25)}}
+            </td>
+            <td ng-click="openDetailsNodule(nodule)" class="col-lg-4">
+                {{exam.responseHeader.dateRequest}}
+            </td>
+        </tr>
+    </table>
+    <div class="pagination-wrap" ng-show="myNodules.totalPages != 0">
+        <uib-pagination first-text="Primeira"
+                        last-text="Última"
+                        previous-text="Anterior"
+                        next-text="Próxima"
+                        total-items="totalItems"
+                        max-size="maxSize"
+                        ng-model="currentPage"
+                        ng-change="pageChangedNodule()"
+                        boundary-links="true"
+                        class="pagination-sm">
+        </uib-pagination>
+    </div>
+
+    <div class="text-center" ng-hide="myNodules.totalPages != 0">Nenhum resultado encontrado.</div>
+</div>
