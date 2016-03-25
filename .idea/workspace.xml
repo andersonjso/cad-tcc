@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b1b4960-12c8-44c1-a2b5-cd0f7489deea" name="Default" comment="[improv] Create back end crud for nodules">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/pages/my-nodule-modal.html" />
+    <list default="true" id="5b1b4960-12c8-44c1-a2b5-cd0f7489deea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/module.js" afterPath="$PROJECT_DIR$/public/js/module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/pages/nodules.html" afterPath="$PROJECT_DIR$/public/pages/nodules.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/controller/CADController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/repository/CADRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" afterPath="$PROJECT_DIR$/src/main/java/br/edu/ufal/services/CADService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" afterPath="$PROJECT_DIR$/src/test/java/br/edu/ufal/controller/CADControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
     </list>
     <ignored path="cad-tcc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,10 +45,10 @@
       <file leaf-file-name="module.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.112469435">
-              <caret line="299" column="21" selection-start-line="299" selection-start-column="21" selection-end-line="299" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.7359413">
+              <caret line="332" column="35" selection-start-line="332" selection-start-column="35" selection-end-line="332" selection-end-column="35" />
               <folding>
-                <element signature="e#27872#27967#0" expanded="false" />
+                <element signature="e#28350#28445#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -76,8 +69,8 @@
       <file leaf-file-name="my-nodule-modal.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/pages/my-nodule-modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.4313726">
-              <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="54" />
+            <state vertical-scroll-proportion="-0.5882353">
+              <caret line="2" column="37" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#uib-carousel#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -1257,7 +1250,7 @@
       <workItem from="1457569924018" duration="53129000" />
       <workItem from="1457966113576" duration="5795000" />
       <workItem from="1458011137709" duration="13067000" />
-      <workItem from="1458187466830" duration="92176000" />
+      <workItem from="1458187466830" duration="92703000" />
     </task>
     <task id="LOCAL-00001" summary="[improv] Create service and tests to list all devices">
       <created>1456281720434</created>
@@ -1433,7 +1426,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458883812138</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="[improv] Create front to show new nodules and details">
+      <created>1458926998112</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1458926998112</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1469,7 +1468,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="349053000" />
+    <option name="totallyTimeSpent" value="349580000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1523,7 +1522,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[merge] tests" />
     <MESSAGE value="[import] Import module to convert .dcm files to .png" />
     <MESSAGE value="[improv] convert dcm to png and show the exam image at its main screen" />
     <MESSAGE value="[improv] Create function to add nodule images" />
@@ -1548,7 +1546,8 @@
     <MESSAGE value="[improv] Create service to retrieve nodule attributes" />
     <MESSAGE value="[improv] create on angular the service to create the nodule" />
     <MESSAGE value="[improv] Create back end crud for nodules" />
-    <option name="LAST_COMMIT_MESSAGE" value="[improv] Create back end crud for nodules" />
+    <MESSAGE value="[improv] Create front to show new nodules and details" />
+    <option name="LAST_COMMIT_MESSAGE" value="[improv] Create front to show new nodules and details" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2051,8 +2050,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/pages/my-nodule-modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4313726">
-          <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="54" />
+        <state vertical-scroll-proportion="-0.5882353">
+          <caret line="2" column="37" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="37" />
           <folding>
             <element signature="n#style#0;n#uib-carousel#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -2071,10 +2070,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.112469435">
-          <caret line="299" column="21" selection-start-line="299" selection-start-column="21" selection-end-line="299" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.7359413">
+          <caret line="332" column="35" selection-start-line="332" selection-start-column="35" selection-end-line="332" selection-end-column="35" />
           <folding>
-            <element signature="e#27872#27967#0" expanded="false" />
+            <element signature="e#28350#28445#0" expanded="false" />
           </folding>
         </state>
       </provider>

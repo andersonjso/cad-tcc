@@ -327,6 +327,16 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
             }
         };
 
+        $scope.deleteNodule = function(){
+            dataFactory.deleteNodule($scope.myActualNodule.noduleId)
+                .success(function(response){
+                    alert('Deletado :(');
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+
+        }
     }]);
 
 
@@ -813,6 +823,10 @@ app.factory('dataFactory', ['$http', function($http){
 
     dataFactory.retrieveMyNodulesSlices = function (noduleId, roiNumber){
         return $http.get('nodule/' + noduleId + '/slices/' + roiNumber);
+    }
+
+    dataFactory.deleteNodule = function(noduleId){
+        return $http["delete"]('nodule/' + noduleId);
     }
 
     return dataFactory;
