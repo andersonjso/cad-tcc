@@ -326,6 +326,18 @@ public class CADControllerTest extends BaseTest{
         });
     }
 
+    @Test //    @Path("/nodule/:noduleId/:page")
+    public void shouldListNodulessByName() throws Exception {
+        Client.Response jsonResponse = server.get("/nodule/nodulo%20da%20galera/1")
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+            assertTrue(mapper.toJson(s).get("bigNodules").size() == 1);
+        });
+    }
+
     @Test
     public void ae() throws Exception {
 //        http://localhost:8080/nodule/testando/slices/0

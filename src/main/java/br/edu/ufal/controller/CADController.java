@@ -119,6 +119,14 @@ public class CADController {
         return Results.ok();
     }
 
+    @GET
+    @Path("/nodule/:noduleId/:page")
+    public Result retrieveNoduleByName(String noduleId, int page){
+        NoduleQueryResult noduleQueryResult = cadService.retrieveNoduleByName(noduleId, page);
+
+        return Results.ok(mapper.toJson(noduleQueryResult));
+    }
+
     @POST
     @Path("/nodule/texture")
     public Result retrieveTextureAttributes (@Body String bodyResponse) throws IOException {

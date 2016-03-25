@@ -135,4 +135,8 @@ public class CADService {
     public BufferedImage retrieveMyNodulesSlices(String noduleId, String roiNumber) throws IOException {
         return cadRepository.retrieveMyNodulesSlices(noduleId, roiNumber);
     }
+
+    public NoduleQueryResult retrieveNoduleByName(String noduleId, int page) {
+        return cadRepository.retrieveNoduleByName(noduleId, page);
+    }
 }

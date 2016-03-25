@@ -13,6 +13,7 @@ import br.edu.ufal.cad.mongodb.tags.Roi;
 import br.edu.ufal.util.ImageEncoded;
 import br.edu.ufal.util.MongoUtils;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.mongodb.Mongo;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
@@ -399,4 +400,24 @@ public class CADRepository {
         return bufferedImage;
 
     }
+
+    public NoduleQueryResult retrieveNoduleByName(String noduleId, int page) {
+        MongoCursor<BigNodule> bigNoduleCursor = MongoUtils.nodules()
+                .find("{noduleId: {$regex: #}}", noduleId + ".*").as(BigNodule.class);
+
+        List<BigNodule> bigNodules = StreamSupport.stream(bigNoduleCursor.spliterator(), false)
+                .skip(QUANTITY * (page - 1))
+                .limit(QUANTITY)
+                .collect(Collectors.toList());
+
+        long totalNodules = MongoUtils.nodules().count("{noduleId: {$regex: #}}", noduleId + ".*");
+
+        long totalPages = (long) (Math.ceil(totalNodules / (double) QUANTITY));
+
+        return new NoduleQueryResult(bigNodules, totalPages);
+    }
+    /*
+     .skip(QUANTITY * (page -1))
+                .limit(QUANTITY).as(Exam.class).spliterator(), false).collect(Collectors.toList());
+     */
 }

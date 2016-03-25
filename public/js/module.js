@@ -171,6 +171,7 @@ app.controller('myNodulesController', ['$scope', '$location', '$route', 'dataFac
         $scope.myNodules;
         getNodules();
         $scope.maxSize = 5;
+        $scope.queryIsOn = false;
 
         function getNodules(){
             dataFactory.listNodules(1)
@@ -194,10 +195,42 @@ app.controller('myNodulesController', ['$scope', '$location', '$route', 'dataFac
             });
         };
 
+
+        $scope.search= function(){
+            event.preventDefault();
+            $scope.queryIsOn = true;
+            dataFactory.listNodulesByName($scope.searchNodule, 1)
+                .success(function (response){
+                    $scope.myNodules = response;
+                    $scope.totalItems = response.totalPages * 10;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
         //todo here
 
         $scope.pageChanged= function() {
-
+            if ($scope.queryIsOn){
+                dataFactory.listNodulesByName($scope.searchNodule, $scope.currentPage)
+                    .success(function (response){
+                        $scope.myNodules = response;
+                        $scope.totalItems = response.totalPages * 10;
+                    })
+                    .error(function (error){
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    });
+            }else {
+                dataFactory.listNodules($scope.currentPage)
+                    .success(function (response){
+                        $scope.myNodules = response;
+                        //console.log(JSON.stringify($scope.myNodules));
+                        $scope.totalItems = response.totalPages * 10;
+                    })
+                    .error(function (error){
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    })
+            }
         };
     }]);
 
@@ -381,6 +414,7 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
             else{
                 alert("preencha ao menos 1!!!!");
             }
+
 
 
 
@@ -883,7 +917,10 @@ app.factory('dataFactory', ['$http', function($http){
     dataFactory.editNodule = function(noduleId, data){
         return $http.put('nodule/' + noduleId, data);
     }
-    //    @Path("/nodule/:noduleId")
+
+    dataFactory.listNodulesByName = function(noduleId, page){
+        return $http.get('nodule/' + noduleId + '/' + page)
+    }
 
     return dataFactory;
 }])
