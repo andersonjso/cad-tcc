@@ -165,10 +165,174 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
         }
 }]);
 
+app.controller('myNodulesController', ['$scope', '$location', '$route', 'dataFactory', '$uibModal',
+    function($scope, $location, $route, dataFactory, $uibModal){
+
+        $scope.myNodules;
+        getNodules();
+        $scope.maxSize = 5;
+
+        function getNodules(){
+            dataFactory.listNodules(1)
+                .success(function (response){
+                    $scope.myNodules = response;
+                    //console.log(JSON.stringify($scope.myNodules));
+                    $scope.totalItems = response.totalPages * 10;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                })
+        }
+
+        $scope.openDetailsMyNodule = function(nodule){
+            $scope.myActualNodule = nodule;
+            var modal = $uibModal.open({
+                templateUrl: 'pages/my-nodule-modal.html',
+                controller: 'myNodulesModalController',
+                size: 'lg',
+                scope: $scope
+            });
+        };
+
+        //todo here
+
+        $scope.pageChanged= function() {
+
+        };
+    }]);
+
+app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory',
+    function ($scope, $uibModal, dataFactory){
+
+        console.log($scope.myActualNodule.rois);
+        var getImagesNodules = function(path, id) {
+            $scope.similarNoduleImg = {};
+
+            dataFactory.retrieveBigNoduleImage(path, id)
+                .success(function(response){
+                    $scope.similarNoduleImg[id] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+        var getRoiSlicesNodule = function (path, id, roiNumber){
+            $scope.selectedNoduleRoisImg = {};
+
+            dataFactory.retrieveNoduleSlices(path, id, roiNumber)
+                .success(function(response){
+                    $scope.selectedNoduleRoisImg[id+roiNumber] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+
+        function getRoiSlicesMyNodule (id, roiNumber){
+            $scope.nodulesRoisImg = {};
+
+            dataFactory.retrieveMyNodulesSlices(id, roiNumber)
+                .success(function(response){
+                    $scope.nodulesRoisImg[id+roiNumber] = response;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+
+        retrieveSimilarNodules();
+
+        for (var k = 0; k < $scope.myActualNodule.rois.length; k++){
+            getRoiSlicesMyNodule($scope.myActualNodule.noduleId, k);
+        }
+
+
+        function retrieveSimilarNodules(){
+            dataFactory.retrieveMySimilarNodules($scope.myActualNodule.noduleId)
+                .success(function (response){
+                    $scope.similarNodules = response;
+
+                    for (var i = 0; i < $scope.similarNodules.length; i++){
+                        var id = $scope.similarNodules[i].idNodule;
+                        var path = $scope.similarNodules[i].path.substring(11, 25);
+                        getImagesNodules(path, id);
+
+                    }
+                })
+                .error(function (error){
+
+                    $scope.status = 'Unable to load data: ' + error.message;
+                })
+        }
+
+        $scope.openDetails = function (similarNodule) {
+            $scope.isSimilar = true;
+            $scope.pathToShow = similarNodule.path.substring(11, 25);
+            var path = $scope.pathToShow;
+            var id = similarNodule.idNodule;
+            $scope.similarNoduleSelected = {};
+
+            //console.log(path + " and " + id);
+            dataFactory.retrieveBigNodule(path, id)
+                .success(function(response){
+                    $scope.similarNoduleSelected = response;
+
+                    for (var i=0; i<$scope.similarNoduleSelected.rois.length; i++){
+                        getRoiSlicesNodule(path, id, i);
+                      //  getRoiSlicesMyNodule(id, i);
+                    }
+
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
+
+        $scope.backToSimilar = function(){
+            $scope.isSimilar = false;
+        }
+
+        $scope.min = 0;
+        $scope.max = 200;
+        $scope.brigthValue = 100;
+        $scope.contValue = 100;
+        $scope.brigthValueSimilar = 100;
+        $scope.contValueSimilar = 100;
+
+
+        $scope.brigthChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
+
+                //console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
+
+        $scope.contrastChange = function(bigNodule, bright, cont){
+            for (var i = 0; i<bigNodule.rois.length; i++){
+                var scopeName = 'nodule' + bigNodule.noduleId+i;
+
+                //console.log($scope[scopeName]);
+
+                $scope[scopeName] = {
+                    'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
+                }
+            }
+        };
+
+    }]);
+
+
+
 app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
     function ($scope, $uibModal, dataFactory) {
-
-        console.log($scope.similarNodulesOf3D.length);
 
         var getImagesNodules = function(path, id) {
             $scope.similarNoduleImg = {};
@@ -213,7 +377,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
             var id = similarNodule.idNodule;
             $scope.similarNoduleSelected = {};
 
-            console.log(path + " and " + id);
+            //console.log(path + " and " + id);
             dataFactory.retrieveBigNodule(path, id)
                 .success(function(response){
                     $scope.similarNoduleSelected = response;
@@ -243,7 +407,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
             for (var i = 0; i<$scope.similarNodules.length; i++){
                 var scopeName = 'noduleSlice' +i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -255,7 +419,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
             for (var i = 0; i<$scope.similarNodules.length; i++){
                 var scopeName = 'noduleSlice' +i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -267,7 +431,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -279,7 +443,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -288,21 +452,17 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
         };
 
         $scope.saveNodule = function(){
-            //console.log($scope.slicesNodule3D);
-            //console.log($scope.textureAtt);
-            //console.log($scope.newNodule);
-
             var noduleToSave = $scope.newNodule;
 
             noduleToSave.textureAttributes = $scope.textureAtt;
 
             var noduleDTO = {"bigNodule": noduleToSave, "encodedList": $scope.slicesNodule3D}
-            console.log(JSON.stringify(noduleDTO));
+            //console.log(JSON.stringify(noduleDTO));
 
             dataFactory.createNodule(noduleDTO)
                 .success(function(response){
                     alert("Criouu");
-                    console.log(response);
+                    //console.log(response);
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
@@ -324,6 +484,8 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
         }
 
 }]);
+
+
 
 app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uibModal', '$compile',
     function ($scope, $routeParams, dataFactory, $uibModal, $compile) {
@@ -443,7 +605,7 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -455,7 +617,7 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -530,7 +692,7 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
             var id = similarNodule.idNodule;
             $scope.similarNoduleSelected = {};
 
-            console.log(path + " and " + id);
+            //console.log(path + " and " + id);
             dataFactory.retrieveBigNodule(path, id)
                 .success(function(response){
                     $scope.similarNoduleSelected = response;
@@ -560,7 +722,7 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -572,7 +734,7 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                console.log($scope[scopeName]);
+                //console.log($scope[scopeName]);
 
                 $scope[scopeName] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
@@ -580,6 +742,7 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
             }
         };
 }]);
+
 
 app.factory('dataFactory', ['$http', function($http){
     var dataFactory = {};
@@ -640,6 +803,18 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.post('nodule/texture', data);
     }
 
+    dataFactory.listNodules = function(page){
+        return $http.get('nodules/' + page);
+    }
+
+    dataFactory.retrieveMySimilarNodules = function(noduleId){
+        return $http.get('nodule/' + noduleId + '/similar');
+    }
+
+    dataFactory.retrieveMyNodulesSlices = function (noduleId, roiNumber){
+        return $http.get('nodule/' + noduleId + '/slices/' + roiNumber);
+    }
+
     return dataFactory;
 }])
 
@@ -672,7 +847,6 @@ app.directive('ngElevateZoom', function(){
                     $('.zoomContainer').remove();// remove zoom container from DOM
                 }
             });
-            //console.log(attrs);
         }
     };
 });
@@ -688,35 +862,3 @@ app.directive('ngChangeFilter', function(){
         }
     };
 });
-
-var showBright = function(value, idImg){
-    console.log(value);
-    document.getElementById(idImg.valueOf()).style["-webkit-filter"] = "brightness(" + value + "%)";
-}
-
-var showCon = function(value){
-    document.getElementById(idImg.valueOf()).style["-webkit-filter"] = "contrast(" + value + "%)";
-}
-
-/*
- var image = $('#primaryImage');
- var zoomConfig = {};
- var zoomActive = false;
-
- image.on('click', function(){
-
- zoomActive = !zoomActive;
-
- if(zoomActive)
- {
- image.elevateZoom(zoomConfig);//initialise zoom
- }
- else
- {
- $.removeData(image, 'elevateZoom');//remove zoom instance from image
-
- $('.zoomContainer').remove();// remove zoom container from DOM
- }
- });
- */
-

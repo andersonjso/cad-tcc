@@ -127,4 +127,12 @@ public class CADService {
     public void removeNodule(String noduleId) {
         cadRepository.removeNodule(noduleId);
     }
+
+    public List<SimilarNodule> retrieveMySimilarNodules(String noduleId) throws UnknownHostException {
+        return cadRepository.retrieveMySimilarNodules(noduleId);
+    }
+
+    public BufferedImage retrieveMyNodulesSlices(String noduleId, String roiNumber) throws IOException {
+        return cadRepository.retrieveMyNodulesSlices(noduleId, roiNumber);
+    }
 }

@@ -37,6 +37,7 @@ public class CADRepository {
 
     private final int QUANTITY = 10;
     private GridFS gfsPhoto = new GridFS(MongoUtils.databaseTest, "images");
+    private GridFS gfsMyPhoto = new GridFS(MongoUtils.databaseMyNodules, "images");
 
     public List<SimilarNodule> retrieveSimilarNodules(String examPath, String noduleId) throws UnknownHostException {
         Exam exam = MongoUtils.exams().findOne("{path: {$regex: #}}", examPath + ".*").as(Exam.class);
@@ -375,35 +376,27 @@ public class CADRepository {
         MongoUtils.nodules().remove("{noduleId: #}", noduleId);
     }
 
+    public List<SimilarNodule> retrieveMySimilarNodules(String noduleId) throws UnknownHostException {
+        BigNodule bigNodule = MongoUtils.nodules().findOne("{noduleId: #}", noduleId).as(BigNodule.class);
 
-//    private List<Exam> sortByDegree (List<Exam> exams, int degree){
-//        Map<Exam, Integer> mapExams = (Map<Exam, Integer>) new HashSet<>();
-//
-//        for (Exam exam : exams) {
-//            int value = 0;
-//            for (BigNodule bigNodule : exam.getReadingSession().getBignodule()) {
-//                if (bigNodule.getMalignancy() == degree) value ++;
-//            }
-//            mapExams.put(exam, value);
-//        }
-//
-//        List<Integer> sortedExamsValues = new ArrayList<>(mapExams.values());
-//        List<Exam> sortedExams = new ArrayList<>(mapExams.keySet());
-//
-//        Collections.sort()
-//    }
+        double[] textureAtts = bigNodule.getTextureAttributes();
 
-    /*
-    List<Exam> exams = StreamSupport.stream(MongoUtils.exams()
-                .find("{readingSession.bignodule.0: {$exists: true}}")
-                .skip(QUANTITY * (page -1))
-                .limit(QUANTITY).as(Exam.class).spliterator(), false).collect(Collectors.toList());
+        NoduleRetrievalPrecisionEvaluation NRPEval = new NoduleRetrievalPrecisionEvaluation();
 
-        long totalExams = MongoUtils.exams()
-                .count("{readingSession.bignodule.0: {$exists: true}}");
+        return NRPEval.retrieveSimilarNodules(textureAtts);
+    }
 
-        long totalPages = (long) (Math.ceil(totalExams / (double) QUANTITY));
+    public BufferedImage retrieveMyNodulesSlices(String noduleId, String roiNumber) throws IOException {
+        BigNodule bigNodule = byId(noduleId);
 
-        return new ExamQueryResult(exams, totalPages);
-     */
+        ObjectId noduleImageID = bigNodule.getRois().get(Integer.parseInt(roiNumber)).getNoduleImage();
+
+        GridFSDBFile imageForOutput = gfsMyPhoto.findOne(noduleImageID);
+        InputStream imageIS = imageForOutput.getInputStream();
+
+        BufferedImage bufferedImage = ImageIO.read(imageIS);
+
+        return bufferedImage;
+
+    }
 }

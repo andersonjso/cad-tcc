@@ -115,6 +115,8 @@ public class CADController {
     @Path("/nodule/:noduleId")
     public Result removeNodule(String noduleId){
         cadService.removeNodule(noduleId);
+
+        return Results.ok();
     }
 
     @POST
@@ -148,6 +150,19 @@ public class CADController {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @GET
+    @Path("nodule/:noduleId/similar")
+    public Result retrieveMySimilarNodules(String noduleId){
+        List<SimilarNodule> similarNodules = null;
+        try {
+            similarNodules = cadService.retrieveMySimilarNodules(noduleId);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+
+        return Results.ok(mapper.toJson(similarNodules));
     }
 
     //TODO create test for this
@@ -241,6 +256,23 @@ public class CADController {
 
         return Results.ok(encoded);
     }
+
+    @GET
+    @Path("nodule/:noduleId/slices/:roiNumber")
+    public Result retrieveMyNodulesSlices(String noduleId, String roiNumber) throws IOException {
+        BufferedImage sliceExam = cadService.retrieveMyNodulesSlices(noduleId, roiNumber);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(sliceExam, "png", baos);
+        baos.flush();
+        byte[] imageInByte = baos.toByteArray();
+        baos.close();
+
+        byte[] encoded = Base64.getEncoder().encode(imageInByte);
+
+        return Results.ok(encoded);
+    }
+
 
     @GET
     @Path("exam/:examPath/big-nodule/:noduleId")

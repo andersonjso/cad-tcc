@@ -15,19 +15,19 @@
 
     </div>
 
-    <table class="table table-responsive" align="center" style="width: 80%; margin-top: 10px" >
+    <table class="table table-responsive" align="center" style="width: 50%; margin-top: 10px" >
         <thead class="text-center">
         <tr>
             <th class="text-center">ID Nódulo</th>
             <th class="text-center">Malignidade</th>
         </tr>
         </thead>
-        <tr  ng-repeat="nodule in myNodules" style="cursor: pointer;" class="text-center">
-            <td ng-click="openDetailsNodule(nodule)" class="col-lg-8" >
-                {{exam.path.substring(1, 25)}}
+        <tr  ng-repeat="nodule in myNodules.bigNodules" style="cursor: pointer;" class="text-center">
+            <td ng-click="openDetailsMyNodule(nodule)" class="col-lg-8" >
+                {{nodule.noduleId}}
             </td>
-            <td ng-click="openDetailsNodule(nodule)" class="col-lg-4">
-                {{exam.responseHeader.dateRequest}}
+            <td ng-click="openDetailsMyNodule(nodule)" class="col-lg-4">
+                {{nodule.malignancy}}
             </td>
         </tr>
     </table>

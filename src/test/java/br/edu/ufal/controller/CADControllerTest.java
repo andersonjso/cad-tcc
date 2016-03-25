@@ -312,4 +312,27 @@ public class CADControllerTest extends BaseTest{
         });
     }
 
+    @Test //    ("nodule/:noduleId/similar")
+    public void shouldRetrieveMyLocalNodules() throws Exception {
+
+
+        Client.Response jsonResponse = server.get("/nodule/nodulo%20da%20galera/similar")
+                .header("Content-Type", "application/json")
+                .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+            assertTrue(mapper.toJson(s).size() == 10);
+        });
+    }
+
+    @Test
+    public void ae() throws Exception {
+//        http://localhost:8080/nodule/testando/slices/0
+
+        Client.Response jsonResponse = server.get("/nodule/testando/slices/0")
+                .header("Content-Type", "application/json")
+                .expect(200);
+    }
+
 }

@@ -1,0 +1,233 @@
+<div class="nodule-modal">
+    <div class="modal-header text-center">
+        <h3>{{myActualNodule.noduleId}}</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
+                    <uib-slide ng-repeat="roi in myActualNodule.rois" index="$index" active="$index">
+                        <img ng-src="data:image/PNG;base64,{{nodulesRoisImg[myActualNodule.noduleId + $index]}}"
+                             ng-style="nodule{{myActualNodule.noduleId + $index}}"
+                             class="img-rounded"
+                             style="margin-bottom: -60px;
+                             margin-top: -60px;
+                             transform:scale(2);"/>
+                    </uib-slide>
+                </uib-carousel>
+
+                <div class="row text-center">
+                    <div class="col-lg-4 col-lg-offset-2">
+                        <h6 class="text-left">Brilho: <input type="text"
+                                                             min={{min}}
+                                                             max={{max}}
+                                                             ng-model='brigthValue'
+                                                             ng-change="brigthChange(myActualNodule, brigthValue, contValue);"
+                                                             style="width: 40px; height: 22px"></h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='brigthValue'
+                               ng-change="brigthChange(myActualNodule, brigthValue, contValue);">
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-left">Contraste: <input type="text"
+                                                                min={{min}}
+                                                                max={{max}}
+                                                                ng-model='contValue'
+                                                                ng-change="contrastChange(myActualNodule, brigthValue, contValue);"
+                                                                style="width: 40px; height: 22px"> </h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='contValue'
+                               ng-change="contrastChange(myActualNodule, brigthValue, contValue);">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 form-group ">
+                    <h6>Malignidade</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.malignancy" value="{{myActualNodule.malignancy}}"required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Sutileza</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.subtlety" value="{{myActualNodule.subtlety}}" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Estrutura Interna</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.internalStructure" value="{{myActualNodule.internalStructure}}" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Calcificação</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.calcification" value="{{myActualNodule.calcification}}" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Esfericidade</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.sphericity" value="{{myActualNodule.sphericity}}" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Margem</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.margin" value="{{myActualNodule.margin}}" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Lobulação</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.lobulation" value="{{myActualNodule.lobulation}}" required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Spiculation</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.spiculation" value="{{myActualNodule.spiculation}}"required/>
+                </div>
+                <div class="col-lg-4 form-group">
+                    <h6>Textura</h6>
+                    <input name="subtlety" class="form-control text-center" type="number"
+                           ng-model="newNodule.texture" value="{{myActualNodule.texture}}" required/>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <button class="btn btn-danger" ng-click="deleteNodule()">Apagar nódulo</button>
+                    </div>
+
+                    <div class="col-lg-6 form-group">
+                        <button class="btn btn-primary" ng-click="saveNodule()">Salvar</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-6 text-center" ng-show="!isSimilar" style="margin-top: -30px;">
+                <h3>Nódulos Semelhantes</h3>
+                <h5> Malignos: {{numberMalign}} | Benignos: {{numberBenign}}</h5>
+                <hr>
+                <div class="row" style="overflow: auto; height: 500px">
+                    <div ng-repeat="similarNodule in similarNodules"
+                         class="col-md-6 text-center">
+
+                        <h6>ID Nódulo: {{similarNodule.idNodule}}</h6>
+                        <h6>Exame: {{similarNodule.path.substring(11, 25)}}</h6>
+                        <div class="container-img text-center">
+                            <img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNodule.idNodule]}}"
+                                 alt=""
+                                 ng-click="openDetails(similarNodule)"
+                                 class="img-rounded imageSimilarNodule"
+                                 style="pointer: cursor;"
+                            />
+                        </div>
+                        <h5>Malignidade: {{similarNodule.malignancy}}</h5>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 text-center" ng-show="isSimilar" style="margin-top: -20px" >
+                <h4>Nódulo Semelhante <button class="btn btn-default" type="button" ng-click="backToSimilar()"
+                                              style="border: none">
+                    <span class="glyphicon glyphicon-remove"></span></button></h4>
+                </button>
+                <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
+                    <uib-slide ng-repeat="roi in similarNoduleSelected.rois" index="$index" active="$index">
+                        <img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.noduleId + $index]}}"
+                             ng-style="nodule{{similarNoduleSelected.noduleId + $index}}"
+                             class="img-rounded"
+                             style="margin-bottom: -60px;
+                             margin-top: -60px;
+                             transform:scale(1);"/>
+                        <div class="carousel-caption">
+                            <h6>ID Nódulo: {{similarNoduleSelected.noduleId}} <br>Exame: {{pathToShow}} </h6>
+                        </div>
+                    </uib-slide>
+                </uib-carousel>
+
+                <div class="row text-center">
+                    <div class="col-lg-4 col-lg-offset-2">
+                        <h6 class="text-left">Brilho: <input type="text"
+                                                             min={{min}}
+                                                             max={{max}}
+                                                             ng-model='brigthValueSimilar'
+                                                             ng-change="brigthChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);"
+                                                             style="width: 40px; height: 22px"></h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='brigthValueSimilar'
+                               ng-change="brigthChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);">
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-left">Contraste: <input type="text"
+                                                                min={{min}}
+                                                                max={{max}}
+                                                                ng-model='contValueSimilar'
+                                                                ng-change="contrastChange(similarNoduleSelected, brigthValueSimilar, contValueSimilar);"
+                                                                style="width: 40px; height: 22px"> </h6>
+                        <input type="range"
+                               min={{min}}
+                               max={{max}}
+                               ng-model='contValueSimilar'
+                               ng-change="contrastChange(similarNoduleSelected,brigthValueSimilar, contValueSimilar);">
+                    </div>
+                    <div class="image-with-text">
+                        <!--<img ng-src="data:image/PNG;base64,{{similarNoduleImg[similarNoduleSelected.idNodule]}}"-->
+                        <!--class="img-rounded"-->
+                        <!--style="width: 30%; margin-bottom: 20px"/>-->
+
+                    </div>
+                    <table class= "table text-left" style="margin-top: 10px">
+                        <tbody>
+                        <tr ng-class="{danger: similarNoduleSelected.malignancy > actualNodule.malignancy,
+                                    info: similarNoduleSelected.malignancy == actualNodule.malignancy,
+                                    success: similarNoduleSelected.malignancy < actualNodule.malignancy}">
+                            <td>Malignidade</td>
+                            <td>{{similarNoduleSelected.malignancy}}</td>
+                        </tr>
+                        <tr>
+                            <td>Sutileza</td>
+                            <td>{{similarNoduleSelected.subtlety}}</td>
+                        </tr>
+                        <tr>
+                            <td>Estrutura Interna</td>
+                            <td>{{similarNoduleSelected.internalStructure}}</td>
+                        </tr>
+                        <tr>
+                            <td>Calcificação</td>
+                            <td>{{similarNoduleSelected.calcification}}</td>
+                        </tr>
+                        <tr>
+                            <td>Esfericidade</td>
+                            <td>{{similarNoduleSelected.sphericity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Margem</td>
+                            <td>{{similarNoduleSelected.margin}}</td>
+                        </tr>
+                        <tr>
+                            <td>Lobulação</td>
+                            <td>{{similarNoduleSelected.lobulation}}</td>
+                        </tr>
+                        <tr>
+                            <td>Spiculation</td>
+                            <td>{{similarNoduleSelected.spiculation}}</td>
+                        </tr>
+                        <tr>
+                            <td>Textura</td>
+                            <td>{{similarNoduleSelected.texture}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
