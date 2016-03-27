@@ -331,4 +331,11 @@ public class CADRepositoryTest {
         //Assertions.isTrue(bigNodule.getNoduleID().equals("Meu nodulo teste"));
     }
 
+    @Test
+    public void shouldListExamsByDegree(){
+        ExamQueryResult examQueryResult = cadService.listExamsByDegree(3, 1);
+
+        System.out.println();
+    }
+
 }

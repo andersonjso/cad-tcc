@@ -40,24 +40,6 @@ public class CADController {
 
     JsonMapperObject mapper = new JsonMapperObject();
 
-    @GET
-    @Path("/nodule/similar")
-    public Result retrieveSimilarNodules(@Named("dbPath") Optional<String> dbPath,
-                                         @Named("folder") Optional<String> folder){
-        List<SimilarNodule> similarNodules = new ArrayList<>();
-//        try {
-            if (dbPath.isPresent()){
-                similarNodules = cadService.retrieveSimilarNodulesByPath(dbPath.get());
-            }
-            else if (folder.isPresent()){
-               // similarNodules = CADService.retrieveSimilarNodulesByFolder(folder.get());
-            }
-            return Results.ok(mapper.toJson(similarNodules));
-//        } catch (UnknownHostException e) {
-//            return Results.with(400);
-//        }
-    }
-
     /**
      * list only the exams that have big nodules
      * @param
@@ -84,7 +66,7 @@ public class CADController {
 
     @GET
     @Path("/exams/degree/:noduleDegree/:page")
-    public Result listExams(int noduleDegree, int page){
+    public Result listExamsByDegree(int noduleDegree, int page){
         ExamQueryResult examQueryResult;
         examQueryResult = cadService.listExamsByDegree(noduleDegree, page);
 
@@ -161,8 +143,21 @@ public class CADController {
     }
 
     @GET
-    @Path("nodule/:noduleId/similar")
+    @Path("nodules/:noduleId/similar")
     public Result retrieveMySimilarNodules(String noduleId){
+        List<SimilarNodule> similarNodules = null;
+        try {
+            similarNodules = cadService.retrieveMySimilarNodules(noduleId);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+
+        return Results.ok(mapper.toJson(similarNodules));
+    }
+
+    @GET
+    @Path("nodule/:noduleId/similar/fudeu")
+    public Result retrieveMySimilarNodules2(String noduleId){
         List<SimilarNodule> similarNodules = null;
         try {
             similarNodules = cadService.retrieveMySimilarNodules(noduleId);

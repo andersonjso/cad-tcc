@@ -341,10 +341,17 @@ public class CADControllerTest extends BaseTest{
     @Test
     public void ae() throws Exception {
 //        http://localhost:8080/nodule/testando/slices/0
+//http://localhost:8080/nodule/23142/similar
 
-        Client.Response jsonResponse = server.get("/nodule/testando/slices/0")
+//    @Path("nodule/:noduleId/similar")
+        Client.Response jsonResponse = server.get("/nodules/23142/similar")
                 .header("Content-Type", "application/json")
                 .expect(200);
+
+        jsonResponse.expect(s -> {
+            System.out.println(s);
+           // assertTrue(mapper.toJson(s).get("bigNodules").size() == 1);
+        });
     }
 
 }

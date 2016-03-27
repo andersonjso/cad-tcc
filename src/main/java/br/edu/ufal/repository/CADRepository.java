@@ -262,6 +262,22 @@ public class CADRepository {
         return nodules;
     }
 
+    public class ExamQuantityNodule implements Comparable<ExamQuantityNodule>{
+        public final Exam exam;
+        public final int quantity;
+
+        public ExamQuantityNodule(Exam exam, int quantity) {
+            this.exam = exam;
+            this.quantity = quantity;
+        }
+
+        @Override
+        public int compareTo(ExamQuantityNodule o) {
+            return quantity < o.quantity ? 1
+                    : quantity > o.quantity ? -1
+                    : 0;
+        }
+    }
 
     public ExamQueryResult listExamsByDegree(int noduleDegree, int page) {
         MongoCursor<Exam> examCursor = MongoUtils.exams()
@@ -270,16 +286,42 @@ public class CADRepository {
         List<Exam> allExams = StreamSupport.stream(examCursor.spliterator(), false).collect(Collectors.toList());
 
         List<Exam> examsToSave = new ArrayList<>();
-        for (int i=QUANTITY * (page -1); i<QUANTITY; i++){
+        List<ExamQuantityNodule> examQuantityNodules = new ArrayList<>();
 
+        for (Exam exam : allExams) {
+            int count = 0;
+            for (BigNodule bigNodule : exam.getReadingSession().getBignodule()) {
+                if (bigNodule.getMalignancy() == noduleDegree){
+                    count++;
+                }
+            }
+            if (count > 10){
+                System.out.println();
+            }
+            ExamQuantityNodule examQuantityNodule = new ExamQuantityNodule(exam, count);
+            examQuantityNodules.add(examQuantityNodule);
         }
-        //todo sort exam
+
+        Collections.sort(examQuantityNodules);
+
+
+        int endIndex = (QUANTITY * (page -1)) + QUANTITY;
+
+        if (endIndex > allExams.size()-1){
+            endIndex = allExams.size()-1;
+        }
+        for (int i=QUANTITY * (page -1); i<endIndex; i++){
+            examsToSave.add(examQuantityNodules.get(i).exam);
+        }
+
+        /*
+          .skip(QUANTITY * (page -1))
+                .limit(QUANTITY).as(Exam.class).spliterator(), false).collect(Collectors.toList());
+         */
 
         long totalPages = (long) (Math.ceil(allExams.size() / (double) QUANTITY));
 
-//        return new ExamQueryResult(, totalPages);
-
-        return null;
+        return new ExamQueryResult(examsToSave, totalPages);
     }
 
     public BigNodule createBigNodule(BigNodule bigNodule, List<ImageEncoded> encodedImages) throws IOException {
@@ -416,8 +458,4 @@ public class CADRepository {
 
         return new NoduleQueryResult(bigNodules, totalPages);
     }
-    /*
-     .skip(QUANTITY * (page -1))
-                .limit(QUANTITY).as(Exam.class).spliterator(), false).collect(Collectors.toList());
-     */
 }

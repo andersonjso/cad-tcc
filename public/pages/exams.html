@@ -15,11 +15,16 @@
             <hr>
             <h5>Ordenar por nível de malignidade:
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default">1</button>
-                <button type="button" class="btn btn-default">2</button>
-                <button type="button" class="btn btn-default">3</button>
-                <button type="button" class="btn btn-default">4</button>
-                <button type="button" class="btn btn-default">5</button>
+                <button type="button" ng-click="listByDegree(1)" class="btn btn-default"
+                        ng-class="{'btn-primary': actualDegree === 1}">1</button>
+                <button type="button" ng-click="listByDegree(2)" class="btn btn-default"
+                        ng-class="{'btn-primary': actualDegree === 2}">2</button>
+                <button type="button" ng-click="listByDegree(3)" class="btn btn-default"
+                        ng-class="{'btn-primary': actualDegree === 3}">3</button>
+                <button type="button" ng-click="listByDegree(4)" class="btn btn-default"
+                        ng-class="{'btn-primary': actualDegree === 4}">4</button>
+                <button type="button" ng-click="listByDegree(5)" class="btn btn-default"
+                        ng-class="{'btn-primary': actualDegree === 5}">5</button>
             </div>
             </h5>
         </div>
@@ -35,6 +40,11 @@
             <th class="text-center">Date Request</th>
             <th class="text-center">Date Service</th>
             <th class="text-center" >Big Nodules</th>
+            <th class="text-center" >1</th>
+            <th class="text-center" >2</th>
+            <th class="text-center" >3</th>
+            <th class="text-center" >4</th>
+            <th class="text-center" >5</th>
         </tr>
         </thead>
         <tr  ng-repeat="exam in allExams.exams" style="cursor: pointer;" class="text-center">

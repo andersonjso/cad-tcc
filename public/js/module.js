@@ -29,6 +29,7 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
         getExams();
         $scope.maxSize = 5;
         $scope.queryIsOn = false;
+        $scope.queryDegree = false;
 
         $scope.sendPost = function() {
             var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -98,17 +99,6 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
                 })
         }
 
-        function demoController(NgTableParams, simpleList) {
-            this.tableParams = new NgTableParams({
-                // initial sort order
-                sorting: { name: "asc" }
-            }, {
-                dataset: simpleList
-            });
-        }
-
-
-
         $scope.goToExam = function(exam) {
             $location.path('/exam/' + exam.path.substring(11, 25));
         };
@@ -135,7 +125,16 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
                     .error(function (error){
                         $scope.status = 'Unable to load data: ' + error.message;
                     });
-            }else {
+            } else if ($scope.queryDegree){
+                dataFactory.listExamsByDegree($scope.actualDegree, $scope.currentPage)
+                    .success(function (response){
+                        $scope.allExams = response;
+                        $scope.totalItems = response.totalPages * 10;
+                    })
+                    .error(function (error){
+                        $scope.status = 'Unable to load data: ' + error.message;
+                    });
+            } else {
                 dataFactory.listExams($scope.currentPage)
                     .success(function (response) {
                         $scope.allExams = response;
@@ -146,6 +145,21 @@ app.controller('examsController', ['$scope', '$location', '$route', 'dataFactory
                     })
             }
         };
+
+        $scope.listByDegree = function(degree){
+          //  event.preventDefault();
+            $scope.queryDegree = true;
+            $scope.actualDegree = degree;
+            $scope.currentPage = 1;
+            dataFactory.listExamsByDegree(degree, 1)
+                .success(function (response){
+                    $scope.allExams = response;
+                    $scope.totalItems = response.totalPages * 10;
+                })
+                .error(function (error){
+                    $scope.status = 'Unable to load data: ' + error.message;
+                });
+        }
 
         $scope.search = function(){
             event.preventDefault();
@@ -292,7 +306,6 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
                         var id = $scope.similarNodules[i].idNodule;
                         var path = $scope.similarNodules[i].path.substring(11, 25);
                         getImagesNodules(path, id);
-
                     }
                 })
                 .error(function (error){
@@ -903,7 +916,7 @@ app.factory('dataFactory', ['$http', function($http){
     }
 
     dataFactory.retrieveMySimilarNodules = function(noduleId){
-        return $http.get('nodule/' + noduleId + '/similar');
+        return $http.get('nodules/' + noduleId + '/similar');
     }
 
     dataFactory.retrieveMyNodulesSlices = function (noduleId, roiNumber){
@@ -922,6 +935,11 @@ app.factory('dataFactory', ['$http', function($http){
         return $http.get('nodule/' + noduleId + '/' + page)
     }
 
+    dataFactory.listExamsByDegree = function(noduleDegree, page){
+        return $http.get('/exams/degree/' + noduleDegree + '/' + page);
+    }
+
+    //    @Path("/exams/degree/:noduleDegree/:page")
     return dataFactory;
 }])
 
