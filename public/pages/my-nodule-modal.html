@@ -8,12 +8,13 @@
             <div class="col-md-6 text-center">
                 <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
                     <uib-slide ng-repeat="roi in myActualNodule.rois" index="$index" active="$index">
+                        <div class="container-main-img">
                         <img ng-src="data:image/PNG;base64,{{nodulesRoisImg[myActualNodule.noduleId + $index]}}"
-                             ng-style="nodule{{myActualNodule.noduleId + $index}}"
+                             ng-style="nodule{{myActualNodule.noduleId.replace(' ', '') + $index}}"
                              class="img-rounded"
                              style="margin-bottom: -60px;
-                             margin-top: -60px;
-                             transform:scale(2);"/>
+                             margin-top: -60px;"/>
+                        </div>
                     </uib-slide>
                 </uib-carousel>
 
@@ -46,64 +47,82 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 form-group ">
-                    <h6>Malignidade</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.malignancy" value="{{myActualNodule.malignancy}}"required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Sutileza</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.subtlety" value="{{myActualNodule.subtlety}}" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Estrutura Interna</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.internalStructure" value="{{myActualNodule.internalStructure}}" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Calcificação</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.calcification" value="{{myActualNodule.calcification}}" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Esfericidade</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.sphericity" value="{{myActualNodule.sphericity}}" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Margem</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.margin" value="{{myActualNodule.margin}}" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Lobulação</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.lobulation" value="{{myActualNodule.lobulation}}" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Spiculation</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.spiculation" value="{{myActualNodule.spiculation}}"required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Textura</h6>
-                    <input name="subtlety" class="form-control text-center" type="number"
-                           ng-model="newNodule.texture" value="{{myActualNodule.texture}}" required/>
-                </div>
+                <form name="noduleForm" novalidate>
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.malignancy.$invalid && !noduleForm.malignancy.$pristine }">
+                        <h6>Malignidade</h6>
+                        <input name="malignancy" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.malignancy"
+                               value="{{myActualNodule.malignancy}}" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.subtlety.$invalid && !noduleForm.subtlety.$pristine }">
+                        <h6>Sutileza</h6>
+                        <input name="subtlety" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.subtlety"
+                               value="{{myActualNodule.subtlety}}" required/>
+                    </div>
+
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.internalStructure.$invalid && !noduleForm.internalStructure.$pristine }">
+                        <h6>Estrutura Interna</h6>
+                        <input name="internalStructure" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.internalStructure"
+                               value="{{myActualNodule.internalStructure}}" required/>
+                    </div>
+
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.calcification.$invalid && !noduleForm.calcification.$pristine }">
+                        <h6>Calcificação</h6>
+                        <input name="calcification" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.calcification"
+                               value="{{myActualNodule.calcification}}" required/>
+                    </div>
+
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.sphericity.$invalid && !noduleForm.sphericity.$pristine }">
+                        <h6>Esfericidade</h6>
+                        <input name="sphericity" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.sphericity"
+                               value="{{myActualNodule.sphericity}}" required/>
+                    </div>
+
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.margin.$invalid && !noduleForm.margin.$pristine }">
+                        <h6>Margem</h6>
+                        <input name="margin" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.margin"
+                               value="{{myActualNodule.margin}}" required/>
+                    </div>
+
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.lobulation.$invalid && !noduleForm.lobulation.$pristine }">
+                        <h6>Lobulação</h6>
+                        <input name="lobulation" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.lobulation"
+                               value="{{myActualNodule.lobulation}}" required/>
+                    </div>
+
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.spiculation.$invalid && !noduleForm.spiculation.$pristine }">
+                        <h6>Espiculação</h6>
+                        <input name="spiculation" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.spiculation"
+                               value="{{myActualNodule.spiculation}}" required/>
+                    </div>
+
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.texture.$invalid && !noduleForm.texture.$pristine }">
+                        <h6>Textura</h6>
+                        <input name="texture" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.texture"
+                               value="{{myActualNodule.texture}}"required/>
+                    </div>
+
+                    <div class="col-lg-6 form-group">
+                        <button type="submit" class="btn btn-danger glyphicon glyphicon-trash" ng-click="confirmDeleteNodule()"></button>
+                    </div>
+
+                    <div class="col-lg-6 form-group">
+                        <button type="submit" class="btn btn-primary glyphicon glyphicon-edit" ng-click="editNodule()"
+                                ng-disabled="noduleForm.$pristine"></button>
+                    </div>
+                    <!--<button type="submit" class="btn btn-primary" ng-disabled="noduleForm.$invalid">Submit</button>-->
+                </form>
                 <hr>
-                <div class="row">
-                    <div class="col-lg-6 form-group">
-                        <button class="btn btn-danger" ng-click="deleteNodule()">Apagar nódulo</button>
-                    </div>
 
-                    <div class="col-lg-6 form-group">
-                        <button class="btn btn-primary" ng-click="editNodule()">Editar</button>
-                    </div>
-
-
-                </div>
             </div>
 
             <div class="col-md-6 text-center" ng-show="!isSimilar" style="margin-top: -30px;">
@@ -138,14 +157,15 @@
                 </button>
                 <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
                     <uib-slide ng-repeat="roi in similarNoduleSelected.rois" index="$index" active="$index">
+                        <div class="container-main-img">
                         <img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.noduleId + $index]}}"
-                             ng-style="nodule{{similarNoduleSelected.noduleId + $index}}"
+                             ng-style="nodule{{similarNoduleSelected.noduleId.replace(' ', '') + $index}}"
                              class="img-rounded"
                              style="margin-bottom: -60px;
-                             margin-top: -60px;
-                             transform:scale(1);"/>
-                        <div class="carousel-caption">
+                             margin-top: -60px;"/>
+                        <div class="carousel-caption" style="margin-bottom: -50px">
                             <h6>ID Nódulo: {{similarNoduleSelected.noduleId}} <br>Exame: {{pathToShow}} </h6>
+                        </div>
                         </div>
                     </uib-slide>
                 </uib-carousel>

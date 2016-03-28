@@ -248,8 +248,8 @@ app.controller('myNodulesController', ['$scope', '$location', '$route', 'dataFac
         };
     }]);
 
-app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory',
-    function ($scope, $uibModal, dataFactory){
+app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory', '$uibModalInstance', '$route',
+    function ($scope, $uibModal, dataFactory, $uibModalInstance, $route){
 
         console.log($scope.myActualNodule.rois);
         var getImagesNodules = function(path, id) {
@@ -355,7 +355,7 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -367,22 +367,35 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
+        };
+        //$scope.confirmDeleteNodule() = function(){
+
+        //};
+
+
+        $scope.confirmDeleteNodule = function(){
+                $scope.modalConfirmDelete = $uibModal.open({
+                    templateUrl: 'pages/mynodule-confirmation-delete.html',
+                    size: 'sm',
+                    scope: $scope
+                });
         };
 
         $scope.deleteNodule = function(){
             dataFactory.deleteNodule($scope.myActualNodule.noduleId)
                 .success(function(response){
-                    alert('Deletado :(');
+                    $uibModalInstance.close();
+                    $route.reload();
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 });
+        };
 
-        }
 
         $scope.editNodule = function(){
 
@@ -417,16 +430,30 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
 
                 dataFactory.editNodule($scope.myActualNodule.noduleId, $scope.newNodule)
                     .success(function(response){
-                        alert('Editado ;)');
-                        console.log(JSON.stringify(response));
+                        $scope.edited = true;
+
+                        $uibModal.open({
+                            templateUrl: 'pages/nodule-edit-confirmation.html',
+                            size: 'sm',
+                            scope: $scope
+                        });
                     })
                     .error(function (error){
                         $scope.status = 'Unable to load data: ' + error.message;
                     });
             }
             else{
-                alert("preencha ao menos 1!!!!");
+                $uibModal.open({
+                    templateUrl: 'pages/nodule-edit-error.html',
+                    size: 'sm',
+                    scope: $scope
+                });
             }
+
+            $scope.reloadPage = function (){
+                console.log("ae");
+                $route.reload();
+            };
 
 
 
@@ -439,8 +466,10 @@ app.controller('myNodulesModalController', ['$scope', '$uibModal', 'dataFactory'
 
 
 
-app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
-    function ($scope, $uibModal, dataFactory) {
+app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory', '$route',
+    function ($scope, $uibModal, dataFactory, $route) {
+
+        $scope.created = false;
 
         var getImagesNodules = function(path, id) {
             $scope.similarNoduleImg = {};
@@ -517,7 +546,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -529,7 +558,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -541,7 +570,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -553,7 +582,7 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -569,26 +598,19 @@ app.controller('nodule3DModalController', ['$scope', '$uibModal', 'dataFactory',
 
             dataFactory.createNodule(noduleDTO)
                 .success(function(response){
-                    alert("Criouu");
-                    //console.log(response);
+                    $scope.created = true;
+                    $route.reload();
+                    $uibModal.open({
+                        templateUrl: 'pages/nodule-confirmation-creation.html',
+                        size: 'sm',
+                        scope: $scope
+                    });
+
+
                 })
                 .error(function (error){
                     $scope.status = 'Unable to load data: ' + error.message;
                 });
-            /*
-             dataFactory.retrieveBigNodule(path, id)
-             .success(function(response){
-             $scope.similarNoduleSelected = response;
-
-             for (var i=0; i<$scope.similarNoduleSelected.rois.length; i++){
-             getRoiSlicesNodule(path, id, i);
-             }
-
-             })
-             .error(function (error){
-             $scope.status = 'Unable to load data: ' + error.message;
-             });
-             */
         }
 
 }]);
@@ -706,16 +728,16 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
 
         $scope.min = 0;
         $scope.max = 200;
-        $scope.brigthValue = 3000;
-        $scope.contValue = 400;
+        $scope.brigthValue = 100;
+        $scope.contValue = 100;
 
         $scope.brigthChange = function(bigNodule, bright, cont){
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                //console.log($scope[scopeName]);
+               // console.log(scopeName.replace(/ /g,''));
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -725,9 +747,9 @@ app.controller('examController', ['$scope', '$routeParams', 'dataFactory', '$uib
             for (var i = 0; i<bigNodule.rois.length; i++){
                 var scopeName = 'nodule' + bigNodule.noduleId+i;
 
-                //console.log($scope[scopeName]);
+                //console.log($scope[scopeName.trim()]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -832,7 +854,7 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }
@@ -844,7 +866,7 @@ app.controller('noduleModalController', ['$scope', '$uibModal', 'dataFactory',
 
                 //console.log($scope[scopeName]);
 
-                $scope[scopeName] = {
+                $scope[scopeName.replace(/ /g,'')] = {
                     'webkit-filter' : 'brightness(' + bright + '%) contrast(' + cont + '%)'
                 }
             }

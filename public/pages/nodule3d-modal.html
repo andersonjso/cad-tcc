@@ -6,13 +6,17 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-md-6 text-center">
-                <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
-                    <uib-slide ng-repeat="slice in slicesNodule3D" index="$index" active="$index">
-                        <img ng-src="data:image/PNG;base64,{{slice.imageEncoded}}"
-                             ng-style="noduleSlice{{$index}}"
-                             class="img-rounded"/>
-                    </uib-slide>
-                </uib-carousel>
+
+                    <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
+                        <uib-slide ng-repeat="slice in slicesNodule3D" index="$index" active="$index">
+                            <div class="container-main-img">
+                                <img ng-src="data:image/PNG;base64,{{slice.imageEncoded}}"
+                                     ng-style="noduleSlice{{$index}}"
+                                     class="img-rounded"/>
+                            </div>
+                        </uib-slide>
+                    </uib-carousel>
+
 
                 <div class="row text-center">
                     <div class="col-lg-4 col-lg-offset-2">
@@ -46,82 +50,86 @@
                     </div>
                 </div>
 
-                <!--<div class="row" style="margin-top: 20px">-->
-                <!--<div class="col-lg-4 col-lg-offset-4">-->
-                    <!--<label>ID do nódulo</label>-->
-                <!--</div>-->
-                    <!--<div class="col-lg-8">-->
-                        <!--<i class="glyphicon glyphicon-exclamation-sign" uib-tooltip="Preencha o campo"-->
-                           <!--tooltip-placement="left" ng-show="createDeviceForm.address.$error.required &&-->
-                        <!--createDeviceForm.address.$dirty"></i>-->
-                        <!--<input name="address" class="form-control" type="text" ng-model="newDevice.address" required/>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <form name="noduleForm" novalidate>
+                    <div class="col-lg-8 col-lg-offset-2 form-group"
+                         ng-class="{ 'has-error' : noduleForm.noduleId.$invalid && !noduleForm.noduleId.$pristine }"
+                         style="margin-top: 20px">
 
-                <div class="col-lg-8 col-lg-offset-2 form-group" style="margin-top: 20px">
-                    <label>ID do nódulo</label>
-                    <input name="subtlety" class="form-control" type="text" ng-model="newNodule.noduleId" required/>
-                </div>
+                            <label>ID do nódulo</label>
+                            <input name="noduleId"
+                                   ng-minlength="2"
+                                   class="form-control text-center"
+                                   type="text"
+                                   ng-model="newNodule.noduleId"
+                                   required/>
 
-                <div class="col-lg-4 form-group">
-                    <h6>Malignidade</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.malignancy" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Sutileza</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.subtlety" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Estrutura Interna</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.internalStructure" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Calcificação</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.calcification" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Esfericidade</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.sphericity" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Margem</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.margin" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Lobulação</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.lobulation" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Spiculation</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.spiculation" required/>
-                </div>
-                <div class="col-lg-4 form-group">
-                    <h6>Textura</h6>
-                    <input name="subtlety" class="form-control text-center" type="number" ng-model="newNodule.texture" required/>
-                </div>
+                            <p ng-show="noduleForm.noduleId.$error.minlength" class="help-block">ID deve ter no mínimo 2 caracteres</p>
+                    </div>
 
-                <div class="col-lg-12 form-group text-right">
-                    <button class="btn btn-primary" ng-click="saveNodule()">Salvar</button>
-                </div>
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.malignancy.$invalid && !noduleForm.malignancy.$pristine }">
+                        <h6>Malignidade</h6>
+                        <input name="malignancy" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.malignancy" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.subtlety.$invalid && !noduleForm.subtlety.$pristine }">
+                        <h6>Sutileza</h6>
+                        <input name="subtlety" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.subtlety" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.internalStructure.$invalid && !noduleForm.internalStructure.$pristine }">
+                        <h6>Estrutura Interna</h6>
+                        <input name="internalStructure" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.internalStructure" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.calcification.$invalid && !noduleForm.calcification.$pristine }">
+                        <h6>Calcificação</h6>
+                        <input name="calcification" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.calcification" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.sphericity.$invalid && !noduleForm.sphericity.$pristine }">
+                        <h6>Esfericidade</h6>
+                        <input name="sphericity" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.sphericity" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.margin.$invalid && !noduleForm.margin.$pristine }">
+                        <h6>Margem</h6>
+                        <input name="margin" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.margin" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.lobulation.$invalid && !noduleForm.lobulation.$pristine }">
+                        <h6>Lobulação</h6>
+                        <input name="lobulation" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.lobulation" required/>
+                    </div>
 
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.spiculation.$invalid && !noduleForm.spiculation.$pristine }">
+                        <h6>Espiculação</h6>
+                        <input name="spiculation" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.spiculation" required/>
+                    </div>
 
-
-
-
-
-
-
+                    <div class="col-lg-4 form-group"
+                         ng-class="{ 'has-error' : noduleForm.texture.$invalid && !noduleForm.texture.$pristine }">
+                        <h6>Textura</h6>
+                        <input name="texture" class="form-control text-center" min="0" ng-min="0" type="number" ng-model="newNodule.texture" required/>
+                    </div>
 
 
+                    <div class="col-lg-12 form-group text-right">
+                        <button type="submit" class="btn btn-primary" ng-show="!created" ng-disabled="noduleForm.$invalid" ng-click="saveNodule()">Salvar</button>
+                    </div>
 
-
-
+                    <div class="col-lg-12 form-group text-right">
+                        <button type="submit" class="btn btn-primary" ng-show="created" ng-click="$dismiss()">Sair</button>
+                    </div>
+                    <!--<button type="submit" class="btn btn-primary" ng-disabled="noduleForm.$invalid">Submit</button>-->
+                </form>
             </div>
 
             <div class="col-md-6 text-center" ng-show="!isSimilar" style="margin-top: -30px;">
@@ -156,14 +164,16 @@
                 </button>
                 <uib-carousel style="cursor: pointer; margin: auto; width: 60%">
                     <uib-slide ng-repeat="roi in similarNoduleSelected.rois" index="$index" active="$index">
-                        <img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.noduleId + $index]}}"
-                             ng-style="nodule{{similarNoduleSelected.noduleId + $index}}"
-                             class="img-rounded"
-                             style="margin-bottom: -60px;
-                             margin-top: -60px;
-                             transform:scale(1);"/>
-                        <div class="carousel-caption">
-                            <h6>ID Nódulo: {{similarNoduleSelected.noduleId}} <br>Exame: {{pathToShow}} </h6>
+                        <div class="container-main-img">
+                            <img ng-src="data:image/PNG;base64,{{selectedNoduleRoisImg[similarNoduleSelected.noduleId + $index]}}"
+                                 ng-style="nodule{{similarNoduleSelected.noduleId.replace(' ', '') + $index}}"
+                                 class="img-rounded"
+                                 style="margin-bottom: -60px;
+                                 margin-top: -60px;
+                                 transform:scale(1);"/>
+                            <div class="carousel-caption" style="margin-bottom: -50px">
+                                <h6>ID Nódulo: {{similarNoduleSelected.noduleId}} <br>Exame: {{pathToShow}} </h6>
+                            </div>
                         </div>
                     </uib-slide>
                 </uib-carousel>

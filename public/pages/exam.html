@@ -39,7 +39,7 @@
                             <uib-carousel style="cursor: pointer; margin: auto; width: 85%">
                                 <uib-slide ng-repeat="roi in bigNodule.rois" index="$index" active="$index">
                                         <img ng-elevate-zoom
-                                             ng-style="nodule{{bigNodule.noduleId + $index}}"
+                                             ng-style="nodule{{bigNodule.noduleId.replace(' ', '') + $index}}"
                                              ng-src="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
                                              zoom-image="data:image/PNG;base64,{{roisImg[bigNodule.noduleId + $index]}}"
                                              id="{{bigNodule.noduleId + $index}}"
@@ -66,7 +66,6 @@
                                    max={{max}}
                                    ng-model='brigthValue'
                                    ng-change="brigthChange(bigNodule, brigthValue, contValue);">
-                            {{brigthValue}}
                         </div>
                         <div class="col-lg-4">
                             <h6 class="text-left">Contraste: <input type="text"
